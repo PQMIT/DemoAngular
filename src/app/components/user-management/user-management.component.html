@@ -1,0 +1,83 @@
+<div class="p-fluid">
+  <h2>User Management</h2>
+
+  <div class="p-field">
+    <label for="search">Search</label>
+    <input id="search" [(ngModel)]="searchQuery" pInputText />
+  </div>
+
+  <div class="p-grid">
+    <div class="p-col-12 p-md-6">
+      <h3>Add User</h3>
+      <div class="p-field">
+        <label for="name">Name</label>
+        <input id="name" [(ngModel)]="newUser.name" pInputText />
+      </div>
+      <div class="p-field">
+        <label for="email">Email</label>
+        <input id="email" [(ngModel)]="newUser.email" pInputText />
+      </div>
+      <button
+        (click)="addUser()"
+        pButton
+        label="Add"
+        class="p-button-success"
+      ></button>
+    </div>
+
+    <div class="p-col-12 p-md-6">
+      <h3>Edit User</h3>
+      <div *ngIf="selectedUser">
+        <div class="p-field">
+          <label for="editName">Name</label>
+          <input id="editName" [(ngModel)]="selectedUser.name" pInputText />
+        </div>
+        <div class="p-field">
+          <label for="editEmail">Email</label>
+          <input id="editEmail" [(ngModel)]="selectedUser.email" pInputText />
+        </div>
+        <button
+          (click)="updateUser()"
+          pButton
+          label="Update"
+          class="p-button-warning"
+        ></button>
+      </div>
+    </div>
+  </div>
+
+  <p-table
+    [value]="filterUsers()"
+    [paginator]="true"
+    [rows]="5"
+    [responsive]="true"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th (click)="setSortField('name')">Name</th>
+        <th (click)="setSortField('email')">Email</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user let-i="rowIndex">
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button
+            (click)="editUser(user)"
+            pButton
+            icon="pi pi-pencil"
+            class="p-button-info"
+          ></button>
+          <button
+            (click)="deleteUser(user.id)"
+            pButton
+            icon="pi pi-times"
+            class="p-button-danger"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
