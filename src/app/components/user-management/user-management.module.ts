@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [UserManagementComponent],
@@ -15,7 +17,9 @@ import { FormsModule } from '@angular/forms';
     ButtonModule,
     InputTextModule,
     FormsModule,
+    ConfirmDialogModule,
   ],
   exports: [UserManagementComponent],
+  providers: [ConfirmationService],
 })
 export class UserManagementModule {}

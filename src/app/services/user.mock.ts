@@ -7,34 +7,44 @@ import { delay } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UserMockService {
-  private users: User[] = [
-    { id: 1, name: 'John Doe', email: 'john.doe@example.com' },
-    { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com' },
-    { id: 3, name: 'Alice Johnson', email: 'alice.j@example.com' },
-    { id: 4, name: 'Bob Brown', email: 'bob.brown@example.com' },
-  ];
-  private nextId = 5;
+  private nextId = 1;
+
+  private getUsersFromStorage(): User[] {
+    const users = localStorage.getItem('users');
+    return users ? JSON.parse(users) : [];
+  }
+
+  private saveUsersToStorage(users: User[]) {
+    localStorage.setItem('users', JSON.stringify(users));
+  }
 
   getUsers(): Observable<User[]> {
-    return of(this.users).pipe(delay(500)); // Giả lập độ trễ
+    const users = this.getUsersFromStorage();
+    return of(users).pipe(delay(500)); // Giả lập độ trễ
   }
 
   addUser(user: User): Observable<void> {
     user.id = this.nextId++;
-    this.users.push(user);
+    const users = this.getUsersFromStorage();
+    users.push(user);
+    this.saveUsersToStorage(users);
     return of(undefined).pipe(delay(500));
   }
 
   updateUser(user: User): Observable<void> {
-    const index = this.users.findIndex((u) => u.id === user.id);
+    const users = this.getUsersFromStorage();
+    const index = users.findIndex((u) => u.id === user.id);
     if (index !== -1) {
-      this.users[index] = user;
+      users[index] = user;
+      this.saveUsersToStorage(users);
     }
     return of(undefined).pipe(delay(500));
   }
 
   deleteUser(id: number): Observable<void> {
-    this.users = this.users.filter((user) => user.id !== id);
+    let users = this.getUsersFromStorage();
+    users = users.filter((user) => user.id !== id);
+    this.saveUsersToStorage(users);
     return of(undefined).pipe(delay(500));
   }
 }

@@ -1,6 +1,5 @@
 <div class="p-fluid">
   <h2>User Management</h2>
-
   <div class="p-field">
     <label for="search">Search</label>
     <input id="search" [(ngModel)]="searchQuery" pInputText />
@@ -17,12 +16,25 @@
         <label for="email">Email</label>
         <input id="email" [(ngModel)]="newUser.email" pInputText />
       </div>
+      <div class="p-field">
+        <label for="role">Role</label>
+        <select id="role" [(ngModel)]="newUser.role" pInputText>
+          <option value="User">User</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+      <div class="p-field">
+        <label for="avatar">Avatar</label>
+        <input type="file" (change)="handleFileInput($event)" pInputText />
+      </div>
       <button
         (click)="addUser()"
         pButton
         label="Add"
         class="p-button-success"
       ></button>
+
+      <div *ngIf="errorMessage" class="p-error">{{ errorMessage }}</div>
     </div>
 
     <div class="p-col-12 p-md-6">
@@ -35,6 +47,13 @@
         <div class="p-field">
           <label for="editEmail">Email</label>
           <input id="editEmail" [(ngModel)]="selectedUser.email" pInputText />
+        </div>
+        <div class="p-field">
+          <label for="editRole">Role</label>
+          <select id="editRole" [(ngModel)]="selectedUser.role" pInputText>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+          </select>
         </div>
         <button
           (click)="updateUser()"
@@ -56,6 +75,7 @@
       <tr>
         <th (click)="setSortField('name')">Name</th>
         <th (click)="setSortField('email')">Email</th>
+        <th (click)="setSortField('role')">Role</th>
         <th>Actions</th>
       </tr>
     </ng-template>
@@ -63,7 +83,14 @@
       <tr>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
         <td>
+          <img
+            *ngIf="user.avatar"
+            [src]="user.avatar"
+            alt="Avatar"
+            width="50"
+          />
           <button
             (click)="editUser(user)"
             pButton
