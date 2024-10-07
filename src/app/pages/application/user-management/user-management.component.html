@@ -1,11 +1,11 @@
 <div class="p-fluid">
-  <h2>User Management</h2>
-  <div class="p-field">
-    <label for="search">Search</label>
-    <input id="search" [(ngModel)]="searchQuery" pInputText />
-  </div>
+    <h2>User Management</h2>
+    <div class="p-field">
+        <label for="search">Search</label>
+        <input id="search" [(ngModel)]="searchQuery" pInputText />
+    </div>
 
-  <div class="p-grid">
+    <!-- <div class="p-grid">
     <div class="p-col-12 p-md-6">
       <h3>Add User</h3>
       <div class="p-field">
@@ -63,48 +63,28 @@
         ></button>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <p-table
-    [value]="filterUsers()"
-    [paginator]="true"
-    [rows]="5"
-    [responsive]="true"
-  >
-    <ng-template pTemplate="header">
-      <tr>
-        <th (click)="setSortField('name')">Name</th>
-        <th (click)="setSortField('email')">Email</th>
-        <th (click)="setSortField('role')">Role</th>
-        <th>Actions</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user let-i="rowIndex">
-      <tr>
-        <td>{{ user.name }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.role }}</td>
-        <td>
-          <img
-            *ngIf="user.avatar"
-            [src]="user.avatar"
-            alt="Avatar"
-            width="50"
-          />
-          <button
-            (click)="editUser(user)"
-            pButton
-            icon="pi pi-pencil"
-            class="p-button-info"
-          ></button>
-          <button
-            (click)="deleteUser(user.id)"
-            pButton
-            icon="pi pi-times"
-            class="p-button-danger"
-          ></button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+    <!-- <p-table [value]="filterUsers()" [paginator]="true" [rows]="5" [responsive]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th (click)="setSortField('name')">Name</th>
+                <th (click)="setSortField('email')">Email</th>
+                <th (click)="setSortField('role')">Role</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-i="rowIndex">
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <img *ngIf="user.avatar" [src]="user.avatar" alt="Avatar" width="50" />
+                    <button (click)="editUser(user)" pButton icon="pi pi-pencil" class="p-button-info"></button>
+                    <button (click)="deleteUser(user.id)" pButton icon="pi pi-times" class="p-button-danger"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table> -->
 </div>
