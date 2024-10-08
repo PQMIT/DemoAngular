@@ -4,11 +4,11 @@ import {
 } from "./chunk-BLVGPENJ.js";
 import {
   PrimeNGConfig
-} from "./chunk-AXVE2N7F.js";
+} from "./chunk-IBJJOD6J.js";
 import {
   DOCUMENT,
   isPlatformBrowser
-} from "./chunk-E3UNLI3V.js";
+} from "./chunk-7CXCQWCU.js";
 import {
   Directive,
   ElementRef,
@@ -23,7 +23,7 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵdirectiveInject
-} from "./chunk-YUME3FXZ.js";
+} from "./chunk-QEEI3E3M.js";
 
 // node_modules/primeng/fesm2022/primeng-ripple.mjs
 var Ripple = class _Ripple {
@@ -194,4 +194,4 @@ export {
   Ripple,
   RippleModule
 };
-//# sourceMappingURL=chunk-BUWOTPOB.js.map
+//# sourceMappingURL=chunk-MVQ5QUUV.js.map

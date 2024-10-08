@@ -1,7 +1,7 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   BaseIcon
-} from "./chunk-CGXGG6RK.js";
+} from "./chunk-GF6VXG42.js";
 import {
   Component,
   setClassMetadata,
@@ -15,7 +15,7 @@ import {
   ɵɵelementStart,
   ɵɵgetInheritedFactory,
   ɵɵnamespaceSVG
-} from "./chunk-YUME3FXZ.js";
+} from "./chunk-QEEI3E3M.js";
 
 // node_modules/primeng/fesm2022/primeng-icons-check.mjs
 var CheckIcon = class _CheckIcon extends BaseIcon {
@@ -121,4 +121,4 @@ export {
   CheckIcon,
   TimesIcon
 };
-//# sourceMappingURL=chunk-XXW3XM3J.js.map
+//# sourceMappingURL=chunk-G7QZKI3P.js.map

@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { User } from "../models/user";
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
+
+import { dataUsers } from "./fakeData";
 @Injectable({
     providedIn: "root",
 })
@@ -42,5 +44,11 @@ export class UserService {
     }
     getData(): Observable<any> {
         return this.http.get(this.apiUrl);
+    }
+    getDataAPI(): Observable<any> {
+        return this.http.get(this.apiUrl);
+    }
+    getDataLocal(): Observable<any> {
+        return of(dataUsers);
     }
 }

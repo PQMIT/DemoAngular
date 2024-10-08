@@ -1,90 +1,122 @@
 <div class="p-fluid">
     <h2>User Management</h2>
-    <div class="p-field">
+    <!-- <div class="p-field">
         <label for="search">Search</label>
         <input id="search" [(ngModel)]="searchQuery" pInputText />
-    </div>
+    </div> -->
 
-    <!-- <div class="p-grid">
-    <div class="p-col-12 p-md-6">
-      <h3>Add User</h3>
-      <div class="p-field">
-        <label for="name">Name</label>
-        <input id="name" [(ngModel)]="newUser.name" pInputText />
-      </div>
-      <div class="p-field">
-        <label for="email">Email</label>
-        <input id="email" [(ngModel)]="newUser.email" pInputText />
-      </div>
-      <div class="p-field">
-        <label for="role">Role</label>
-        <select id="role" [(ngModel)]="newUser.role" pInputText>
-          <option value="User">User</option>
-          <option value="Admin">Admin</option>
-        </select>
-      </div>
-      <div class="p-field">
-        <label for="avatar">Avatar</label>
-        <input type="file" (change)="handleFileInput($event)" pInputText />
-      </div>
-      <button
-        (click)="addUser()"
-        pButton
-        label="Add"
-        class="p-button-success"
-      ></button>
-
-      <div *ngIf="errorMessage" class="p-error">{{ errorMessage }}</div>
-    </div>
-
-    <div class="p-col-12 p-md-6">
-      <h3>Edit User</h3>
-      <div *ngIf="selectedUser">
-        <div class="p-field">
-          <label for="editName">Name</label>
-          <input id="editName" [(ngModel)]="selectedUser.name" pInputText />
-        </div>
-        <div class="p-field">
-          <label for="editEmail">Email</label>
-          <input id="editEmail" [(ngModel)]="selectedUser.email" pInputText />
-        </div>
-        <div class="p-field">
-          <label for="editRole">Role</label>
-          <select id="editRole" [(ngModel)]="selectedUser.role" pInputText>
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
-          </select>
-        </div>
-        <button
-          (click)="updateUser()"
-          pButton
-          label="Update"
-          class="p-button-warning"
-        ></button>
-      </div>
-    </div>
-  </div> -->
-
-    <!-- <p-table [value]="filterUsers()" [paginator]="true" [rows]="5" [responsive]="true">
+    <p-table
+        [value]="users"
+        dataKey="id"
+        styleClass="p-datatable-striped "
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [paginator]="true"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [globalFilterFields]="['first_name', 'last_name', 'email', 'role']"
+        (onEditComplete)="onEditComplete($event)"
+    >
         <ng-template pTemplate="header">
             <tr>
-                <th (click)="setSortField('name')">Name</th>
-                <th (click)="setSortField('email')">Email</th>
-                <th (click)="setSortField('role')">Role</th>
-                <th>Actions</th>
+                <th>id</th>
+                <th>avatar</th>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>email</th>
+                <th>gender</th>
+                <th>ip_address</th>
+                <th>role</th>
+                <th>address</th>
+                <th>Action</th>
             </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-user let-i="rowIndex">
             <tr>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.role }}</td>
-                <td>
-                    <img *ngIf="user.avatar" [src]="user.avatar" alt="Avatar" width="50" />
-                    <button (click)="editUser(user)" pButton icon="pi pi-pencil" class="p-button-info"></button>
-                    <button (click)="deleteUser(user.id)" pButton icon="pi pi-times" class="p-button-danger"></button>
-                </td>
+                <th>
+                    <p-columnFilter type="text" field="id" placeholder="Search Id" ariaLabel="Filter Id" />
+                </th>
+                <th></th>
+                <th>
+                    <p-columnFilter type="text" field="first_name" ariaLabel="Filter first_name" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="last_name" ariaLabel="Filter last_name" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="email" ariaLabel="Filter email" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="gender" ariaLabel="Filter gender" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="ip_address" ariaLabel="Filter ip_address" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="role" ariaLabel="Filter role" />
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="address" ariaLabel="Filter address" />
+                </th>
+                <th></th>
             </tr>
         </ng-template>
-    </p-table> -->
+        <ng-template pTemplate="body" let-product let-editing="editing">
+            <tr>
+                <td>{{ product?.id }}</td>
+                <td><img [src]="product?.avatar" width="50" class="shadow-4" /></td>
+                <!-- <td>{{ product?.first_name }}</td> -->
+                <td [pEditableColumn]="product.first_name" pEditableColumnField="first_name">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.first_name" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ product?.first_name }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td [pEditableColumn]="product.last_name" pEditableColumnField="last_name">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.last_name" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ product?.last_name }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td [pEditableColumn]="product.email" pEditableColumnField="email">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.email" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ product?.email }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td [pEditableColumn]="product.gender" pEditableColumnField="gender">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.gender" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ product?.gender }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>{{ product.ip_address }}</td>
+                <td>{{ product.role }}</td>
+                <td [pEditableColumn]="product.address" pEditableColumnField="address">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.address" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ product?.address }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>Xem</td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>

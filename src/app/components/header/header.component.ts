@@ -14,12 +14,14 @@ export class HeaderComponent {
             {
                 label: "Home",
                 // icon: "pi pi-home",
+                routerLink: ["home"],
             },
             {
-                label: "Features",
+                label: "User Management",
                 // icon: "pi pi-star",
+                routerLink: ["user"],
             },
-            {
+            /* {
                 label: "Projects",
                 // icon: "pi pi-search",
                 items: [
@@ -58,11 +60,12 @@ export class HeaderComponent {
                         ],
                     },
                 ],
-            },
+            }, */
             {
-                label: "Contact",
+                label: "About",
                 // icon: "pi pi-envelope",
                 // badge: "3",
+                routerLink: ["about"],
             },
         ];
     }

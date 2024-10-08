@@ -1,7 +1,7 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   ObjectUtils
-} from "./chunk-AXVE2N7F.js";
+} from "./chunk-IBJJOD6J.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +14,7 @@ import {
   ɵɵdefineComponent,
   ɵɵprojection,
   ɵɵprojectionDef
-} from "./chunk-YUME3FXZ.js";
+} from "./chunk-QEEI3E3M.js";
 
 // node_modules/primeng/fesm2022/primeng-baseicon.mjs
 var _c0 = ["*"];
@@ -95,4 +95,4 @@ var BaseIcon = class _BaseIcon {
 export {
   BaseIcon
 };
-//# sourceMappingURL=chunk-CGXGG6RK.js.map
+//# sourceMappingURL=chunk-GF6VXG42.js.map
