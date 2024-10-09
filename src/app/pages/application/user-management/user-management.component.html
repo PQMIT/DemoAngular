@@ -8,8 +8,8 @@
     <p-table
         [value]="users"
         dataKey="id"
-        styleClass="p-datatable-striped "
-        [tableStyle]="{ 'min-width': '50rem' }"
+        styleClass="p-datatable-striped"
+        [tableStyle]="{ 'min-width': '20rem' }"
         [paginator]="true"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 20]"
@@ -24,14 +24,12 @@
                 <th>last_name</th>
                 <th>email</th>
                 <th>gender</th>
-                <th>ip_address</th>
-                <th>role</th>
                 <th>address</th>
                 <th>Action</th>
             </tr>
             <tr>
                 <th>
-                    <p-columnFilter type="text" field="id" placeholder="Search Id" ariaLabel="Filter Id" />
+                    <!-- <p-columnFilter type="text" field="id" placeholder="Search Id" ariaLabel="Filter Id" /> -->
                 </th>
                 <th></th>
                 <th>
@@ -46,77 +44,210 @@
                 <th>
                     <p-columnFilter type="text" field="gender" ariaLabel="Filter gender" />
                 </th>
-                <th>
+                <!-- <th>
                     <p-columnFilter type="text" field="ip_address" ariaLabel="Filter ip_address" />
-                </th>
-                <th>
+                </th> -->
+                <!--  <th>
                     <p-columnFilter type="text" field="role" ariaLabel="Filter role" />
-                </th>
+                </th> -->
                 <th>
                     <p-columnFilter type="text" field="address" ariaLabel="Filter address" />
                 </th>
-                <th></th>
+                <th><p-button size="small" label="AddUser" severity="info" (click)="showDialog()"></p-button></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product let-editing="editing">
             <tr>
                 <td>{{ product?.id }}</td>
                 <td><img [src]="product?.avatar" width="50" class="shadow-4" /></td>
-                <!-- <td>{{ product?.first_name }}</td> -->
+
                 <td [pEditableColumn]="product.first_name" pEditableColumnField="first_name">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.first_name" />
+                            <input pInputText type="text" [(ngModel)]="product.first_name" (ngModelChange)="onRowEdit(product)" />
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{ product?.first_name }}
                         </ng-template>
                     </p-cellEditor>
                 </td>
+
                 <td [pEditableColumn]="product.last_name" pEditableColumnField="last_name">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.last_name" />
+                            <input pInputText type="text" [(ngModel)]="product.last_name" (ngModelChange)="onRowEdit(product)" />
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{ product?.last_name }}
                         </ng-template>
                     </p-cellEditor>
                 </td>
+
                 <td [pEditableColumn]="product.email" pEditableColumnField="email">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.email" />
+                            <input pInputText type="text" [(ngModel)]="product.email" (ngModelChange)="onRowEdit(product)" />
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{ product?.email }}
                         </ng-template>
                     </p-cellEditor>
                 </td>
+
                 <td [pEditableColumn]="product.gender" pEditableColumnField="gender">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.gender" />
+                            <input pInputText type="text" [(ngModel)]="product.gender" (ngModelChange)="onRowEdit(product)" />
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{ product?.gender }}
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td>{{ product.ip_address }}</td>
-                <td>{{ product.role }}</td>
+
                 <td [pEditableColumn]="product.address" pEditableColumnField="address">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.address" />
+                            <input pInputText type="text" [(ngModel)]="product.address" (ngModelChange)="onRowEdit(product)" />
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{ product?.address }}
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td>Xem</td>
+
+                <td>
+                    <p-button *ngIf="product.isRowEdited" label="Save" severity="info" (click)="onChangeDataUser(product)" size="small"></p-button>
+                    <p-button label="View" (click)="viewDetail(product)" size="small"></p-button>
+                    <p-button size="small" label="Delete" severity="danger" (click)="deleteUser($event, product)"></p-button>
+                </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
+<p-confirmdialog />
+
+<!-- dialog add new user -->
+<p-dialog header="Add Profile" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <span class="p-text-secondary block mb-8">Your information.</span>
+    <div class="grid">
+        <div class="col-12">
+            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                <div class="formgrid grid">
+                    <div class="field col-12">
+                        <label for="id">ID</label>
+                        <input
+                            pInputText
+                            formControlName="id"
+                            id="id"
+                            type="text"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                        />
+                    </div>
+                    <div class="field col-12">
+                        <label for="firstname">Firstname</label>
+                        <input
+                            pInputText
+                            formControlName="first_name"
+                            id="first_name"
+                            type="text"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                        />
+                    </div>
+                    <div class="field col-12">
+                        <label for="last_name">Last name</label>
+                        <input
+                            pInputText
+                            formControlName="last_name"
+                            id="last_name"
+                            type="text"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                        />
+                    </div>
+
+                    <div class="field col-12">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            pInputText
+                            formControlName="email"
+                            id="email"
+                            type="text"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                        />
+                    </div>
+                    <div class="field col-12">
+                        <label for="gender">Gender</label>
+                        <select
+                            formControlName="gender"
+                            placeholder="Select Gender"
+                            id="gender"
+                            class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary"
+                            style="appearance: auto"
+                        >
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                    <div class="field col-12">
+                        <label for="ip_address">Ip address</label>
+                        <input
+                            pInputText
+                            formControlName="ip_address"
+                            id="ip_address"
+                            type="text"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                        />
+                    </div>
+                    <div class="field col-12">
+                        <label for="role">Role</label>
+                        <input
+                            pInputText
+                            formControlName="role"
+                            id="role"
+                            type="text"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                        />
+                    </div>
+                    <div class="field col-12">
+                        <label for="address">Address</label>
+                        <textarea
+                            pInputText
+                            formControlName="address"
+                            id="address"
+                            type="text"
+                            rows="4"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                        ></textarea>
+                    </div>
+                    <div class="field col-12">
+                        <label for="avatar">Avatar</label>
+                        <textarea
+                            pInputText
+                            formControlName="avatar"
+                            id="avatar"
+                            type="text"
+                            rows="6"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                        ></textarea>
+                    </div>
+                    <div class="field col-12">
+                        <label for="status">Avatar</label>
+                        <p-image [src]="userForm.get('avatar')?.value" [previewImageSrc]="userForm.get('avatar')?.value" alt="Image" width="200" [preview]="true" />
+                    </div>
+                    <!-- <div class="col-12">
+                        <div class="grid">
+                            <div class="col-12">
+                                <button type="submit" label="Save" [disabled]="userForm.invalid" pButton class="btn bg-primary text-white border-round w-full"></button>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+        <p-button label="Save" [disabled]="userForm.invalid" (click)="addUser()" />
+    </div>
+</p-dialog>

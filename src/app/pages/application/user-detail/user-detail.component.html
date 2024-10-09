@@ -1,0 +1,117 @@
+<div class="grid mt-5">
+    <div class="col-6 col-offset-3">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="formgrid grid">
+                <div class="field col-12 md:col-6">
+                    <label for="id">ID</label>
+                    <input
+                        pInputText
+                        formControlName="id"
+                        id="id"
+                        type="text"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    />
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="firstname">Firstname</label>
+                    <input
+                        pInputText
+                        formControlName="first_name"
+                        id="first_name"
+                        type="text"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    />
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="last_name">Last name</label>
+                    <input
+                        pInputText
+                        formControlName="last_name"
+                        id="last_name"
+                        type="text"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    />
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        pInputText
+                        formControlName="email"
+                        id="email"
+                        type="text"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    />
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="gender">Gender</label>
+                    <select
+                        formControlName="gender"
+                        placeholder="Select Gender"
+                        id="gender"
+                        class="w-full text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round outline-none focus:border-primary"
+                        style="appearance: auto"
+                    >
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="ip_address">Ip address</label>
+                    <input
+                        pInputText
+                        formControlName="ip_address"
+                        id="ip_address"
+                        type="text"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    />
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="role">Role</label>
+                    <input
+                        pInputText
+                        formControlName="role"
+                        id="role"
+                        type="text"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    />
+                </div>
+                <div class="field col-12">
+                    <label for="address">Address</label>
+                    <textarea
+                        pInputText
+                        formControlName="address"
+                        id="address"
+                        type="text"
+                        rows="4"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    ></textarea>
+                </div>
+                <div class="field col-9">
+                    <label for="avatar">Avatar</label>
+                    <textarea
+                        pInputText
+                        formControlName="avatar"
+                        id="avatar"
+                        type="text"
+                        rows="6"
+                        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                    ></textarea>
+                </div>
+                <div class="field col-3">
+                    <label for="status">Avatar</label>
+                    <p-image [src]="userForm.get('avatar')?.value" [previewImageSrc]="userForm.get('avatar')?.value" alt="Image" width="200" [preview]="true" />
+                </div>
+                <div class="col-6 col-offset-3">
+                    <div class="grid">
+                        <div class="col-12">
+                            <button type="submit" label="Save" [disabled]="userForm.invalid" pButton class="btn bg-primary text-white border-round w-full"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<p-toast />

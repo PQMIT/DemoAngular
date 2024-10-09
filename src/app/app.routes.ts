@@ -4,11 +4,16 @@ import { UserManagementComponent } from "./pages/application/user-management/use
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./pages/general/home/home.component";
 import { AboutComponent } from "./pages/general/about/about.component";
+import { UserDetailComponent } from "./pages/application/user-detail/user-detail.component";
+import { LoginComponent } from "./pages/general/login/login.component";
+import { AuthGuard } from "../app/services/AuthGaurd"; // Tạo AuthGuard
 
 export const routes: Routes = [
-    // { path: "", pathMatch: "full", redirectTo: "Home" },
+    { path: "login", component: LoginComponent },
     { path: "home", component: HomeComponent },
-    { path: "user", component: UserManagementComponent },
+    { path: "user", component: UserManagementComponent, canActivate: [AuthGuard] },
+    { path: "userDetail/:id", component: UserDetailComponent, canActivate: [AuthGuard] },
     { path: "about", component: AboutComponent },
+    { path: "", redirectTo: "/login", pathMatch: "full" },
     // Lazy loading UserModule
 ];

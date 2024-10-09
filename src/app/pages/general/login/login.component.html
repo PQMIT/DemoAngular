@@ -1,0 +1,19 @@
+<!-- login.component.html -->
+<div class="grid mt-5">
+    <div class="col-12 col-offset-3">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form (ngSubmit)="onLogin()">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" [(ngModel)]="username" name="username" required />
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" [(ngModel)]="password" name="password" required />
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

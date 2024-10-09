@@ -1,1 +1,58 @@
-<p>about works!</p>
+<div class="about-container">
+    <h1 class="text-center">About User Management Project</h1>
+
+    <p-card class="mt-5">
+        <ng-template pTemplate="header">
+            <h2>Project Overview</h2>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <p>
+                The User Management System is a project designed to help organizations easily manage and track user information. This system offers features such as user creation, modification,
+                deletion, and search functionalities.
+            </p>
+        </ng-template>
+    </p-card>
+
+    <p-card class="mt-5">
+        <ng-template pTemplate="header">
+            <h2>Key Features</h2>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <ul class="features-list">
+                <li>User listing with pagination</li>
+                <li>Adding new users</li>
+                <li>Editing user details inline</li>
+                <li>Deleting users with confirmation</li>
+                <li>Filtering and sorting users</li>
+            </ul>
+        </ng-template>
+    </p-card>
+
+    <p-card class="mt-5">
+        <ng-template pTemplate="header">
+            <h2>Technologies Used</h2>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <ul class="tech-list">
+                <li><strong>Angular 18:</strong> The core framework for building the UI and handling logic</li>
+                <li><strong>PrimeNG 18:</strong> For beautiful and responsive UI components</li>
+                <li><strong>PrimeFlex:</strong> CSS utilities for rapid UI design</li>
+                <li><strong>LocalStorage:</strong> Temporary data storage for managing users in the browser</li>
+                <li><strong>REST API:</strong> Backend service for fetching and updating user data (optional)</li>
+            </ul>
+        </ng-template>
+    </p-card>
+
+    <p-card class="mt-5">
+        <ng-template pTemplate="header">
+            <h2>Developer Information</h2>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <p>This project was developed by a team of skilled frontend developers using modern Angular and PrimeNG to deliver a responsive, efficient, and scalable user management system.</p>
+        </ng-template>
+    </p-card>
+
+    <div class="text-center mt-5">
+        <p-button label="Go Back to Home" icon="pi pi-home" (click)="goToHome()" styleClass="p-button-rounded"></p-button>
+    </div>
+</div>

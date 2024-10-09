@@ -1,28 +1,41 @@
 import {
+  BaseComponent
+} from "./chunk-Q73PBUIA.js";
+import {
+  BaseStyle
+} from "./chunk-YRXQSFCQ.js";
+import {
   CommonModule,
   NgClass,
-  NgIf,
-  NgStyle
-} from "./chunk-MBDSRN6C.js";
+  NgIf
+} from "./chunk-IPDESXSG.js";
 import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostBinding,
+  Injectable,
   Input,
   NgModule,
   Output,
   ViewEncapsulation$1,
+  inject,
   setClassMetadata,
+  ɵɵInheritDefinitionFeature,
+  ɵɵProvidersFeature,
   ɵɵadvance,
   ɵɵattribute,
   ɵɵclassMap,
+  ɵɵclassProp,
   ɵɵdefineComponent,
+  ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵelement,
   ɵɵelementEnd,
   ɵɵelementStart,
   ɵɵgetCurrentView,
+  ɵɵgetInheritedFactory,
   ɵɵlistener,
   ɵɵnextContext,
   ɵɵprojection,
@@ -36,16 +49,17 @@ import {
   ɵɵtemplateRefExtractor,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-5AGZTIHT.js";
-import "./chunk-PIQKY2LV.js";
-import "./chunk-SZQPEDTI.js";
-import "./chunk-Q3R3BXB2.js";
+} from "./chunk-Q4V3VSNF.js";
+import "./chunk-XPU7EA6D.js";
+import "./chunk-QN5HDKTT.js";
+import "./chunk-MHK6ZZQX.js";
+import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-avatar.mjs
 var _c0 = ["*"];
-function Avatar_span_2_Template(rf, ctx) {
+function Avatar_span_1_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵelementStart(0, "span", 4);
+    ɵɵelementStart(0, "span", 3);
     ɵɵtext(1);
     ɵɵelementEnd();
   }
@@ -55,9 +69,9 @@ function Avatar_span_2_Template(rf, ctx) {
     ɵɵtextInterpolate(ctx_r0.label);
   }
 }
-function Avatar_ng_template_3_span_0_Template(rf, ctx) {
+function Avatar_ng_template_2_span_0_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵelement(0, "span", 6);
+    ɵɵelement(0, "span", 5);
   }
   if (rf & 2) {
     const ctx_r0 = ɵɵnextContext(2);
@@ -65,21 +79,21 @@ function Avatar_ng_template_3_span_0_Template(rf, ctx) {
     ɵɵproperty("ngClass", "p-avatar-icon");
   }
 }
-function Avatar_ng_template_3_Template(rf, ctx) {
+function Avatar_ng_template_2_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵtemplate(0, Avatar_ng_template_3_span_0_Template, 1, 3, "span", 5);
+    ɵɵtemplate(0, Avatar_ng_template_2_span_0_Template, 1, 3, "span", 4);
   }
   if (rf & 2) {
     const ctx_r0 = ɵɵnextContext();
-    const imageTemplate_r2 = ɵɵreference(6);
+    const imageTemplate_r2 = ɵɵreference(5);
     ɵɵproperty("ngIf", ctx_r0.icon)("ngIfElse", imageTemplate_r2);
   }
 }
-function Avatar_ng_template_5_img_0_Template(rf, ctx) {
+function Avatar_ng_template_4_img_0_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "img", 8);
-    ɵɵlistener("error", function Avatar_ng_template_5_img_0_Template_img_error_0_listener($event) {
+    ɵɵelementStart(0, "img", 7);
+    ɵɵlistener("error", function Avatar_ng_template_4_img_0_Template_img_error_0_listener($event) {
       ɵɵrestoreView(_r3);
       const ctx_r0 = ɵɵnextContext(2);
       return ɵɵresetView(ctx_r0.imageError($event));
@@ -92,16 +106,122 @@ function Avatar_ng_template_5_img_0_Template(rf, ctx) {
     ɵɵattribute("aria-label", ctx_r0.ariaLabel);
   }
 }
-function Avatar_ng_template_5_Template(rf, ctx) {
+function Avatar_ng_template_4_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵtemplate(0, Avatar_ng_template_5_img_0_Template, 1, 2, "img", 7);
+    ɵɵtemplate(0, Avatar_ng_template_4_img_0_Template, 1, 2, "img", 6);
   }
   if (rf & 2) {
     const ctx_r0 = ɵɵnextContext();
     ɵɵproperty("ngIf", ctx_r0.image);
   }
 }
-var Avatar = class _Avatar {
+var theme = ({
+  dt
+}) => `
+.p-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: ${dt("avatar.width")};
+    height: ${dt("avatar.height")};
+    font-size: ${dt("avatar.font.size")};
+    background: ${dt("avatar.background")};
+    border-radius: ${dt("avatar.border.radius")};
+}
+
+.p-avatar-image {
+    background: transparent;
+}
+
+.p-avatar-circle {
+    border-radius: 50%;
+}
+
+.p-avatar-circle img {
+    border-radius: 50%;
+}
+
+.p-avatar-icon {
+    font-size: ${dt("avatar.font.size")};
+}
+
+.p-avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.p-avatar-lg {
+    width: ${dt("avatar.lg.width")};
+    height: ${dt("avatar.lg.width")};
+    font-size: ${dt("avatar.lg.font.size")};
+}
+
+.p-avatar-lg .p-avatar-icon {
+    font-size: ${dt("avatar.lg.font.size")};
+}
+
+.p-avatar-xl {
+    width: ${dt("avatar.xl.width")};
+    height: ${dt("avatar.xl.width")};
+    font-size: ${dt("avatar.xl.font.size")};
+}
+
+.p-avatar-xl .p-avatar-icon {
+    font-size: ${dt("avatar.xl.font.size")};
+}
+
+.p-avatar-group {
+    display: flex;
+    align-items: center;
+}
+
+.p-avatar-group .p-avatar + .p-avatar {
+    margin-left: ${dt("avatar.group.offset")};
+}
+
+.p-avatar-group .p-avatar {
+    border: 2px solid ${dt("avatar.group.border.color")};
+}
+`;
+var classes = {
+  root: ({
+    props
+  }) => ["p-avatar p-component", {
+    "p-avatar-image": props.image != null,
+    "p-avatar-circle": props.shape === "circle",
+    "p-avatar-lg": props.size === "large",
+    "p-avatar-xl": props.size === "xlarge"
+  }],
+  label: "p-avatar-label",
+  icon: "p-avatar-icon"
+};
+var AvatarStyle = class _AvatarStyle extends BaseStyle {
+  name = "avatar";
+  theme = theme;
+  classes = classes;
+  static ɵfac = /* @__PURE__ */ (() => {
+    let ɵAvatarStyle_BaseFactory;
+    return function AvatarStyle_Factory(__ngFactoryType__) {
+      return (ɵAvatarStyle_BaseFactory || (ɵAvatarStyle_BaseFactory = ɵɵgetInheritedFactory(_AvatarStyle)))(__ngFactoryType__ || _AvatarStyle);
+    };
+  })();
+  static ɵprov = ɵɵdefineInjectable({
+    token: _AvatarStyle,
+    factory: _AvatarStyle.ɵfac
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AvatarStyle, [{
+    type: Injectable
+  }], null, null);
+})();
+var AvatarClasses;
+(function(AvatarClasses2) {
+  AvatarClasses2["root"] = "p-avatar";
+  AvatarClasses2["label"] = "p-avatar-label";
+  AvatarClasses2["icon"] = "p-avatar-icon";
+})(AvatarClasses || (AvatarClasses = {}));
+var Avatar = class _Avatar extends BaseComponent {
   /**
    * Defines the text to display.
    * @group Props
@@ -153,25 +273,30 @@ var Avatar = class _Avatar {
    * @group Emits
    */
   onImageError = new EventEmitter();
-  containerClass() {
-    return {
-      "p-avatar p-component": true,
-      "p-avatar-image": this.image != null,
-      "p-avatar-circle": this.shape === "circle",
-      "p-avatar-lg": this.size === "large",
-      "p-avatar-xl": this.size === "xlarge"
-    };
-  }
+  _componentStyle = inject(AvatarStyle);
   imageError(event) {
     this.onImageError.emit(event);
   }
-  static ɵfac = function Avatar_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _Avatar)();
-  };
+  get hostClass() {
+    return this.styleClass;
+  }
+  static ɵfac = /* @__PURE__ */ (() => {
+    let ɵAvatar_BaseFactory;
+    return function Avatar_Factory(__ngFactoryType__) {
+      return (ɵAvatar_BaseFactory || (ɵAvatar_BaseFactory = ɵɵgetInheritedFactory(_Avatar)))(__ngFactoryType__ || _Avatar);
+    };
+  })();
   static ɵcmp = ɵɵdefineComponent({
     type: _Avatar,
     selectors: [["p-avatar"]],
-    hostAttrs: [1, "p-element"],
+    hostVars: 17,
+    hostBindings: function Avatar_HostBindings(rf, ctx) {
+      if (rf & 2) {
+        ɵɵattribute("data-pc-name", ctx.avatar)("aria-label", ctx.ariaLabel)("aria-labelledby", ctx.ariaLabelledBy);
+        ɵɵclassMap(ctx.hostClass);
+        ɵɵclassProp("p-avatar", true)("p-component", true)("p-avatar-circle", ctx.shape === "circle")("p-avatar-lg", ctx.size === "large")("p-avatar-xl", ctx.size === "xlarge")("p-avatar-image", ctx.image != null);
+      }
+    },
     inputs: {
       label: "label",
       icon: "icon",
@@ -186,29 +311,24 @@ var Avatar = class _Avatar {
     outputs: {
       onImageError: "onImageError"
     },
+    features: [ɵɵProvidersFeature([AvatarStyle]), ɵɵInheritDefinitionFeature],
     ngContentSelectors: _c0,
-    decls: 7,
-    vars: 9,
-    consts: [["iconTemplate", ""], ["imageTemplate", ""], [3, "ngClass", "ngStyle"], ["class", "p-avatar-text", 4, "ngIf", "ngIfElse"], [1, "p-avatar-text"], [3, "class", "ngClass", 4, "ngIf", "ngIfElse"], [3, "ngClass"], [3, "src", "error", 4, "ngIf"], [3, "error", "src"]],
+    decls: 6,
+    vars: 2,
+    consts: [["iconTemplate", ""], ["imageTemplate", ""], ["class", "p-avatar-text", 4, "ngIf", "ngIfElse"], [1, "p-avatar-text"], [3, "class", "ngClass", 4, "ngIf", "ngIfElse"], [3, "ngClass"], [3, "src", "error", 4, "ngIf"], [3, "error", "src"]],
     template: function Avatar_Template(rf, ctx) {
       if (rf & 1) {
         ɵɵprojectionDef();
-        ɵɵelementStart(0, "div", 2);
-        ɵɵprojection(1);
-        ɵɵtemplate(2, Avatar_span_2_Template, 2, 1, "span", 3)(3, Avatar_ng_template_3_Template, 1, 2, "ng-template", null, 0, ɵɵtemplateRefExtractor)(5, Avatar_ng_template_5_Template, 1, 1, "ng-template", null, 1, ɵɵtemplateRefExtractor);
-        ɵɵelementEnd();
+        ɵɵprojection(0);
+        ɵɵtemplate(1, Avatar_span_1_Template, 2, 1, "span", 2)(2, Avatar_ng_template_2_Template, 1, 2, "ng-template", null, 0, ɵɵtemplateRefExtractor)(4, Avatar_ng_template_4_Template, 1, 1, "ng-template", null, 1, ɵɵtemplateRefExtractor);
       }
       if (rf & 2) {
-        const iconTemplate_r4 = ɵɵreference(4);
-        ɵɵclassMap(ctx.styleClass);
-        ɵɵproperty("ngClass", ctx.containerClass())("ngStyle", ctx.style);
-        ɵɵattribute("aria-labelledby", ctx.ariaLabelledBy)("aria-label", ctx.ariaLabel)("data-pc-name", "avatar");
-        ɵɵadvance(2);
+        const iconTemplate_r4 = ɵɵreference(3);
+        ɵɵadvance();
         ɵɵproperty("ngIf", ctx.label)("ngIfElse", iconTemplate_r4);
       }
     },
-    dependencies: [NgClass, NgIf, NgStyle],
-    styles: ["@layer primeng{.p-avatar{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;font-size:1rem}.p-avatar.p-avatar-image{background-color:transparent}.p-avatar.p-avatar-circle{border-radius:50%;overflow:hidden}.p-avatar .p-avatar-icon{font-size:1rem}.p-avatar img{width:100%;height:100%}}\n"],
+    dependencies: [NgClass, NgIf],
     encapsulation: 2,
     changeDetection: 0
   });
@@ -219,19 +339,27 @@ var Avatar = class _Avatar {
     args: [{
       selector: "p-avatar",
       template: `
-        <div [ngClass]="containerClass()" [class]="styleClass" [ngStyle]="style" [attr.aria-labelledby]="ariaLabelledBy" [attr.aria-label]="ariaLabel" [attr.data-pc-name]="'avatar'">
-            <ng-content></ng-content>
-            <span class="p-avatar-text" *ngIf="label; else iconTemplate">{{ label }}</span>
-            <ng-template #iconTemplate><span [class]="icon" [ngClass]="'p-avatar-icon'" *ngIf="icon; else imageTemplate"></span></ng-template>
-            <ng-template #imageTemplate><img [src]="image" *ngIf="image" (error)="imageError($event)" [attr.aria-label]="ariaLabel" /></ng-template>
-        </div>
+        <ng-content></ng-content>
+        <span class="p-avatar-text" *ngIf="label; else iconTemplate">{{ label }}</span>
+        <ng-template #iconTemplate><span [class]="icon" [ngClass]="'p-avatar-icon'" *ngIf="icon; else imageTemplate"></span></ng-template>
+        <ng-template #imageTemplate>
+            <img [src]="image" *ngIf="image" (error)="imageError($event)" [attr.aria-label]="ariaLabel"
+        /></ng-template>
     `,
       changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation$1.None,
       host: {
-        class: "p-element"
+        "[class.p-avatar]": "true",
+        "[class.p-component]": "true",
+        "[class.p-avatar-circle]": 'shape === "circle"',
+        "[class.p-avatar-lg]": 'size === "large"',
+        "[class.p-avatar-xl]": 'size === "xlarge"',
+        "[class.p-avatar-image]": "image != null",
+        "[attr.data-pc-name]": "avatar",
+        "[attr.aria-label]": "ariaLabel",
+        "[attr.aria-labelledby]": "ariaLabelledBy"
       },
-      styles: ["@layer primeng{.p-avatar{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;font-size:1rem}.p-avatar.p-avatar-image{background-color:transparent}.p-avatar.p-avatar-circle{border-radius:50%;overflow:hidden}.p-avatar .p-avatar-icon{font-size:1rem}.p-avatar img{width:100%;height:100%}}\n"]
+      providers: [AvatarStyle]
     }]
   }], null, {
     label: [{
@@ -263,6 +391,10 @@ var Avatar = class _Avatar {
     }],
     onImageError: [{
       type: Output
+    }],
+    hostClass: [{
+      type: HostBinding,
+      args: ["class"]
     }]
   });
 })();

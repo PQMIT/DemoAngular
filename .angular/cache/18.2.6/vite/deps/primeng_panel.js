@@ -1,59 +1,66 @@
 import {
+  MinusIcon,
   PlusIcon
-} from "./chunk-MHM646N3.js";
+} from "./chunk-YXRZTNCS.js";
+import {
+  Button,
+  ButtonModule
+} from "./chunk-224UQGNK.js";
+import "./chunk-NFPN44SM.js";
+import {
+  RippleModule
+} from "./chunk-TAE7DVLQ.js";
+import "./chunk-LVC4O23V.js";
 import {
   animate,
   state,
   style,
   transition,
   trigger
-} from "./chunk-EANEQZFZ.js";
+} from "./chunk-FTZ22QI2.js";
+import "./chunk-2OE7MQLL.js";
 import {
-  BaseIcon
-} from "./chunk-GILM4WA4.js";
+  BaseComponent
+} from "./chunk-Q73PBUIA.js";
 import {
-  Ripple,
-  RippleModule
-} from "./chunk-KN2GAGMT.js";
-import "./chunk-QU7AFVGG.js";
-import {
+  BaseStyle,
   Footer,
   PrimeTemplate,
   SharedModule,
   UniqueComponentId
-} from "./chunk-VJJGFC5W.js";
+} from "./chunk-YRXQSFCQ.js";
 import {
   CommonModule,
   NgClass,
   NgIf,
   NgStyle,
   NgTemplateOutlet
-} from "./chunk-MBDSRN6C.js";
+} from "./chunk-IPDESXSG.js";
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChild,
   ContentChildren,
-  ElementRef,
   EventEmitter,
+  Injectable,
   Input,
   NgModule,
   Output,
   ViewEncapsulation$1,
   booleanAttribute,
+  inject,
   setClassMetadata,
   ɵɵInheritDefinitionFeature,
   ɵɵInputTransformsFeature,
-  ɵɵStandaloneFeature,
+  ɵɵProvidersFeature,
   ɵɵadvance,
   ɵɵattribute,
   ɵɵclassMap,
   ɵɵcontentQuery,
   ɵɵdefineComponent,
+  ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
-  ɵɵdirectiveInject,
   ɵɵelement,
   ɵɵelementContainer,
   ɵɵelementContainerEnd,
@@ -64,7 +71,6 @@ import {
   ɵɵgetInheritedFactory,
   ɵɵlistener,
   ɵɵloadQuery,
-  ɵɵnamespaceSVG,
   ɵɵnextContext,
   ɵɵprojection,
   ɵɵprojectionDef,
@@ -78,61 +84,11 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate
-} from "./chunk-5AGZTIHT.js";
-import "./chunk-PIQKY2LV.js";
-import "./chunk-SZQPEDTI.js";
-import "./chunk-Q3R3BXB2.js";
-
-// node_modules/primeng/fesm2022/primeng-icons-minus.mjs
-var MinusIcon = class _MinusIcon extends BaseIcon {
-  static ɵfac = /* @__PURE__ */ (() => {
-    let ɵMinusIcon_BaseFactory;
-    return function MinusIcon_Factory(__ngFactoryType__) {
-      return (ɵMinusIcon_BaseFactory || (ɵMinusIcon_BaseFactory = ɵɵgetInheritedFactory(_MinusIcon)))(__ngFactoryType__ || _MinusIcon);
-    };
-  })();
-  static ɵcmp = ɵɵdefineComponent({
-    type: _MinusIcon,
-    selectors: [["MinusIcon"]],
-    standalone: true,
-    features: [ɵɵInheritDefinitionFeature, ɵɵStandaloneFeature],
-    decls: 2,
-    vars: 5,
-    consts: [["width", "14", "height", "14", "viewBox", "0 0 14 14", "fill", "none", "xmlns", "http://www.w3.org/2000/svg"], ["d", "M13.2222 7.77778H0.777778C0.571498 7.77778 0.373667 7.69584 0.227806 7.54998C0.0819442 7.40412 0 7.20629 0 7.00001C0 6.79373 0.0819442 6.5959 0.227806 6.45003C0.373667 6.30417 0.571498 6.22223 0.777778 6.22223H13.2222C13.4285 6.22223 13.6263 6.30417 13.7722 6.45003C13.9181 6.5959 14 6.79373 14 7.00001C14 7.20629 13.9181 7.40412 13.7722 7.54998C13.6263 7.69584 13.4285 7.77778 13.2222 7.77778Z", "fill", "currentColor"]],
-    template: function MinusIcon_Template(rf, ctx) {
-      if (rf & 1) {
-        ɵɵnamespaceSVG();
-        ɵɵelementStart(0, "svg", 0);
-        ɵɵelement(1, "path", 1);
-        ɵɵelementEnd();
-      }
-      if (rf & 2) {
-        ɵɵclassMap(ctx.getClassNames());
-        ɵɵattribute("aria-label", ctx.ariaLabel)("aria-hidden", ctx.ariaHidden)("role", ctx.role);
-      }
-    },
-    dependencies: [CommonModule],
-    encapsulation: 2
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MinusIcon, [{
-    type: Component,
-    args: [{
-      selector: "MinusIcon",
-      standalone: true,
-      imports: [CommonModule, BaseIcon],
-      template: `
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" [attr.aria-label]="ariaLabel" [attr.aria-hidden]="ariaHidden" [attr.role]="role" [class]="getClassNames()">
-            <path
-                d="M13.2222 7.77778H0.777778C0.571498 7.77778 0.373667 7.69584 0.227806 7.54998C0.0819442 7.40412 0 7.20629 0 7.00001C0 6.79373 0.0819442 6.5959 0.227806 6.45003C0.373667 6.30417 0.571498 6.22223 0.777778 6.22223H13.2222C13.4285 6.22223 13.6263 6.30417 13.7722 6.45003C13.9181 6.5959 14 6.79373 14 7.00001C14 7.20629 13.9181 7.40412 13.7722 7.54998C13.6263 7.69584 13.4285 7.77778 13.2222 7.77778Z"
-                fill="currentColor"
-            />
-        </svg>
-    `
-    }]
-  }], null, null);
-})();
+} from "./chunk-Q4V3VSNF.js";
+import "./chunk-XPU7EA6D.js";
+import "./chunk-QN5HDKTT.js";
+import "./chunk-MHK6ZZQX.js";
+import "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-panel.mjs
 var _c0 = ["*", [["p-header"]], [["p-footer"]]];
@@ -193,7 +149,7 @@ function Panel_div_1_5_Template(rf, ctx) {
     ɵɵtemplate(0, Panel_div_1_5_ng_template_0_Template, 0, 0, "ng-template");
   }
 }
-function Panel_div_1_button_6_ng_container_1_ng_container_1_span_1_Template(rf, ctx) {
+function Panel_div_1_p_button_6_ng_container_1_ng_container_1_span_1_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelement(0, "span", 16);
   }
@@ -203,7 +159,7 @@ function Panel_div_1_button_6_ng_container_1_ng_container_1_span_1_Template(rf, 
     ɵɵproperty("ngClass", ctx_r1.iconClass);
   }
 }
-function Panel_div_1_button_6_ng_container_1_ng_container_1_MinusIcon_2_Template(rf, ctx) {
+function Panel_div_1_p_button_6_ng_container_1_ng_container_1_MinusIcon_2_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelement(0, "MinusIcon", 17);
   }
@@ -212,10 +168,10 @@ function Panel_div_1_button_6_ng_container_1_ng_container_1_MinusIcon_2_Template
     ɵɵproperty("styleClass", ctx_r1.iconClass);
   }
 }
-function Panel_div_1_button_6_ng_container_1_ng_container_1_Template(rf, ctx) {
+function Panel_div_1_p_button_6_ng_container_1_ng_container_1_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementContainerStart(0);
-    ɵɵtemplate(1, Panel_div_1_button_6_ng_container_1_ng_container_1_span_1_Template, 1, 3, "span", 14)(2, Panel_div_1_button_6_ng_container_1_ng_container_1_MinusIcon_2_Template, 1, 1, "MinusIcon", 15);
+    ɵɵtemplate(1, Panel_div_1_p_button_6_ng_container_1_ng_container_1_span_1_Template, 1, 3, "span", 14)(2, Panel_div_1_p_button_6_ng_container_1_ng_container_1_MinusIcon_2_Template, 1, 1, "MinusIcon", 15);
     ɵɵelementContainerEnd();
   }
   if (rf & 2) {
@@ -226,7 +182,7 @@ function Panel_div_1_button_6_ng_container_1_ng_container_1_Template(rf, ctx) {
     ɵɵproperty("ngIf", !ctx_r1.expandIcon);
   }
 }
-function Panel_div_1_button_6_ng_container_1_ng_container_2_span_1_Template(rf, ctx) {
+function Panel_div_1_p_button_6_ng_container_1_ng_container_2_span_1_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelement(0, "span", 16);
   }
@@ -236,7 +192,7 @@ function Panel_div_1_button_6_ng_container_1_ng_container_2_span_1_Template(rf, 
     ɵɵproperty("ngClass", ctx_r1.iconClass);
   }
 }
-function Panel_div_1_button_6_ng_container_1_ng_container_2_PlusIcon_2_Template(rf, ctx) {
+function Panel_div_1_p_button_6_ng_container_1_ng_container_2_PlusIcon_2_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelement(0, "PlusIcon", 17);
   }
@@ -245,10 +201,10 @@ function Panel_div_1_button_6_ng_container_1_ng_container_2_PlusIcon_2_Template(
     ɵɵproperty("styleClass", ctx_r1.iconClass);
   }
 }
-function Panel_div_1_button_6_ng_container_1_ng_container_2_Template(rf, ctx) {
+function Panel_div_1_p_button_6_ng_container_1_ng_container_2_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementContainerStart(0);
-    ɵɵtemplate(1, Panel_div_1_button_6_ng_container_1_ng_container_2_span_1_Template, 1, 3, "span", 14)(2, Panel_div_1_button_6_ng_container_1_ng_container_2_PlusIcon_2_Template, 1, 1, "PlusIcon", 15);
+    ɵɵtemplate(1, Panel_div_1_p_button_6_ng_container_1_ng_container_2_span_1_Template, 1, 3, "span", 14)(2, Panel_div_1_p_button_6_ng_container_1_ng_container_2_PlusIcon_2_Template, 1, 1, "PlusIcon", 15);
     ɵɵelementContainerEnd();
   }
   if (rf & 2) {
@@ -259,10 +215,10 @@ function Panel_div_1_button_6_ng_container_1_ng_container_2_Template(rf, ctx) {
     ɵɵproperty("ngIf", !ctx_r1.collapseIcon);
   }
 }
-function Panel_div_1_button_6_ng_container_1_Template(rf, ctx) {
+function Panel_div_1_p_button_6_ng_container_1_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementContainerStart(0);
-    ɵɵtemplate(1, Panel_div_1_button_6_ng_container_1_ng_container_1_Template, 3, 2, "ng-container", 12)(2, Panel_div_1_button_6_ng_container_1_ng_container_2_Template, 3, 2, "ng-container", 12);
+    ɵɵtemplate(1, Panel_div_1_p_button_6_ng_container_1_ng_container_1_Template, 3, 2, "ng-container", 12)(2, Panel_div_1_p_button_6_ng_container_1_ng_container_2_Template, 3, 2, "ng-container", 12);
     ɵɵelementContainerEnd();
   }
   if (rf & 2) {
@@ -273,36 +229,37 @@ function Panel_div_1_button_6_ng_container_1_Template(rf, ctx) {
     ɵɵproperty("ngIf", ctx_r1.collapsed);
   }
 }
-function Panel_div_1_button_6_2_ng_template_0_Template(rf, ctx) {
+function Panel_div_1_p_button_6_2_ng_template_0_Template(rf, ctx) {
 }
-function Panel_div_1_button_6_2_Template(rf, ctx) {
+function Panel_div_1_p_button_6_2_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵtemplate(0, Panel_div_1_button_6_2_ng_template_0_Template, 0, 0, "ng-template");
+    ɵɵtemplate(0, Panel_div_1_p_button_6_2_ng_template_0_Template, 0, 0, "ng-template");
   }
 }
-function Panel_div_1_button_6_Template(rf, ctx) {
+function Panel_div_1_p_button_6_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = ɵɵgetCurrentView();
-    ɵɵelementStart(0, "button", 11);
-    ɵɵlistener("click", function Panel_div_1_button_6_Template_button_click_0_listener($event) {
+    ɵɵelementStart(0, "p-button", 11);
+    ɵɵlistener("click", function Panel_div_1_p_button_6_Template_p_button_click_0_listener($event) {
       ɵɵrestoreView(_r3);
       const ctx_r1 = ɵɵnextContext(2);
       return ɵɵresetView(ctx_r1.onIconClick($event));
-    })("keydown", function Panel_div_1_button_6_Template_button_keydown_0_listener($event) {
+    })("keydown", function Panel_div_1_p_button_6_Template_p_button_keydown_0_listener($event) {
       ɵɵrestoreView(_r3);
       const ctx_r1 = ɵɵnextContext(2);
       return ɵɵresetView(ctx_r1.onKeyDown($event));
     });
-    ɵɵtemplate(1, Panel_div_1_button_6_ng_container_1_Template, 3, 2, "ng-container", 12)(2, Panel_div_1_button_6_2_Template, 1, 0, null, 13);
+    ɵɵtemplate(1, Panel_div_1_p_button_6_ng_container_1_Template, 3, 2, "ng-container", 12)(2, Panel_div_1_p_button_6_2_Template, 1, 0, null, 13);
     ɵɵelementEnd();
   }
   if (rf & 2) {
     const ctx_r1 = ɵɵnextContext(2);
+    ɵɵproperty("text", true)("rounded", true)("buttonProps", ctx_r1.toggleButtonProps);
     ɵɵattribute("id", ctx_r1.id + "_header")("aria-label", ctx_r1.buttonAriaLabel)("aria-controls", ctx_r1.id + "_content")("aria-expanded", !ctx_r1.collapsed);
     ɵɵadvance();
-    ɵɵproperty("ngIf", !ctx_r1.headerIconTemplate);
+    ɵɵproperty("ngIf", !ctx_r1.headerIconTemplate && !(ctx_r1.toggleButtonProps == null ? null : ctx_r1.toggleButtonProps.icon));
     ɵɵadvance();
-    ɵɵproperty("ngTemplateOutlet", ctx_r1.headerIconTemplate)("ngTemplateOutletContext", ɵɵpureFunction1(7, _c8, ctx_r1.collapsed));
+    ɵɵproperty("ngTemplateOutlet", ctx_r1.headerIconTemplate)("ngTemplateOutletContext", ɵɵpureFunction1(10, _c8, ctx_r1.collapsed));
   }
 }
 function Panel_div_1_Template(rf, ctx) {
@@ -318,7 +275,7 @@ function Panel_div_1_Template(rf, ctx) {
     ɵɵprojection(2, 1);
     ɵɵtemplate(3, Panel_div_1_ng_container_3_Template, 1, 0, "ng-container", 4);
     ɵɵelementStart(4, "div", 8);
-    ɵɵtemplate(5, Panel_div_1_5_Template, 1, 0, null, 4)(6, Panel_div_1_button_6_Template, 3, 9, "button", 9);
+    ɵɵtemplate(5, Panel_div_1_5_Template, 1, 0, null, 4)(6, Panel_div_1_p_button_6_Template, 3, 12, "p-button", 9);
     ɵɵelementEnd()();
   }
   if (rf & 2) {
@@ -359,9 +316,101 @@ function Panel_div_6_Template(rf, ctx) {
     ɵɵproperty("ngTemplateOutlet", ctx_r1.footerTemplate);
   }
 }
-var Panel = class _Panel {
-  el;
-  cd;
+var theme = ({
+  dt
+}) => `
+.p-panel {
+    border: 1px solid ${dt("panel.border.color")};
+    border-radius: ${dt("panel.border.radius")};
+    background: ${dt("panel.background")};
+    color: ${dt("panel.color")};
+}
+
+.p-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: ${dt("panel.header.padding")};
+    background: ${dt("panel.header.background")};
+    color: ${dt("panel.header.color")};
+    border-style: solid;
+    border-width: ${dt("panel.header.border.width")};
+    border-color: ${dt("panel.header.border.color")};
+    border-radius: ${dt("panel.header.border.radius")};
+}
+
+.p-panel-toggleable .p-panel-header {
+    padding: ${dt("panel.toggleable.header.padding")};
+}
+
+.p-panel-title {
+    line-height: 1;
+    font-weight: ${dt("panel.title.font.weight")};
+}
+
+.p-panel-content {
+    padding: ${dt("panel.content.padding")};
+}
+
+.p-panel-footer {
+    padding: ${dt("panel.footer.padding")};
+}
+
+/* For PrimeNG */
+.p-panel-toggleable.p-panel-expanded > .p-panel-content-container:not(.ng-animating) {
+    overflow: visible
+}
+
+.p-panel-toggleable .p-panel-content-container {
+    overflow: hidden;
+}
+`;
+var classes = {
+  root: ({
+    props
+  }) => ["p-panel p-component", {
+    "p-panel-toggleable": props.toggleable
+  }],
+  header: "p-panel-header",
+  title: "p-panel-title",
+  headerActions: "p-panel-header-actions",
+  pcToggleButton: "p-panel-toggle-button",
+  contentContainer: "p-panel-content-container",
+  content: "p-panel-content",
+  footer: "p-panel-footer"
+};
+var PanelStyle = class _PanelStyle extends BaseStyle {
+  name = "panel";
+  theme = theme;
+  classes = classes;
+  static ɵfac = /* @__PURE__ */ (() => {
+    let ɵPanelStyle_BaseFactory;
+    return function PanelStyle_Factory(__ngFactoryType__) {
+      return (ɵPanelStyle_BaseFactory || (ɵPanelStyle_BaseFactory = ɵɵgetInheritedFactory(_PanelStyle)))(__ngFactoryType__ || _PanelStyle);
+    };
+  })();
+  static ɵprov = ɵɵdefineInjectable({
+    token: _PanelStyle,
+    factory: _PanelStyle.ɵfac
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PanelStyle, [{
+    type: Injectable
+  }], null, null);
+})();
+var PanelClasses;
+(function(PanelClasses2) {
+  PanelClasses2["root"] = "p-panel";
+  PanelClasses2["header"] = "p-panel-header";
+  PanelClasses2["title"] = "p-panel-title";
+  PanelClasses2["headerActions"] = "p-panel-header-actions";
+  PanelClasses2["pcToggleButton"] = "p-panel-toggle-button";
+  PanelClasses2["contentContainer"] = "p-panel-content-container";
+  PanelClasses2["content"] = "p-panel-content";
+  PanelClasses2["footer"] = "p-panel-footer";
+})(PanelClasses || (PanelClasses = {}));
+var Panel = class _Panel extends BaseComponent {
   /**
    * Defines if content of panel can be expanded and collapsed.
    * @group Props
@@ -421,6 +470,11 @@ var Panel = class _Panel {
    */
   transitionOptions = "400ms cubic-bezier(0.86, 0, 0.07, 1)";
   /**
+   * Used to pass all properties of the ButtonProps to the Button component.
+   * @group Props
+   */
+  toggleButtonProps;
+  /**
    * Emitted when the collapsed changes.
    * @param {boolean} value - New Value.
    * @group Emits
@@ -450,10 +504,7 @@ var Panel = class _Panel {
   get buttonAriaLabel() {
     return this.header;
   }
-  constructor(el, cd) {
-    this.el = el;
-    this.cd = cd;
-  }
+  _componentStyle = inject(PanelStyle);
   ngAfterContentInit() {
     this.templates.forEach((item) => {
       switch (item.getType()) {
@@ -501,7 +552,6 @@ var Panel = class _Panel {
       if (this.collapsed) this.expand();
       else this.collapse();
     }
-    this.cd.markForCheck();
     event.preventDefault();
   }
   expand() {
@@ -528,9 +578,12 @@ var Panel = class _Panel {
       collapsed: this.collapsed
     });
   }
-  static ɵfac = function Panel_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _Panel)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(ChangeDetectorRef));
-  };
+  static ɵfac = /* @__PURE__ */ (() => {
+    let ɵPanel_BaseFactory;
+    return function Panel_Factory(__ngFactoryType__) {
+      return (ɵPanel_BaseFactory || (ɵPanel_BaseFactory = ɵɵgetInheritedFactory(_Panel)))(__ngFactoryType__ || _Panel);
+    };
+  })();
   static ɵcmp = ɵɵdefineComponent({
     type: _Panel,
     selectors: [["p-panel"]],
@@ -545,7 +598,6 @@ var Panel = class _Panel {
         ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.templates = _t);
       }
     },
-    hostAttrs: [1, "p-element"],
     inputs: {
       toggleable: [2, "toggleable", "toggleable", booleanAttribute],
       header: "header",
@@ -557,18 +609,19 @@ var Panel = class _Panel {
       collapseIcon: "collapseIcon",
       showHeader: [2, "showHeader", "showHeader", booleanAttribute],
       toggler: "toggler",
-      transitionOptions: "transitionOptions"
+      transitionOptions: "transitionOptions",
+      toggleButtonProps: "toggleButtonProps"
     },
     outputs: {
       collapsedChange: "collapsedChange",
       onBeforeToggle: "onBeforeToggle",
       onAfterToggle: "onAfterToggle"
     },
-    features: [ɵɵInputTransformsFeature],
+    features: [ɵɵProvidersFeature([PanelStyle]), ɵɵInputTransformsFeature, ɵɵInheritDefinitionFeature],
     ngContentSelectors: _c1,
     decls: 7,
     vars: 25,
-    consts: [[3, "ngClass", "ngStyle"], ["class", "p-panel-header", 3, "click", 4, "ngIf"], ["role", "region", 1, "p-toggleable-content", 3, "id"], [1, "p-panel-content"], [4, "ngTemplateOutlet"], ["class", "p-panel-footer", 4, "ngIf"], [1, "p-panel-header", 3, "click"], ["class", "p-panel-title", 4, "ngIf"], [1, "p-panel-icons", 3, "ngClass"], ["pRipple", "", "type", "button", "role", "button", "class", "p-panel-header-icon p-panel-toggler p-link", 3, "click", "keydown", 4, "ngIf"], [1, "p-panel-title"], ["pRipple", "", "type", "button", "role", "button", 1, "p-panel-header-icon", "p-panel-toggler", "p-link", 3, "click", "keydown"], [4, "ngIf"], [4, "ngTemplateOutlet", "ngTemplateOutletContext"], [3, "class", "ngClass", 4, "ngIf"], [3, "styleClass", 4, "ngIf"], [3, "ngClass"], [3, "styleClass"], [1, "p-panel-footer"]],
+    consts: [[3, "ngClass", "ngStyle"], ["class", "p-panel-header", 3, "click", 4, "ngIf"], ["role", "region", 1, "p-panel-content-container", 3, "id"], [1, "p-panel-content"], [4, "ngTemplateOutlet"], ["class", "p-panel-footer", 4, "ngIf"], [1, "p-panel-header", 3, "click"], ["class", "p-panel-title", 4, "ngIf"], [1, "p-panel-icons", 3, "ngClass"], ["severity", "secondary", "type", "button", "role", "button", "styleClass", "p-panel-header-icon p-panel-toggler p-link", 3, "text", "rounded", "buttonProps", "click", "keydown", 4, "ngIf"], [1, "p-panel-title"], ["severity", "secondary", "type", "button", "role", "button", "styleClass", "p-panel-header-icon p-panel-toggler p-link", 3, "click", "keydown", "text", "rounded", "buttonProps"], [4, "ngIf"], [4, "ngTemplateOutlet", "ngTemplateOutletContext"], [3, "class", "ngClass", 4, "ngIf"], [3, "styleClass", 4, "ngIf"], [3, "ngClass"], [3, "styleClass"], [1, "p-panel-footer"]],
     template: function Panel_Template(rf, ctx) {
       if (rf & 1) {
         ɵɵprojectionDef(_c0);
@@ -600,8 +653,7 @@ var Panel = class _Panel {
         ɵɵproperty("ngIf", ctx.footerFacet || ctx.footerTemplate);
       }
     },
-    dependencies: () => [NgClass, NgIf, NgTemplateOutlet, NgStyle, Ripple, PlusIcon, MinusIcon],
-    styles: ["@layer primeng{.p-panel-header{display:flex;align-items:center}.p-panel-title{line-height:1;order:1}.p-panel-header-icon{display:inline-flex;justify-content:center;align-items:center;cursor:pointer;text-decoration:none;overflow:hidden;position:relative}.p-panel-toggleable.p-panel-expanded>.p-toggleable-content:not(.ng-animating){overflow:visible}.p-panel-toggleable .p-toggleable-content{overflow:hidden}}\n"],
+    dependencies: () => [NgClass, NgIf, NgTemplateOutlet, NgStyle, PlusIcon, MinusIcon, Button],
     encapsulation: 2,
     data: {
       animation: [trigger("panelContent", [state("hidden", style({
@@ -625,27 +677,47 @@ var Panel = class _Panel {
     args: [{
       selector: "p-panel",
       template: `
-        <div [attr.id]="id" [attr.data-pc-name]="'panel'" [ngClass]="{ 'p-panel p-component': true, 'p-panel-toggleable': toggleable, 'p-panel-expanded': !collapsed && toggleable }" [ngStyle]="style" [class]="styleClass">
+        <div
+            [attr.id]="id"
+            [attr.data-pc-name]="'panel'"
+            [ngClass]="{
+                'p-panel p-component': true,
+                'p-panel-toggleable': toggleable,
+                'p-panel-expanded': !collapsed && toggleable,
+            }"
+            [ngStyle]="style"
+            [class]="styleClass"
+        >
             <div class="p-panel-header" *ngIf="showHeader" (click)="onHeaderClick($event)" [attr.id]="id + '-titlebar'">
                 <span class="p-panel-title" *ngIf="header" [attr.id]="id + '_header'">{{ header }}</span>
                 <ng-content select="p-header"></ng-content>
                 <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
-                <div class="p-panel-icons" [ngClass]="{ 'p-panel-icons-start': iconPos === 'start', 'p-panel-icons-end': iconPos === 'end', 'p-panel-icons-center': iconPos === 'center' }">
+                <div
+                    class="p-panel-icons"
+                    [ngClass]="{
+                        'p-panel-icons-start': iconPos === 'start',
+                        'p-panel-icons-end': iconPos === 'end',
+                        'p-panel-icons-center': iconPos === 'center',
+                    }"
+                >
                     <ng-template *ngTemplateOutlet="iconTemplate"></ng-template>
-                    <button
+                    <p-button
                         *ngIf="toggleable"
                         [attr.id]="id + '_header'"
-                        pRipple
+                        severity="secondary"
+                        [text]="true"
+                        [rounded]="true"
                         type="button"
                         role="button"
-                        class="p-panel-header-icon p-panel-toggler p-link"
+                        styleClass="p-panel-header-icon p-panel-toggler p-link"
                         [attr.aria-label]="buttonAriaLabel"
                         [attr.aria-controls]="id + '_content'"
                         [attr.aria-expanded]="!collapsed"
                         (click)="onIconClick($event)"
                         (keydown)="onKeyDown($event)"
+                        [buttonProps]="toggleButtonProps"
                     >
-                        <ng-container *ngIf="!headerIconTemplate">
+                        <ng-container *ngIf="!headerIconTemplate && !toggleButtonProps?.icon">
                             <ng-container *ngIf="!collapsed">
                                 <span *ngIf="expandIcon" [class]="expandIcon" [ngClass]="iconClass"></span>
                                 <MinusIcon *ngIf="!expandIcon" [styleClass]="iconClass" />
@@ -658,11 +730,11 @@ var Panel = class _Panel {
                         </ng-container>
 
                         <ng-template *ngTemplateOutlet="headerIconTemplate; context: { $implicit: collapsed }"></ng-template>
-                    </button>
+                    </p-button>
                 </div>
             </div>
             <div
-                class="p-toggleable-content"
+                class="p-panel-content-container"
                 [id]="id + '_content'"
                 role="region"
                 [attr.aria-labelledby]="id + '_header'"
@@ -670,8 +742,22 @@ var Panel = class _Panel {
                 [attr.tabindex]="collapsed ? '-1' : undefined"
                 [@panelContent]="
                     collapsed
-                        ? { value: 'hidden', params: { transitionParams: animating ? transitionOptions : '0ms', height: '0', opacity: '0' } }
-                        : { value: 'visible', params: { transitionParams: animating ? transitionOptions : '0ms', height: '*', opacity: '1' } }
+                        ? {
+                              value: 'hidden',
+                              params: {
+                                  transitionParams: animating ? transitionOptions : '0ms',
+                                  height: '0',
+                                  opacity: '0',
+                              },
+                          }
+                        : {
+                              value: 'visible',
+                              params: {
+                                  transitionParams: animating ? transitionOptions : '0ms',
+                                  height: '*',
+                                  opacity: '1',
+                              },
+                          }
                 "
                 (@panelContent.done)="onToggleDone($event)"
             >
@@ -700,16 +786,9 @@ var Panel = class _Panel {
       })), transition("visible <=> hidden", [animate("{{transitionParams}}")]), transition("void => hidden", animate("{{transitionParams}}")), transition("void => visible", animate("{{transitionParams}}"))])],
       changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation$1.None,
-      host: {
-        class: "p-element"
-      },
-      styles: ["@layer primeng{.p-panel-header{display:flex;align-items:center}.p-panel-title{line-height:1;order:1}.p-panel-header-icon{display:inline-flex;justify-content:center;align-items:center;cursor:pointer;text-decoration:none;overflow:hidden;position:relative}.p-panel-toggleable.p-panel-expanded>.p-toggleable-content:not(.ng-animating){overflow:visible}.p-panel-toggleable .p-toggleable-content{overflow:hidden}}\n"]
+      providers: [PanelStyle]
     }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: ChangeDetectorRef
-  }], {
+  }], null, {
     toggleable: [{
       type: Input,
       args: [{
@@ -752,6 +831,9 @@ var Panel = class _Panel {
     transitionOptions: [{
       type: Input
     }],
+    toggleButtonProps: [{
+      type: Input
+    }],
     collapsedChange: [{
       type: Output
     }],
@@ -778,18 +860,18 @@ var PanelModule = class _PanelModule {
   static ɵmod = ɵɵdefineNgModule({
     type: _PanelModule,
     declarations: [Panel],
-    imports: [CommonModule, SharedModule, RippleModule, PlusIcon, MinusIcon],
+    imports: [CommonModule, SharedModule, RippleModule, PlusIcon, MinusIcon, ButtonModule],
     exports: [Panel, SharedModule]
   });
   static ɵinj = ɵɵdefineInjector({
-    imports: [CommonModule, SharedModule, RippleModule, PlusIcon, MinusIcon, SharedModule]
+    imports: [CommonModule, SharedModule, RippleModule, PlusIcon, MinusIcon, ButtonModule, SharedModule]
   });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PanelModule, [{
     type: NgModule,
     args: [{
-      imports: [CommonModule, SharedModule, RippleModule, PlusIcon, MinusIcon],
+      imports: [CommonModule, SharedModule, RippleModule, PlusIcon, MinusIcon, ButtonModule],
       exports: [Panel, SharedModule],
       declarations: [Panel]
     }]
@@ -797,6 +879,8 @@ var PanelModule = class _PanelModule {
 })();
 export {
   Panel,
-  PanelModule
+  PanelClasses,
+  PanelModule,
+  PanelStyle
 };
 //# sourceMappingURL=primeng_panel.js.map

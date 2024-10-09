@@ -1,34 +1,42 @@
 import {
   AngleDownIcon,
-  AngleRightIcon,
-  Tooltip,
-  TooltipModule
-} from "./chunk-2IKOBY5I.js";
+  AngleRightIcon
+} from "./chunk-RKBIVUIP.js";
 import {
   RouterLink,
   RouterLinkActive,
   RouterModule
-} from "./chunk-XM4CCGQC.js";
-import "./chunk-KSFBOWRM.js";
-import "./chunk-O2CF5GD4.js";
+} from "./chunk-QWENUQCO.js";
 import {
-  BaseIcon
-} from "./chunk-GILM4WA4.js";
+  Tooltip,
+  TooltipModule
+} from "./chunk-W25WMRT4.js";
 import {
   Ripple,
   RippleModule
-} from "./chunk-KN2GAGMT.js";
+} from "./chunk-TAE7DVLQ.js";
 import {
-  DomHandler
-} from "./chunk-QU7AFVGG.js";
+  BaseIcon
+} from "./chunk-LVC4O23V.js";
+import "./chunk-MGTFLGQJ.js";
 import {
+  Badge,
+  BadgeModule
+} from "./chunk-2OE7MQLL.js";
+import {
+  BaseComponent
+} from "./chunk-Q73PBUIA.js";
+import {
+  BaseStyle,
+  DomHandler,
   ObjectUtils,
   PrimeNGConfig,
   PrimeTemplate,
   SharedModule,
   UniqueComponentId,
   zindexutils
-} from "./chunk-VJJGFC5W.js";
+} from "./chunk-YRXQSFCQ.js";
+import "./chunk-ZLF6YWCQ.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -38,7 +46,7 @@ import {
   NgStyle,
   NgTemplateOutlet,
   isPlatformBrowser
-} from "./chunk-MBDSRN6C.js";
+} from "./chunk-IPDESXSG.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -57,6 +65,7 @@ import {
   ViewEncapsulation$1,
   booleanAttribute,
   effect,
+  inject,
   numberAttribute,
   setClassMetadata,
   signal,
@@ -97,23 +106,26 @@ import {
   ɵɵrestoreView,
   ɵɵsanitizeHtml,
   ɵɵsanitizeUrl,
+  ɵɵstyleMap,
   ɵɵtemplate,
   ɵɵtemplateRefExtractor,
   ɵɵtext,
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-5AGZTIHT.js";
-import "./chunk-PIQKY2LV.js";
-import "./chunk-SZQPEDTI.js";
+} from "./chunk-Q4V3VSNF.js";
+import "./chunk-XPU7EA6D.js";
+import "./chunk-QN5HDKTT.js";
 import {
   Subject,
-  __spreadProps,
-  __spreadValues,
   debounce,
   filter,
   interval
-} from "./chunk-Q3R3BXB2.js";
+} from "./chunk-MHK6ZZQX.js";
+import {
+  __spreadProps,
+  __spreadValues
+} from "./chunk-WDMUDEB6.js";
 
 // node_modules/primeng/fesm2022/primeng-icons-bars.mjs
 var BarsIcon = class _BarsIcon extends BaseIcon {
@@ -154,7 +166,17 @@ var BarsIcon = class _BarsIcon extends BaseIcon {
       standalone: true,
       imports: [BaseIcon],
       template: `
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" [attr.aria-label]="ariaLabel" [attr.aria-hidden]="ariaHidden" [attr.role]="role" [class]="getClassNames()">
+        <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            [attr.aria-label]="ariaLabel"
+            [attr.aria-hidden]="ariaHidden"
+            [attr.role]="role"
+            [class]="getClassNames()"
+        >
             <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -170,11 +192,11 @@ var BarsIcon = class _BarsIcon extends BaseIcon {
 // node_modules/primeng/fesm2022/primeng-menubar.mjs
 var _c0 = ["menubar"];
 var _c1 = (a0, a1) => ({
-  "p-submenu-list": a0,
+  "p-menubar-submenu": a0,
   "p-menubar-root-list": a1
 });
 var _c2 = (a0) => ({
-  "p-menuitem-link": true,
+  "p-menubar-item-link": true,
   "p-disabled": a0
 });
 var _c3 = () => ({
@@ -184,6 +206,9 @@ var _c4 = (a0, a1) => ({
   $implicit: a0,
   root: a1
 });
+var _c5 = (a0) => ({
+  display: a0
+});
 function MenubarSub_ng_template_2_li_0_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelement(0, "li", 8);
@@ -191,7 +216,8 @@ function MenubarSub_ng_template_2_li_0_Template(rf, ctx) {
   if (rf & 2) {
     const processedItem_r2 = ɵɵnextContext().$implicit;
     const ctx_r2 = ɵɵnextContext();
-    ɵɵproperty("ngStyle", ctx_r2.getItemProp(processedItem_r2, "style"))("ngClass", ctx_r2.getSeparatorItemClass(processedItem_r2));
+    ɵɵstyleMap(ctx_r2.getItemProp(processedItem_r2, "style"));
+    ɵɵproperty("ngClass", ctx_r2.getSeparatorItemClass(processedItem_r2));
     ɵɵattribute("id", ctx_r2.getItemId(processedItem_r2))("data-pc-section", "separator");
   }
 }
@@ -203,7 +229,7 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_span_1_Template(rf, ct
     const processedItem_r2 = ɵɵnextContext(4).$implicit;
     const ctx_r2 = ɵɵnextContext();
     ɵɵproperty("ngClass", ctx_r2.getItemProp(processedItem_r2, "icon"))("ngStyle", ctx_r2.getItemProp(processedItem_r2, "iconStyle"));
-    ɵɵattribute("data-pc-section", "icon")("tabindex", -1);
+    ɵɵattribute("data-pc-section", "icon")("aria-hidden", true)("tabindex", -1);
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_span_2_Template(rf, ctx) {
@@ -232,18 +258,14 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_template_3_Template
     ɵɵattribute("data-pc-section", "label");
   }
 }
-function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_span_5_Template(rf, ctx) {
+function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_p_badge_5_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵelementStart(0, "span", 22);
-    ɵɵtext(1);
-    ɵɵelementEnd();
+    ɵɵelement(0, "p-badge", 22);
   }
   if (rf & 2) {
     const processedItem_r2 = ɵɵnextContext(4).$implicit;
     const ctx_r2 = ɵɵnextContext();
-    ɵɵproperty("ngClass", ctx_r2.getItemProp(processedItem_r2, "badgeStyleClass"));
-    ɵɵadvance();
-    ɵɵtextInterpolate(ctx_r2.getItemProp(processedItem_r2, "badge"));
+    ɵɵproperty("styleClass", ctx_r2.getItemProp(processedItem_r2, "badgeStyleClass"))("value", ctx_r2.getItemProp(processedItem_r2, "badge"));
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_container_1_AngleDownIcon_1_Template(rf, ctx) {
@@ -251,8 +273,8 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_cont
     ɵɵelement(0, "AngleDownIcon", 25);
   }
   if (rf & 2) {
-    ɵɵproperty("styleClass", "p-submenu-icon");
-    ɵɵattribute("data-pc-section", "submenuicon");
+    ɵɵproperty("styleClass", "p-menubar-submenu-icon");
+    ɵɵattribute("data-pc-section", "submenuicon")("aria-hidden", true);
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_container_1_AngleRightIcon_2_Template(rf, ctx) {
@@ -260,14 +282,14 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_cont
     ɵɵelement(0, "AngleRightIcon", 25);
   }
   if (rf & 2) {
-    ɵɵproperty("styleClass", "p-submenu-icon");
-    ɵɵattribute("data-pc-section", "submenuicon");
+    ɵɵproperty("styleClass", "p-menubar-submenu-icon");
+    ɵɵattribute("data-pc-section", "submenuicon")("aria-hidden", true);
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_container_1_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementContainerStart(0);
-    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_container_1_AngleDownIcon_1_Template, 1, 2, "AngleDownIcon", 24)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_container_1_AngleRightIcon_2_Template, 1, 2, "AngleRightIcon", 24);
+    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_container_1_AngleDownIcon_1_Template, 1, 3, "AngleDownIcon", 24)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_container_1_AngleRightIcon_2_Template, 1, 3, "AngleRightIcon", 24);
     ɵɵelementContainerEnd();
   }
   if (rf & 2) {
@@ -285,13 +307,13 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_2_Templ
     ɵɵtemplate(0, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_2_ng_template_0_Template, 0, 0, "ng-template", 26);
   }
   if (rf & 2) {
-    ɵɵproperty("data-pc-section", "submenuicon");
+    ɵɵproperty("data-pc-section", "submenuicon")("aria-hidden", true);
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementContainerStart(0);
-    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_container_1_Template, 3, 2, "ng-container", 11)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_2_Template, 1, 1, null, 23);
+    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_ng_container_1_Template, 3, 2, "ng-container", 11)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_2_Template, 1, 2, null, 23);
     ɵɵelementContainerEnd();
   }
   if (rf & 2) {
@@ -305,15 +327,15 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_Templat
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_1_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementStart(0, "a", 15);
-    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_span_1_Template, 1, 4, "span", 16)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_span_2_Template, 2, 3, "span", 17)(3, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_template_3_Template, 1, 3, "ng-template", null, 2, ɵɵtemplateRefExtractor)(5, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_span_5_Template, 2, 2, "span", 18)(6, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_Template, 3, 2, "ng-container", 11);
+    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_span_1_Template, 1, 5, "span", 16)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_span_2_Template, 2, 3, "span", 17)(3, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_template_3_Template, 1, 3, "ng-template", null, 2, ɵɵtemplateRefExtractor)(5, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_p_badge_5_Template, 1, 2, "p-badge", 18)(6, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_ng_container_6_Template, 3, 2, "ng-container", 11);
     ɵɵelementEnd();
   }
   if (rf & 2) {
     const htmlLabel_r5 = ɵɵreference(4);
     const processedItem_r2 = ɵɵnextContext(3).$implicit;
     const ctx_r2 = ɵɵnextContext();
-    ɵɵproperty("target", ctx_r2.getItemProp(processedItem_r2, "target"))("ngClass", ɵɵpureFunction1(11, _c2, ctx_r2.getItemProp(processedItem_r2, "disabled")));
-    ɵɵattribute("href", ctx_r2.getItemProp(processedItem_r2, "url"), ɵɵsanitizeUrl)("data-automationid", ctx_r2.getItemProp(processedItem_r2, "automationId"))("data-pc-section", "action")("tabindex", -1);
+    ɵɵproperty("target", ctx_r2.getItemProp(processedItem_r2, "target"))("ngClass", ɵɵpureFunction1(12, _c2, ctx_r2.getItemProp(processedItem_r2, "disabled")));
+    ɵɵattribute("href", ctx_r2.getItemProp(processedItem_r2, "url"), ɵɵsanitizeUrl)("aria-hidden", true)("data-automationid", ctx_r2.getItemProp(processedItem_r2, "automationId"))("data-pc-section", "action")("tabindex", -1);
     ɵɵadvance();
     ɵɵproperty("ngIf", ctx_r2.getItemProp(processedItem_r2, "icon"));
     ɵɵadvance();
@@ -332,7 +354,7 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_span_1_Template(rf, ct
     const processedItem_r2 = ɵɵnextContext(4).$implicit;
     const ctx_r2 = ɵɵnextContext();
     ɵɵproperty("ngClass", ctx_r2.getItemProp(processedItem_r2, "icon"))("ngStyle", ctx_r2.getItemProp(processedItem_r2, "iconStyle"));
-    ɵɵattribute("data-pc-section", "icon")("tabindex", -1);
+    ɵɵattribute("data-pc-section", "icon")("aria-hidden", true)("tabindex", -1);
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_span_2_Template(rf, ctx) {
@@ -359,18 +381,14 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_template_3_Template
     ɵɵattribute("data-pc-section", "label");
   }
 }
-function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_span_5_Template(rf, ctx) {
+function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_p_badge_5_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵelementStart(0, "span", 22);
-    ɵɵtext(1);
-    ɵɵelementEnd();
+    ɵɵelement(0, "p-badge", 22);
   }
   if (rf & 2) {
     const processedItem_r2 = ɵɵnextContext(4).$implicit;
     const ctx_r2 = ɵɵnextContext();
-    ɵɵproperty("ngClass", ctx_r2.getItemProp(processedItem_r2, "badgeStyleClass"));
-    ɵɵadvance();
-    ɵɵtextInterpolate(ctx_r2.getItemProp(processedItem_r2, "badge"));
+    ɵɵproperty("styleClass", ctx_r2.getItemProp(processedItem_r2, "badgeStyleClass"))("value", ctx_r2.getItemProp(processedItem_r2, "badge"));
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_container_1_AngleDownIcon_1_Template(rf, ctx) {
@@ -378,8 +396,8 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_cont
     ɵɵelement(0, "AngleDownIcon", 25);
   }
   if (rf & 2) {
-    ɵɵproperty("styleClass", "p-submenu-icon");
-    ɵɵattribute("data-pc-section", "submenuicon");
+    ɵɵproperty("styleClass", "p-menubar-submenu-icon");
+    ɵɵattribute("data-pc-section", "submenuicon")("aria-hidden", true);
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_container_1_AngleRightIcon_2_Template(rf, ctx) {
@@ -387,14 +405,14 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_cont
     ɵɵelement(0, "AngleRightIcon", 25);
   }
   if (rf & 2) {
-    ɵɵproperty("styleClass", "p-submenu-icon");
-    ɵɵattribute("data-pc-section", "submenuicon");
+    ɵɵproperty("styleClass", "p-menubar-submenu-icon");
+    ɵɵattribute("data-pc-section", "submenuicon")("aria-hidden", true);
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_container_1_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementContainerStart(0);
-    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_container_1_AngleDownIcon_1_Template, 1, 2, "AngleDownIcon", 24)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_container_1_AngleRightIcon_2_Template, 1, 2, "AngleRightIcon", 24);
+    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_container_1_AngleDownIcon_1_Template, 1, 3, "AngleDownIcon", 24)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_container_1_AngleRightIcon_2_Template, 1, 3, "AngleRightIcon", 24);
     ɵɵelementContainerEnd();
   }
   if (rf & 2) {
@@ -412,13 +430,13 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_2_Templ
     ɵɵtemplate(0, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_2_ng_template_0_Template, 0, 0, "ng-template", 26);
   }
   if (rf & 2) {
-    ɵɵproperty("data-pc-section", "submenuicon");
+    ɵɵproperty("data-pc-section", "submenuicon")("aria-hidden", true);
   }
 }
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementContainerStart(0);
-    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_container_1_Template, 3, 2, "ng-container", 11)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_2_Template, 1, 1, null, 23);
+    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_ng_container_1_Template, 3, 2, "ng-container", 11)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_2_Template, 1, 2, null, 23);
     ɵɵelementContainerEnd();
   }
   if (rf & 2) {
@@ -433,15 +451,15 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_Templat
 function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementStart(0, "a", 27);
-    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_span_1_Template, 1, 4, "span", 16)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_span_2_Template, 2, 1, "span", 28)(3, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_template_3_Template, 1, 2, "ng-template", null, 3, ɵɵtemplateRefExtractor)(5, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_span_5_Template, 2, 2, "span", 18)(6, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_Template, 3, 2, "ng-container", 11);
+    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_span_1_Template, 1, 5, "span", 16)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_span_2_Template, 2, 1, "span", 28)(3, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_template_3_Template, 1, 2, "ng-template", null, 3, ɵɵtemplateRefExtractor)(5, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_p_badge_5_Template, 1, 2, "p-badge", 18)(6, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_ng_container_6_Template, 3, 2, "ng-container", 11);
     ɵɵelementEnd();
   }
   if (rf & 2) {
     const htmlRouteLabel_r7 = ɵɵreference(4);
     const processedItem_r2 = ɵɵnextContext(3).$implicit;
     const ctx_r2 = ɵɵnextContext();
-    ɵɵproperty("routerLink", ctx_r2.getItemProp(processedItem_r2, "routerLink"))("queryParams", ctx_r2.getItemProp(processedItem_r2, "queryParams"))("routerLinkActive", "p-menuitem-link-active")("routerLinkActiveOptions", ctx_r2.getItemProp(processedItem_r2, "routerLinkActiveOptions") || ɵɵpureFunction0(20, _c3))("target", ctx_r2.getItemProp(processedItem_r2, "target"))("ngClass", ɵɵpureFunction1(21, _c2, ctx_r2.getItemProp(processedItem_r2, "disabled")))("fragment", ctx_r2.getItemProp(processedItem_r2, "fragment"))("queryParamsHandling", ctx_r2.getItemProp(processedItem_r2, "queryParamsHandling"))("preserveFragment", ctx_r2.getItemProp(processedItem_r2, "preserveFragment"))("skipLocationChange", ctx_r2.getItemProp(processedItem_r2, "skipLocationChange"))("replaceUrl", ctx_r2.getItemProp(processedItem_r2, "replaceUrl"))("state", ctx_r2.getItemProp(processedItem_r2, "state"));
-    ɵɵattribute("data-automationid", ctx_r2.getItemProp(processedItem_r2, "automationId"))("tabindex", -1)("data-pc-section", "action");
+    ɵɵproperty("routerLink", ctx_r2.getItemProp(processedItem_r2, "routerLink"))("queryParams", ctx_r2.getItemProp(processedItem_r2, "queryParams"))("routerLinkActive", "p-menubar-item-link-active")("routerLinkActiveOptions", ctx_r2.getItemProp(processedItem_r2, "routerLinkActiveOptions") || ɵɵpureFunction0(21, _c3))("target", ctx_r2.getItemProp(processedItem_r2, "target"))("ngClass", ɵɵpureFunction1(22, _c2, ctx_r2.getItemProp(processedItem_r2, "disabled")))("fragment", ctx_r2.getItemProp(processedItem_r2, "fragment"))("queryParamsHandling", ctx_r2.getItemProp(processedItem_r2, "queryParamsHandling"))("preserveFragment", ctx_r2.getItemProp(processedItem_r2, "preserveFragment"))("skipLocationChange", ctx_r2.getItemProp(processedItem_r2, "skipLocationChange"))("replaceUrl", ctx_r2.getItemProp(processedItem_r2, "replaceUrl"))("state", ctx_r2.getItemProp(processedItem_r2, "state"));
+    ɵɵattribute("data-automationid", ctx_r2.getItemProp(processedItem_r2, "automationId"))("tabindex", -1)("aria-hidden", true)("data-pc-section", "action");
     ɵɵadvance();
     ɵɵproperty("ngIf", ctx_r2.getItemProp(processedItem_r2, "icon"));
     ɵɵadvance();
@@ -455,7 +473,7 @@ function MenubarSub_ng_template_2_li_1_ng_container_3_a_2_Template(rf, ctx) {
 function MenubarSub_ng_template_2_li_1_ng_container_3_Template(rf, ctx) {
   if (rf & 1) {
     ɵɵelementContainerStart(0);
-    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_Template, 7, 13, "a", 13)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_Template, 7, 23, "a", 14);
+    ɵɵtemplate(1, MenubarSub_ng_template_2_li_1_ng_container_3_a_1_Template, 7, 14, "a", 13)(2, MenubarSub_ng_template_2_li_1_ng_container_3_a_2_Template, 7, 24, "a", 14);
     ɵɵelementContainerEnd();
   }
   if (rf & 2) {
@@ -505,7 +523,7 @@ function MenubarSub_ng_template_2_li_1_p_menubarSub_5_Template(rf, ctx) {
   if (rf & 2) {
     const processedItem_r2 = ɵɵnextContext(2).$implicit;
     const ctx_r2 = ɵɵnextContext();
-    ɵɵproperty("itemTemplate", ctx_r2.itemTemplate)("items", processedItem_r2.items)("mobileActive", ctx_r2.mobileActive)("autoDisplay", ctx_r2.autoDisplay)("menuId", ctx_r2.menuId)("activeItemPath", ctx_r2.activeItemPath)("focusedItemId", ctx_r2.focusedItemId)("level", ctx_r2.level + 1)("ariaLabelledBy", ctx_r2.getItemLabelId(processedItem_r2));
+    ɵɵproperty("itemTemplate", ctx_r2.itemTemplate)("items", processedItem_r2.items)("mobileActive", ctx_r2.mobileActive)("autoDisplay", ctx_r2.autoDisplay)("menuId", ctx_r2.menuId)("activeItemPath", ctx_r2.activeItemPath)("focusedItemId", ctx_r2.focusedItemId)("level", ctx_r2.level + 1)("ariaLabelledBy", ctx_r2.getItemLabelId(processedItem_r2))("inlineStyles", ɵɵpureFunction1(10, _c5, ctx_r2.isItemActive(processedItem_r2) ? "flex" : "none"));
   }
 }
 function MenubarSub_ng_template_2_li_1_Template(rf, ctx) {
@@ -528,7 +546,7 @@ function MenubarSub_ng_template_2_li_1_Template(rf, ctx) {
     });
     ɵɵtemplate(3, MenubarSub_ng_template_2_li_1_ng_container_3_Template, 3, 2, "ng-container", 11)(4, MenubarSub_ng_template_2_li_1_ng_container_4_Template, 2, 5, "ng-container", 11);
     ɵɵelementEnd();
-    ɵɵtemplate(5, MenubarSub_ng_template_2_li_1_p_menubarSub_5_Template, 1, 9, "p-menubarSub", 12);
+    ɵɵtemplate(5, MenubarSub_ng_template_2_li_1_p_menubarSub_5_Template, 1, 12, "p-menubarSub", 12);
     ɵɵelementEnd();
   }
   if (rf & 2) {
@@ -551,7 +569,7 @@ function MenubarSub_ng_template_2_li_1_Template(rf, ctx) {
 }
 function MenubarSub_ng_template_2_Template(rf, ctx) {
   if (rf & 1) {
-    ɵɵtemplate(0, MenubarSub_ng_template_2_li_0_Template, 1, 4, "li", 6)(1, MenubarSub_ng_template_2_li_1_Template, 6, 21, "li", 7);
+    ɵɵtemplate(0, MenubarSub_ng_template_2_li_0_Template, 1, 5, "li", 6)(1, MenubarSub_ng_template_2_li_1_Template, 6, 21, "li", 7);
   }
   if (rf & 2) {
     const processedItem_r2 = ctx.$implicit;
@@ -561,10 +579,10 @@ function MenubarSub_ng_template_2_Template(rf, ctx) {
     ɵɵproperty("ngIf", ctx_r2.isItemVisible(processedItem_r2) && !ctx_r2.getItemProp(processedItem_r2, "separator"));
   }
 }
-var _c5 = ["menubutton"];
-var _c6 = ["rootmenu"];
-var _c7 = ["*"];
-var _c8 = (a0) => ({
+var _c6 = ["menubutton"];
+var _c7 = ["rootmenu"];
+var _c8 = ["*"];
+var _c9 = (a0) => ({
   "p-menubar p-component": true,
   "p-menubar-mobile-active": a0
 });
@@ -646,6 +664,317 @@ function Menubar_ng_template_6_Template(rf, ctx) {
     ɵɵelementEnd();
   }
 }
+var theme = ({
+  dt
+}) => `
+.p-menubar {
+    display: flex;
+    align-items: center;
+    background: ${dt("menubar.background")};
+    border: 1px solid ${dt("menubar.border.color")};
+    border-radius: ${dt("menubar.border.radius")};
+    color: ${dt("menubar.color")};
+    padding: ${dt("menubar.padding")};
+    gap: ${dt("menubar.gap")};
+}
+
+.p-menubar-start,
+.p-megamenu-end {
+    display: flex;
+    align-items: center;
+}
+
+.p-menubar-root-list,
+.p-menubar-submenu {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    outline: 0 none;
+}
+
+.p-menubar-root-list {
+    align-items: center;
+    flex-wrap: wrap;
+    gap: ${dt("menubar.gap")};
+}
+
+.p-menubar-root-list > .p-menubar-item > .p-menubar-item-content {
+    border-radius: ${dt("menubar.base.item.border.radius")};
+}
+
+.p-menubar-root-list > .p-menubar-item > .p-menubar-item-content > .p-menubar-item-link {
+    padding: ${dt("menubar.base.item.padding")};
+}
+
+.p-menubar-item-content {
+    transition: background ${dt("menubar.transition.duration")}, color ${dt("menubar.transition.duration")};
+    border-radius: ${dt("menubar.item.border.radius")};
+    color: ${dt("menubar.item.color")};
+}
+
+.p-menubar-item-link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    color: inherit;
+    padding: ${dt("menubar.item.padding")};
+    gap: ${dt("menubar.item.gap")};
+    user-select: none;
+    outline: 0 none;
+}
+
+.p-menubar-item-label {
+    line-height: 1;
+}
+
+.p-menubar-item-icon {
+    color: ${dt("menubar.item.icon.color")};
+}
+
+.p-menubar-submenu-icon {
+    color: ${dt("menubar.submenu.icon.color")};
+    margin-left: auto;
+    font-size: ${dt("menubar.submenu.icon.size")};
+    width: ${dt("menubar.submenu.icon.size")};
+    height: ${dt("menubar.submenu.icon.size")};
+}
+
+.p-menubar-item.p-focus > .p-menubar-item-content {
+    color: ${dt("menubar.item.focus.color")};
+    background: ${dt("menubar.item.focus.background")};
+}
+
+.p-menubar-item.p-focus > .p-menubar-item-content .p-menubar-item-icon {
+    color: ${dt("menubar.item.icon.focus.color")};
+}
+
+.p-menubar-item.p-focus > .p-menubar-item-content .p-menubar-submenu-icon {
+    color: ${dt("menubar.submenu.icon.focus.color")};
+}
+
+.p-menubar-item:not(.p-disabled) > .p-menubar-item-content:hover {
+    color: ${dt("menubar.item.focus.color")};
+    background: ${dt("menubar.item.focus.background")};
+}
+
+.p-menubar-item:not(.p-disabled) > .p-menubar-item-content:hover .p-menubar-item-icon {
+    color: ${dt("menubar.item.icon.focus.color")};
+}
+
+.p-menubar-item:not(.p-disabled) > .p-menubar-item-content:hover .p-menubar-submenu-icon {
+    color: ${dt("menubar.submenu.icon.focus.color")};
+}
+
+.p-menubar-item-active > .p-menubar-item-content {
+    color: ${dt("menubar.item.active.color")};
+    background: ${dt("menubar.item.active.background")};
+}
+
+.p-menubar-item-active > .p-menubar-item-content .p-menubar-item-icon {
+    color: ${dt("menubar.item.icon.active.color")};
+}
+
+.p-menubar-item-active > .p-menubar-item-content .p-menubar-submenu-icon {
+    color: ${dt("menubar.submenu.icon.active.color")};
+}
+
+.p-menubar-submenu {
+    display: none;
+    position: absolute;
+    min-width: 12.5rem;
+    z-index: 1;
+    background: ${dt("menubar.submenu.background")};
+    border: 1px solid ${dt("menubar.submenu.border.color")};
+    border-radius: ${dt("menubar.border.radius")};
+    box-shadow: ${dt("menubar.submenu.shadow")};
+    color: ${dt("menubar.submenu.color")};
+    flex-direction: column;
+    padding: ${dt("menubar.submenu.padding")};
+    gap: ${dt("menubar.submenu.gap")};
+}
+
+.p-menubar-submenu .p-menubar-separator {
+    border-top: 1px solid ${dt("menubar.separator.border.color")};
+}
+
+.p-menubar-submenu .p-menubar-item {
+    position: relative;
+}
+
+ .p-menubar-submenu > .p-menubar-item-active .p-menubar-submenu {
+    display: block;
+    left: 100%;
+    top: 0;
+}
+
+.p-menubar-end {
+    margin-left: auto;
+    align-self: center;
+}
+
+.p-menubar-button {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: ${dt("menubar.mobile.button.size")};
+    height: ${dt("menubar.mobile.button.size")};
+    position: relative;
+    color: ${dt("menubar.mobile.button.color")};
+    border: 0 none;
+    background: transparent;
+    border-radius: ${dt("menubar.mobile.button.border.radius")};
+    transition: background ${dt("menubar.transition.duration")}, color ${dt("menubar.transition.duration")}, outline-color ${dt("menubar.transition.duration")};
+    outline-color: transparent;
+}
+
+.p-menubar-button:hover {
+    color: ${dt("menubar.mobile.button.hover.color")};
+    background: ${dt("menubar.mobile.button.hover.background")};
+}
+
+.p-menubar-button:focus-visible {
+    box-shadow: ${dt("menubar.mobile.button.focus.ring.shadow")};
+    outline: ${dt("menubar.mobile.button.focus.ring.width")} ${dt("menubar.mobile.button.focus.ring.style")} ${dt("menubar.mobile.button.focus.ring.color")};
+    outline-offset: ${dt("menubar.mobile.button.focus.ring.offset")};
+}
+
+.p-menubar-mobile {
+    position: relative;
+}
+
+.p-menubar-mobile .p-menubar-button {
+    display: flex;
+}
+
+.p-menubar-mobile .p-menubar-root-list {
+    position: absolute;
+    display: none;
+    width: 100%;
+    padding: ${dt("menubar.submenu.padding")};
+    background: ${dt("menubar.submenu.background")};
+    border: 1px solid ${dt("menubar.submenu.border.color")};
+    box-shadow: ${dt("menubar.submenu.shadow")};
+}
+
+.p-menubar-mobile .p-menubar-root-list > .p-menubar-item > .p-menubar-item-content {
+    border-radius: ${dt("menubar.item.border.radius")};
+}
+
+.p-menubar-mobile .p-menubar-root-list > .p-menubar-item > .p-menubar-item-content > .p-menubar-item-link {
+    padding: ${dt("menubar.item.padding")};
+}
+
+.p-menubar-mobile-active .p-menubar-root-list {
+    display: flex;
+    flex-direction: column;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+}
+
+.p-menubar-mobile .p-menubar-root-list .p-menubar-item {
+    width: 100%;
+    position: static;
+}
+
+.p-menubar-mobile .p-menubar-root-list .p-menubar-separator {
+    border-top: 1px solid ${dt("menubar.separator.border.color")};
+}
+
+.p-menubar-mobile .p-menubar-root-list > .p-menubar-item > .p-menubar-item-content .p-menubar-submenu-icon {
+    margin-left: auto;
+    transition: transform 0.2s;
+}
+
+.p-menubar-mobile .p-menubar-root-list > .p-menubar-item-active > .p-menubar-item-content .p-menubar-submenu-icon {
+    transform: rotate(-180deg);
+}
+
+.p-menubar-mobile .p-menubar-submenu .p-menubar-submenu-icon {
+    transition: transform 0.2s;
+    transform: rotate(90deg);
+}
+
+.p-menubar-mobile  .p-menubar-item-active > .p-menubar-item-content .p-menubar-submenu-icon {
+    transform: rotate(-90deg);
+}
+
+.p-menubar-mobile .p-menubar-submenu {
+    width: 100%;
+    position: static;
+    box-shadow: none;
+    border: 0 none;
+    padding-left: ${dt("menubar.submenu.mobile.indent")};
+}
+`;
+var classes = {
+  root: ({
+    instance
+  }) => ["p-menubar p-component", {
+    "p-menubar-mobile": instance.queryMatches,
+    "p-menubar-mobile-active": instance.mobileActive
+  }],
+  start: "p-menubar-start",
+  button: "p-menubar-button",
+  rootList: "p-menubar-root-list",
+  item: ({
+    instance,
+    processedItem
+  }) => ["p-menubar-item", {
+    "p-menubar-item-active": instance.isItemActive(processedItem),
+    "p-focus": instance.isItemFocused(processedItem),
+    "p-disabled": instance.isItemDisabled(processedItem)
+  }],
+  itemContent: "p-menubar-item-content",
+  itemLink: "p-menubar-item-link",
+  itemIcon: "p-menubar-item-icon",
+  itemLabel: "p-menubar-item-label",
+  submenuIcon: "p-menubar-submenu-icon",
+  submenu: "p-menubar-submenu",
+  separator: "p-menubar-separator",
+  end: "p-menubar-end"
+};
+var MenuBarStyle = class _MenuBarStyle extends BaseStyle {
+  name = "menubar";
+  theme = theme;
+  classes = classes;
+  static ɵfac = /* @__PURE__ */ (() => {
+    let ɵMenuBarStyle_BaseFactory;
+    return function MenuBarStyle_Factory(__ngFactoryType__) {
+      return (ɵMenuBarStyle_BaseFactory || (ɵMenuBarStyle_BaseFactory = ɵɵgetInheritedFactory(_MenuBarStyle)))(__ngFactoryType__ || _MenuBarStyle);
+    };
+  })();
+  static ɵprov = ɵɵdefineInjectable({
+    token: _MenuBarStyle,
+    factory: _MenuBarStyle.ɵfac
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MenuBarStyle, [{
+    type: Injectable
+  }], null, null);
+})();
+var MenubarClasses;
+(function(MenubarClasses2) {
+  MenubarClasses2["root"] = "p-menubar";
+  MenubarClasses2["start"] = "p-menubar-start";
+  MenubarClasses2["button"] = "p-menubar-button";
+  MenubarClasses2["rootList"] = "p-menubar-root-list";
+  MenubarClasses2["item"] = "p-menubar-item";
+  MenubarClasses2["itemContent"] = "p-menubar-item-content";
+  MenubarClasses2["itemLink"] = "p-menubar-item-link";
+  MenubarClasses2["itemIcon"] = "p-menubar-item-icon";
+  MenubarClasses2["itemLabel"] = "p-menubar-item-label";
+  MenubarClasses2["submenuIcon"] = "p-menubar-submenu-icon";
+  MenubarClasses2["submenu"] = "p-menubar-submenu";
+  MenubarClasses2["separator"] = "p-menubar-separator";
+  MenubarClasses2["end"] = "p-menubar-end";
+})(MenubarClasses || (MenubarClasses = {}));
 var MenubarService = class _MenubarService {
   autoHide;
   autoHideDelay;
@@ -682,6 +1011,7 @@ var MenubarSub = class _MenubarSub {
   level = 0;
   focusedItemId;
   activeItemPath;
+  inlineStyles;
   submenuIconTemplate;
   itemClick = new EventEmitter();
   itemMouseEnter = new EventEmitter();
@@ -726,9 +1056,8 @@ var MenubarSub = class _MenubarSub {
   }
   getItemClass(processedItem) {
     return __spreadProps(__spreadValues({}, this.getItemProp(processedItem, "class")), {
-      "p-menuitem": true,
-      "p-highlight": this.isItemActive(processedItem),
-      "p-menuitem-active": this.isItemActive(processedItem),
+      "p-menubar-item": true,
+      "p-menubar-item-active": this.isItemActive(processedItem),
       "p-focus": this.isItemFocused(processedItem),
       "p-disabled": this.isItemDisabled(processedItem)
     });
@@ -738,7 +1067,7 @@ var MenubarSub = class _MenubarSub {
   }
   getSeparatorItemClass(processedItem) {
     return __spreadProps(__spreadValues({}, this.getItemProp(processedItem, "class")), {
-      "p-menuitem-separator": true
+      "p-menubar-separator": true
     });
   }
   isItemVisible(processedItem) {
@@ -798,7 +1127,6 @@ var MenubarSub = class _MenubarSub {
         ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.menubarViewChild = _t.first);
       }
     },
-    hostAttrs: [1, "p-element"],
     inputs: {
       items: "items",
       itemTemplate: "itemTemplate",
@@ -813,6 +1141,7 @@ var MenubarSub = class _MenubarSub {
       level: [2, "level", "level", numberAttribute],
       focusedItemId: "focusedItemId",
       activeItemPath: "activeItemPath",
+      inlineStyles: "inlineStyles",
       submenuIconTemplate: "submenuIconTemplate"
     },
     outputs: {
@@ -824,8 +1153,8 @@ var MenubarSub = class _MenubarSub {
     },
     features: [ɵɵInputTransformsFeature],
     decls: 3,
-    vars: 11,
-    consts: [["menubar", ""], ["listItem", ""], ["htmlLabel", ""], ["htmlRouteLabel", ""], ["role", "menubar", 3, "focus", "blur", "keydown", "ngClass", "tabindex"], ["ngFor", "", 3, "ngForOf"], ["role", "separator", 3, "ngStyle", "ngClass", 4, "ngIf"], ["role", "menuitem", "pTooltip", "", 3, "ngStyle", "ngClass", "class", "tooltipOptions", 4, "ngIf"], ["role", "separator", 3, "ngStyle", "ngClass"], ["role", "menuitem", "pTooltip", "", 3, "ngStyle", "ngClass", "tooltipOptions"], [1, "p-menuitem-content", 3, "click", "mouseenter"], [4, "ngIf"], [3, "itemTemplate", "items", "mobileActive", "autoDisplay", "menuId", "activeItemPath", "focusedItemId", "level", "ariaLabelledBy", "itemClick", "itemMouseEnter", 4, "ngIf"], ["pRipple", "", 3, "target", "ngClass", 4, "ngIf"], ["pRipple", "", 3, "routerLink", "queryParams", "routerLinkActive", "routerLinkActiveOptions", "target", "ngClass", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state", 4, "ngIf"], ["pRipple", "", 3, "target", "ngClass"], ["class", "p-menuitem-icon", 3, "ngClass", "ngStyle", 4, "ngIf"], ["class", "p-menuitem-text", 3, "id", 4, "ngIf", "ngIfElse"], ["class", "p-menuitem-badge", 3, "ngClass", 4, "ngIf"], [1, "p-menuitem-icon", 3, "ngClass", "ngStyle"], [1, "p-menuitem-text", 3, "id"], [1, "p-menuitem-text", 3, "innerHTML", "id"], [1, "p-menuitem-badge", 3, "ngClass"], [4, "ngTemplateOutlet"], [3, "styleClass", 4, "ngIf"], [3, "styleClass"], [3, "data-pc-section"], ["pRipple", "", 3, "routerLink", "queryParams", "routerLinkActive", "routerLinkActiveOptions", "target", "ngClass", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state"], ["class", "p-menuitem-text", 4, "ngIf", "ngIfElse"], [1, "p-menuitem-text"], [1, "p-menuitem-text", 3, "innerHTML"], [4, "ngTemplateOutlet", "ngTemplateOutletContext"], [3, "itemClick", "itemMouseEnter", "itemTemplate", "items", "mobileActive", "autoDisplay", "menuId", "activeItemPath", "focusedItemId", "level", "ariaLabelledBy"]],
+    vars: 12,
+    consts: [["menubar", ""], ["listItem", ""], ["htmlLabel", ""], ["htmlRouteLabel", ""], ["role", "menubar", 3, "focus", "blur", "keydown", "ngClass", "tabindex", "ngStyle"], ["ngFor", "", 3, "ngForOf"], ["role", "separator", 3, "style", "ngClass", 4, "ngIf"], ["role", "menuitem", "pTooltip", "", 3, "ngStyle", "ngClass", "class", "tooltipOptions", 4, "ngIf"], ["role", "separator", 3, "ngClass"], ["role", "menuitem", "pTooltip", "", 3, "ngStyle", "ngClass", "tooltipOptions"], [1, "p-menubar-item-content", 3, "click", "mouseenter"], [4, "ngIf"], [3, "itemTemplate", "items", "mobileActive", "autoDisplay", "menuId", "activeItemPath", "focusedItemId", "level", "ariaLabelledBy", "inlineStyles", "itemClick", "itemMouseEnter", 4, "ngIf"], ["pRipple", "", 3, "target", "ngClass", 4, "ngIf"], ["pRipple", "", 3, "routerLink", "queryParams", "routerLinkActive", "routerLinkActiveOptions", "target", "ngClass", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state", 4, "ngIf"], ["pRipple", "", 3, "target", "ngClass"], ["class", "p-menubar-item-icon", 3, "ngClass", "ngStyle", 4, "ngIf"], ["class", "p-menubar-item-label", 3, "id", 4, "ngIf", "ngIfElse"], [3, "styleClass", "value", 4, "ngIf"], [1, "p-menubar-item-icon", 3, "ngClass", "ngStyle"], [1, "p-menubar-item-label", 3, "id"], [1, "p-menubar-item-label", 3, "innerHTML", "id"], [3, "styleClass", "value"], [4, "ngTemplateOutlet"], [3, "styleClass", 4, "ngIf"], [3, "styleClass"], [3, "data-pc-section", "aria-hidden"], ["pRipple", "", 3, "routerLink", "queryParams", "routerLinkActive", "routerLinkActiveOptions", "target", "ngClass", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state"], ["class", "p-menubar-item-label", 4, "ngIf", "ngIfElse"], [1, "p-menubar-item-label"], [1, "p-menubar-item-label", 3, "innerHTML"], [4, "ngTemplateOutlet", "ngTemplateOutletContext"], [3, "itemClick", "itemMouseEnter", "itemTemplate", "items", "mobileActive", "autoDisplay", "menuId", "activeItemPath", "focusedItemId", "level", "ariaLabelledBy", "inlineStyles"]],
     template: function MenubarSub_Template(rf, ctx) {
       if (rf & 1) {
         const _r1 = ɵɵgetCurrentView();
@@ -844,13 +1173,13 @@ var MenubarSub = class _MenubarSub {
         ɵɵelementEnd();
       }
       if (rf & 2) {
-        ɵɵproperty("ngClass", ɵɵpureFunction2(8, _c1, !ctx.root, ctx.root))("tabindex", 0);
+        ɵɵproperty("ngClass", ɵɵpureFunction2(9, _c1, !ctx.root, ctx.root))("tabindex", 0)("ngStyle", ctx.inlineStyles);
         ɵɵattribute("data-pc-section", "menu")("aria-label", ctx.ariaLabel)("aria-labelledBy", ctx.ariaLabelledBy)("id", ctx.root ? ctx.menuId : null)("aria-activedescendant", ctx.focusedItemId);
         ɵɵadvance(2);
         ɵɵproperty("ngForOf", ctx.items);
       }
     },
-    dependencies: () => [NgClass, NgForOf, NgIf, NgTemplateOutlet, NgStyle, RouterLink, RouterLinkActive, Ripple, Tooltip, AngleDownIcon, AngleRightIcon, _MenubarSub],
+    dependencies: () => [NgClass, NgForOf, NgIf, NgTemplateOutlet, NgStyle, RouterLink, RouterLinkActive, Ripple, Tooltip, AngleDownIcon, AngleRightIcon, Badge, _MenubarSub],
     encapsulation: 2
   });
 };
@@ -862,7 +1191,7 @@ var MenubarSub = class _MenubarSub {
       template: `
         <ul
             #menubar
-            [ngClass]="{ 'p-submenu-list': !root, 'p-menubar-root-list': root }"
+            [ngClass]="{ 'p-menubar-submenu': !root, 'p-menubar-root-list': root }"
             [attr.data-pc-section]="'menu'"
             role="menubar"
             (focus)="menuFocus.emit($event)"
@@ -873,12 +1202,13 @@ var MenubarSub = class _MenubarSub {
             (keydown)="menuKeydown.emit($event)"
             [attr.id]="root ? menuId : null"
             [attr.aria-activedescendant]="focusedItemId"
+            [ngStyle]="inlineStyles"
         >
             <ng-template ngFor let-processedItem [ngForOf]="items" let-index="index">
                 <li
                     *ngIf="isItemVisible(processedItem) && getItemProp(processedItem, 'separator')"
                     [attr.id]="getItemId(processedItem)"
-                    [ngStyle]="getItemProp(processedItem, 'style')"
+                    [style]="getItemProp(processedItem, 'style')"
                     [ngClass]="getSeparatorItemClass(processedItem)"
                     role="separator"
                     [attr.data-pc-section]="'separator'"
@@ -905,41 +1235,76 @@ var MenubarSub = class _MenubarSub {
                     pTooltip
                     [tooltipOptions]="getItemProp(processedItem, 'tooltipOptions')"
                 >
-                    <div class="p-menuitem-content" [attr.data-pc-section]="'content'" (click)="onItemClick($event, processedItem)" (mouseenter)="onItemMouseEnter({ $event, processedItem })">
+                    <div
+                        class="p-menubar-item-content"
+                        [attr.data-pc-section]="'content'"
+                        (click)="onItemClick($event, processedItem)"
+                        (mouseenter)="onItemMouseEnter({ $event, processedItem })"
+                    >
                         <ng-container *ngIf="!itemTemplate">
                             <a
                                 *ngIf="!getItemProp(processedItem, 'routerLink')"
                                 [attr.href]="getItemProp(processedItem, 'url')"
+                                [attr.aria-hidden]="true"
                                 [attr.data-automationid]="getItemProp(processedItem, 'automationId')"
                                 [attr.data-pc-section]="'action'"
                                 [target]="getItemProp(processedItem, 'target')"
-                                [ngClass]="{ 'p-menuitem-link': true, 'p-disabled': getItemProp(processedItem, 'disabled') }"
+                                [ngClass]="{ 'p-menubar-item-link': true, 'p-disabled': getItemProp(processedItem, 'disabled') }"
                                 [attr.tabindex]="-1"
                                 pRipple
                             >
                                 <span
                                     *ngIf="getItemProp(processedItem, 'icon')"
-                                    class="p-menuitem-icon"
+                                    class="p-menubar-item-icon"
                                     [ngClass]="getItemProp(processedItem, 'icon')"
                                     [ngStyle]="getItemProp(processedItem, 'iconStyle')"
                                     [attr.data-pc-section]="'icon'"
+                                    [attr.aria-hidden]="true"
                                     [attr.tabindex]="-1"
                                 >
                                 </span>
-                                <span *ngIf="getItemProp(processedItem, 'escape'); else htmlLabel" class="p-menuitem-text" [attr.data-pc-section]="'label'" [id]="getItemLabelId(processedItem)">
+                                <span
+                                    *ngIf="getItemProp(processedItem, 'escape'); else htmlLabel"
+                                    class="p-menubar-item-label"
+                                    [attr.data-pc-section]="'label'"
+                                    [id]="getItemLabelId(processedItem)"
+                                >
                                     {{ getItemLabel(processedItem) }}
                                 </span>
                                 <ng-template #htmlLabel>
-                                    <span class="p-menuitem-text" [innerHTML]="getItemLabel(processedItem)" [attr.data-pc-section]="'label'" [id]="getItemLabelId(processedItem)"></span>
+                                    <span
+                                        class="p-menubar-item-label"
+                                        [innerHTML]="getItemLabel(processedItem)"
+                                        [attr.data-pc-section]="'label'"
+                                        [id]="getItemLabelId(processedItem)"
+                                    ></span>
                                 </ng-template>
-                                <span class="p-menuitem-badge" *ngIf="getItemProp(processedItem, 'badge')" [ngClass]="getItemProp(processedItem, 'badgeStyleClass')">{{ getItemProp(processedItem, 'badge') }}</span>
+                                <p-badge
+                                    *ngIf="getItemProp(processedItem, 'badge')"
+                                    [styleClass]="getItemProp(processedItem, 'badgeStyleClass')"
+                                    [value]="getItemProp(processedItem, 'badge')"
+                                />
 
                                 <ng-container *ngIf="isItemGroup(processedItem)">
                                     <ng-container *ngIf="!submenuIconTemplate">
-                                        <AngleDownIcon [styleClass]="'p-submenu-icon'" *ngIf="root" [attr.data-pc-section]="'submenuicon'" />
-                                        <AngleRightIcon [styleClass]="'p-submenu-icon'" *ngIf="!root" [attr.data-pc-section]="'submenuicon'" />
+                                        <AngleDownIcon
+                                            [styleClass]="'p-menubar-submenu-icon'"
+                                            *ngIf="root"
+                                            [attr.data-pc-section]="'submenuicon'"
+                                            [attr.aria-hidden]="true"
+                                        />
+                                        <AngleRightIcon
+                                            [styleClass]="'p-menubar-submenu-icon'"
+                                            *ngIf="!root"
+                                            [attr.data-pc-section]="'submenuicon'"
+                                            [attr.aria-hidden]="true"
+                                        />
                                     </ng-container>
-                                    <ng-template *ngTemplateOutlet="submenuIconTemplate" [attr.data-pc-section]="'submenuicon'"></ng-template>
+                                    <ng-template
+                                        *ngTemplateOutlet="submenuIconTemplate"
+                                        [attr.data-pc-section]="'submenuicon'"
+                                        [attr.aria-hidden]="true"
+                                    ></ng-template>
                                 </ng-container>
                             </a>
                             <a
@@ -947,12 +1312,13 @@ var MenubarSub = class _MenubarSub {
                                 [routerLink]="getItemProp(processedItem, 'routerLink')"
                                 [attr.data-automationid]="getItemProp(processedItem, 'automationId')"
                                 [attr.tabindex]="-1"
+                                [attr.aria-hidden]="true"
                                 [attr.data-pc-section]="'action'"
                                 [queryParams]="getItemProp(processedItem, 'queryParams')"
-                                [routerLinkActive]="'p-menuitem-link-active'"
+                                [routerLinkActive]="'p-menubar-item-link-active'"
                                 [routerLinkActiveOptions]="getItemProp(processedItem, 'routerLinkActiveOptions') || { exact: false }"
                                 [target]="getItemProp(processedItem, 'target')"
-                                [ngClass]="{ 'p-menuitem-link': true, 'p-disabled': getItemProp(processedItem, 'disabled') }"
+                                [ngClass]="{ 'p-menubar-item-link': true, 'p-disabled': getItemProp(processedItem, 'disabled') }"
                                 [fragment]="getItemProp(processedItem, 'fragment')"
                                 [queryParamsHandling]="getItemProp(processedItem, 'queryParamsHandling')"
                                 [preserveFragment]="getItemProp(processedItem, 'preserveFragment')"
@@ -962,27 +1328,56 @@ var MenubarSub = class _MenubarSub {
                                 pRipple
                             >
                                 <span
-                                    class="p-menuitem-icon"
+                                    class="p-menubar-item-icon"
                                     *ngIf="getItemProp(processedItem, 'icon')"
                                     [ngClass]="getItemProp(processedItem, 'icon')"
                                     [ngStyle]="getItemProp(processedItem, 'iconStyle')"
                                     [attr.data-pc-section]="'icon'"
+                                    [attr.aria-hidden]="true"
                                     [attr.tabindex]="-1"
                                 ></span>
-                                <span class="p-menuitem-text" *ngIf="getItemProp(processedItem, 'escape'); else htmlRouteLabel">{{ getItemLabel(processedItem) }}</span>
-                                <ng-template #htmlRouteLabel><span class="p-menuitem-text" [innerHTML]="getItemLabel(processedItem)" [attr.data-pc-section]="'label'"></span></ng-template>
-                                <span class="p-menuitem-badge" *ngIf="getItemProp(processedItem, 'badge')" [ngClass]="getItemProp(processedItem, 'badgeStyleClass')">{{ getItemProp(processedItem, 'badge') }}</span>
+                                <span class="p-menubar-item-label" *ngIf="getItemProp(processedItem, 'escape'); else htmlRouteLabel">{{
+                                    getItemLabel(processedItem)
+                                }}</span>
+                                <ng-template #htmlRouteLabel
+                                    ><span
+                                        class="p-menubar-item-label"
+                                        [innerHTML]="getItemLabel(processedItem)"
+                                        [attr.data-pc-section]="'label'"
+                                    ></span
+                                ></ng-template>
+                                <p-badge
+                                    *ngIf="getItemProp(processedItem, 'badge')"
+                                    [styleClass]="getItemProp(processedItem, 'badgeStyleClass')"
+                                    [value]="getItemProp(processedItem, 'badge')"
+                                />
                                 <ng-container *ngIf="isItemGroup(processedItem)">
                                     <ng-container *ngIf="!menubar.submenuIconTemplate">
-                                        <AngleDownIcon [styleClass]="'p-submenu-icon'" [attr.data-pc-section]="'submenuicon'" *ngIf="root" />
-                                        <AngleRightIcon [styleClass]="'p-submenu-icon'" [attr.data-pc-section]="'submenuicon'" *ngIf="!root" />
+                                        <AngleDownIcon
+                                            [styleClass]="'p-menubar-submenu-icon'"
+                                            [attr.data-pc-section]="'submenuicon'"
+                                            [attr.aria-hidden]="true"
+                                            *ngIf="root"
+                                        />
+                                        <AngleRightIcon
+                                            [styleClass]="'p-menubar-submenu-icon'"
+                                            [attr.data-pc-section]="'submenuicon'"
+                                            [attr.aria-hidden]="true"
+                                            *ngIf="!root"
+                                        />
                                     </ng-container>
-                                    <ng-template *ngTemplateOutlet="menubar.submenuIconTemplate" [attr.data-pc-section]="'submenuicon'"></ng-template>
+                                    <ng-template
+                                        *ngTemplateOutlet="menubar.submenuIconTemplate"
+                                        [attr.data-pc-section]="'submenuicon'"
+                                        [attr.aria-hidden]="true"
+                                    ></ng-template>
                                 </ng-container>
                             </a>
                         </ng-container>
                         <ng-container *ngIf="itemTemplate">
-                            <ng-template *ngTemplateOutlet="itemTemplate; context: { $implicit: processedItem.item, root: root }"></ng-template>
+                            <ng-template
+                                *ngTemplateOutlet="itemTemplate; context: { $implicit: processedItem.item, root: root }"
+                            ></ng-template>
                         </ng-container>
                     </div>
                     <p-menubarSub
@@ -998,16 +1393,14 @@ var MenubarSub = class _MenubarSub {
                         [ariaLabelledBy]="getItemLabelId(processedItem)"
                         (itemClick)="itemClick.emit($event)"
                         (itemMouseEnter)="onItemMouseEnter($event)"
+                        [inlineStyles]="{ display: isItemActive(processedItem) ? 'flex' : 'none' }"
                     >
                     </p-menubarSub>
                 </li>
             </ng-template>
         </ul>
     `,
-      encapsulation: ViewEncapsulation$1.None,
-      host: {
-        class: "p-element"
-      }
+      encapsulation: ViewEncapsulation$1.None
     }]
   }], () => [{
     type: ElementRef
@@ -1075,6 +1468,9 @@ var MenubarSub = class _MenubarSub {
     activeItemPath: [{
       type: Input
     }],
+    inlineStyles: [{
+      type: Input
+    }],
     submenuIconTemplate: [{
       type: Input
     }],
@@ -1101,7 +1497,7 @@ var MenubarSub = class _MenubarSub {
     }]
   });
 })();
-var Menubar = class _Menubar {
+var Menubar = class _Menubar extends BaseComponent {
   document;
   platformId;
   el;
@@ -1208,6 +1604,7 @@ var Menubar = class _Menubar {
   searchValue = "";
   searchTimeout;
   _processedItems;
+  _componentStyle = inject(MenuBarStyle);
   _model;
   get visibleItems() {
     const processedItem = this.activeItemPath().find((p) => p.key === this.focusedItemInfo().parentKey);
@@ -1224,6 +1621,7 @@ var Menubar = class _Menubar {
     return focusedItem.item && focusedItem.item?.id ? focusedItem.item.id : focusedItem.index !== -1 ? `${this.id}${ObjectUtils.isNotEmpty(focusedItem.parentKey) ? "_" + focusedItem.parentKey : ""}_${focusedItem.index}` : null;
   }
   constructor(document, platformId, el, renderer, cd, config, menubarService) {
+    super();
     this.document = document;
     this.platformId = platformId;
     this.el = el;
@@ -1243,6 +1641,7 @@ var Menubar = class _Menubar {
     });
   }
   ngOnInit() {
+    super.ngOnInit();
     this.menubarService.autoHide = this.autoHide;
     this.menubarService.autoHideDelay = this.autoHideDelay;
     this.mouseLeaveSubscriber = this.menubarService.mouseLeft$.subscribe(() => this.unbindOutsideClickListener());
@@ -1764,6 +2163,7 @@ var Menubar = class _Menubar {
     this.mouseLeaveSubscriber?.unsubscribe();
     this.unbindOutsideClickListener();
     this.unbindResizeListener();
+    super.ngOnDestroy();
   }
   static ɵfac = function Menubar_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _Menubar)(ɵɵdirectiveInject(DOCUMENT), ɵɵdirectiveInject(PLATFORM_ID), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(PrimeNGConfig), ɵɵdirectiveInject(MenubarService));
@@ -1782,8 +2182,8 @@ var Menubar = class _Menubar {
     },
     viewQuery: function Menubar_Query(rf, ctx) {
       if (rf & 1) {
-        ɵɵviewQuery(_c5, 5);
         ɵɵviewQuery(_c6, 5);
+        ɵɵviewQuery(_c7, 5);
       }
       if (rf & 2) {
         let _t;
@@ -1791,7 +2191,6 @@ var Menubar = class _Menubar {
         ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.rootmenu = _t.first);
       }
     },
-    hostAttrs: [1, "p-element"],
     inputs: {
       model: "model",
       style: "style",
@@ -1809,8 +2208,8 @@ var Menubar = class _Menubar {
       onFocus: "onFocus",
       onBlur: "onBlur"
     },
-    features: [ɵɵProvidersFeature([MenubarService]), ɵɵInputTransformsFeature],
-    ngContentSelectors: _c7,
+    features: [ɵɵProvidersFeature([MenubarService, MenuBarStyle]), ɵɵInputTransformsFeature, ɵɵInheritDefinitionFeature],
+    ngContentSelectors: _c8,
     decls: 8,
     vars: 25,
     consts: [["rootmenu", ""], ["legacy", ""], ["menubutton", ""], [3, "ngClass", "ngStyle"], ["class", "p-menubar-start", 4, "ngIf"], ["tabindex", "0", "role", "button", "class", "p-menubar-button", 3, "click", "keydown", 4, "ngIf"], [3, "itemClick", "menuFocus", "menuBlur", "menuKeydown", "itemMouseEnter", "items", "itemTemplate", "menuId", "root", "baseZIndex", "autoZIndex", "mobileActive", "autoDisplay", "ariaLabel", "ariaLabelledBy", "focusedItemId", "submenuIconTemplate", "activeItemPath"], ["class", "p-menubar-end", 4, "ngIf", "ngIfElse"], [1, "p-menubar-start"], [4, "ngTemplateOutlet"], ["tabindex", "0", "role", "button", 1, "p-menubar-button", 3, "click", "keydown"], [4, "ngIf"], [1, "p-menubar-end"]],
@@ -1844,7 +2243,7 @@ var Menubar = class _Menubar {
       if (rf & 2) {
         const legacy_r4 = ɵɵreference(7);
         ɵɵclassMap(ctx.styleClass);
-        ɵɵproperty("ngClass", ɵɵpureFunction1(23, _c8, ctx.mobileActive))("ngStyle", ctx.style);
+        ɵɵproperty("ngClass", ɵɵpureFunction1(23, _c9, ctx.mobileActive))("ngStyle", ctx.style);
         ɵɵattribute("data-pc-section", "root")("data-pc-name", "menubar");
         ɵɵadvance();
         ɵɵproperty("ngIf", ctx.startTemplate);
@@ -1857,7 +2256,6 @@ var Menubar = class _Menubar {
       }
     },
     dependencies: () => [NgClass, NgIf, NgTemplateOutlet, NgStyle, BarsIcon, MenubarSub],
-    styles: ["@layer primeng{.p-menubar{display:flex;align-items:center}.p-menubar ul{margin:0;padding:0;list-style:none}.p-menubar .p-menuitem-link{cursor:pointer;display:flex;align-items:center;text-decoration:none;overflow:hidden;position:relative}.p-menubar .p-menuitem-text{line-height:1}.p-menubar .p-menuitem{position:relative}.p-menubar-root-list{display:flex;align-items:center;flex-wrap:wrap}.p-menubar-root-list>li ul{display:none;z-index:1}.p-menubar-root-list>.p-menuitem-active>p-menubarsub>.p-submenu-list{display:block}.p-menubar .p-submenu-list{display:none;position:absolute;z-index:2}.p-menubar .p-submenu-list>.p-menuitem-active>p-menubarsub>.p-submenu-list{display:block;left:100%;top:0}.p-menubar .p-submenu-list .p-menuitem-link .p-submenu-icon:not(svg){margin-left:auto}.p-menubar .p-menubar-root-list .p-icon-wrapper,.p-menubar .p-submenu-list .p-menuitem-link .p-icon-wrapper{margin-left:auto}.p-menubar .p-menubar-custom,.p-menubar .p-menubar-end{margin-left:auto;align-self:center}.p-menubar-button{display:none;cursor:pointer;align-items:center;justify-content:center}}\n"],
     encapsulation: 2,
     changeDetection: 0
   });
@@ -1868,7 +2266,13 @@ var Menubar = class _Menubar {
     args: [{
       selector: "p-menubar",
       template: `
-        <div [ngClass]="{ 'p-menubar p-component': true, 'p-menubar-mobile-active': mobileActive }" [class]="styleClass" [ngStyle]="style" [attr.data-pc-section]="'root'" [attr.data-pc-name]="'menubar'">
+        <div
+            [ngClass]="{ 'p-menubar p-component': true, 'p-menubar-mobile-active': mobileActive }"
+            [class]="styleClass"
+            [ngStyle]="style"
+            [attr.data-pc-section]="'root'"
+            [attr.data-pc-name]="'menubar'"
+        >
             <div class="p-menubar-start" *ngIf="startTemplate">
                 <ng-container *ngTemplateOutlet="startTemplate"></ng-container>
             </div>
@@ -1922,11 +2326,7 @@ var Menubar = class _Menubar {
     `,
       changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation$1.None,
-      host: {
-        class: "p-element"
-      },
-      providers: [MenubarService],
-      styles: ["@layer primeng{.p-menubar{display:flex;align-items:center}.p-menubar ul{margin:0;padding:0;list-style:none}.p-menubar .p-menuitem-link{cursor:pointer;display:flex;align-items:center;text-decoration:none;overflow:hidden;position:relative}.p-menubar .p-menuitem-text{line-height:1}.p-menubar .p-menuitem{position:relative}.p-menubar-root-list{display:flex;align-items:center;flex-wrap:wrap}.p-menubar-root-list>li ul{display:none;z-index:1}.p-menubar-root-list>.p-menuitem-active>p-menubarsub>.p-submenu-list{display:block}.p-menubar .p-submenu-list{display:none;position:absolute;z-index:2}.p-menubar .p-submenu-list>.p-menuitem-active>p-menubarsub>.p-submenu-list{display:block;left:100%;top:0}.p-menubar .p-submenu-list .p-menuitem-link .p-submenu-icon:not(svg){margin-left:auto}.p-menubar .p-menubar-root-list .p-icon-wrapper,.p-menubar .p-submenu-list .p-menuitem-link .p-icon-wrapper{margin-left:auto}.p-menubar .p-menubar-custom,.p-menubar .p-menubar-end{margin-left:auto;align-self:center}.p-menubar-button{display:none;cursor:pointer;align-items:center;justify-content:center}}\n"]
+      providers: [MenubarService, MenuBarStyle]
     }]
   }], () => [{
     type: Document,
@@ -2026,18 +2426,18 @@ var MenubarModule = class _MenubarModule {
   static ɵmod = ɵɵdefineNgModule({
     type: _MenubarModule,
     declarations: [Menubar, MenubarSub],
-    imports: [CommonModule, RouterModule, RippleModule, TooltipModule, SharedModule, BarsIcon, AngleDownIcon, AngleRightIcon],
+    imports: [CommonModule, RouterModule, RippleModule, TooltipModule, SharedModule, BarsIcon, AngleDownIcon, AngleRightIcon, BadgeModule],
     exports: [Menubar, RouterModule, TooltipModule, SharedModule]
   });
   static ɵinj = ɵɵdefineInjector({
-    imports: [CommonModule, RouterModule, RippleModule, TooltipModule, SharedModule, BarsIcon, AngleDownIcon, AngleRightIcon, RouterModule, TooltipModule, SharedModule]
+    imports: [CommonModule, RouterModule, RippleModule, TooltipModule, SharedModule, BarsIcon, AngleDownIcon, AngleRightIcon, BadgeModule, RouterModule, TooltipModule, SharedModule]
   });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MenubarModule, [{
     type: NgModule,
     args: [{
-      imports: [CommonModule, RouterModule, RippleModule, TooltipModule, SharedModule, BarsIcon, AngleDownIcon, AngleRightIcon],
+      imports: [CommonModule, RouterModule, RippleModule, TooltipModule, SharedModule, BarsIcon, AngleDownIcon, AngleRightIcon, BadgeModule],
       exports: [Menubar, RouterModule, TooltipModule, SharedModule],
       declarations: [Menubar, MenubarSub]
     }]
