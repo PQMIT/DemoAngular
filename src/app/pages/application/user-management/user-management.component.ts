@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, ViewChild, AfterViewInit } from "@angular/core";
 import { User } from "../../../models/user";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "../../../services/user";
@@ -16,6 +16,7 @@ import { PLATFORM_ID } from "@angular/core";
 import { DialogModule } from "primeng/dialog";
 import { ImageModule } from "primeng/image";
 import { ReactiveFormsModule } from "@angular/forms";
+import { DialogFormUserComponent } from "../dialog-form-user/dialog-form-user.component";
 @Component({
     selector: "app-user-management",
     standalone: true,
@@ -34,10 +35,16 @@ import { ReactiveFormsModule } from "@angular/forms";
         ImageModule,
         FormsModule,
         ReactiveFormsModule,
+        DialogFormUserComponent,
     ],
     providers: [ConfirmationService, MessageService],
 })
 export class UserManagementComponent {
+    // @ViewChild(DialogFormUserComponent) child;
+
+    dataUser: any; // Dữ liệu user được chọn để xem chi tiết
+    visibleDialog: boolean = false;
+
     users: User[] = [];
     selectedUser: User | null = null;
     newUser: User = { id: 0, firstName: "", lastName: "", email: "", role: "User" };
@@ -58,8 +65,13 @@ export class UserManagementComponent {
     isDataChanged = false; // Trạng thái theo dõi thay đổi dữ liệu
     isRowEdited = false; // Trạng thái chỉnh sửa dòng
 
+    // Hàm hiển thị dialog
     showDialog() {
         this.visible = true;
+    }
+    // Hàm khi người dùng nhấn nút Cancel
+    onDialogClosed() {
+        this.visibleDialog = false; // Cập nhật khi dialog đóng
     }
     constructor(
         private fb: FormBuilder,
@@ -123,6 +135,7 @@ export class UserManagementComponent {
             this.totalUsers = data.length;
         });
     }
+
     loadUsersLocal() {
         if (isPlatformBrowser(this.platformId)) {
             if (localStorage.getItem("users") === null) {
@@ -137,6 +150,7 @@ export class UserManagementComponent {
             }
         }
     }
+
     onSubmit() {
         if (this.userForm.valid) {
             console.log("Form Data: ", this.userForm.getRawValue());
@@ -175,6 +189,7 @@ export class UserManagementComponent {
             }
         }
     }
+
     onEditComplete(event: any) {
         const rowIndex = event.index; // Vị trí của dòng trong bảng
         const field = event.field; // Tên của trường (name, phone, email...)
@@ -185,6 +200,7 @@ export class UserManagementComponent {
         // Nếu muốn lưu lên server hoặc lưu vào localStorage
         this.saveData();
     }
+
     saveData() {
         // Ví dụ: Bạn có thể thực hiện gọi API để lưu dữ liệu đã chỉnh sửa
         // console.log("Dữ liệu đã được lưu:", this.users);
@@ -199,10 +215,13 @@ export class UserManagementComponent {
         console.log("View detail user", user);
         localStorage.setItem("userView", JSON.stringify(user));
     }
-    /*  deleteUser(id: number) {
-        console.log("Delete user", id);
-    
-    } */
+
+    viewDetailInPage(user: User) {
+        // this.router.navigate(["userDetail", user.id]);
+        this.visibleDialog = true;
+        this.dataUser = user;
+    }
+
     deleteUser(event: any, user: any) {
         this.confirmationService.confirm({
             target: event.target as EventTarget,
@@ -278,7 +297,6 @@ export class UserManagementComponent {
             }
         }
     }
-
     // Hàm theo dõi thay đổi trong một dòng
     onRowEdit(user: any) {
         user.isRowEdited = true; // Đánh dấu rằng hàng này đã bị chỉnh sửa

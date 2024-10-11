@@ -118,7 +118,8 @@
 
                 <td>
                     <p-button *ngIf="product.isRowEdited" label="Save" severity="info" (click)="onChangeDataUser(product)" size="small"></p-button>
-                    <p-button label="View" (click)="viewDetail(product)" size="small"></p-button>
+                    <p-button label="ViewinDialog" severity="secondary" (click)="viewDetailInPage(product)" size="small"></p-button>
+                    <p-button label="ViewinPage" (click)="viewDetail(product)" size="small"></p-button>
                     <p-button size="small" label="Delete" severity="danger" (click)="deleteUser($event, product)"></p-button>
                 </td>
             </tr>
@@ -251,3 +252,6 @@
         <p-button label="Save" [disabled]="userForm.invalid" (click)="addUser()" />
     </div>
 </p-dialog>
+
+<!-- <app-dialog-form-user [visible]="visible" (onHide)="visible = $event"></app-dialog-form-user> -->
+<app-dialog-form-user [visibleChild]="visibleDialog" [dataUserFromParent]="dataUser" (dialogClosed)="onDialogClosed()"></app-dialog-form-user>

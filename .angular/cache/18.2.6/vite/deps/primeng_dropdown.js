@@ -1,6 +1,5 @@
 import {
   BlankIcon,
-  ChevronDownIcon,
   IconField,
   IconFieldModule,
   InputIcon,
@@ -10,7 +9,7 @@ import {
   Scroller,
   ScrollerModule,
   SearchIcon
-} from "./chunk-K65KEDLN.js";
+} from "./chunk-ISPZQVZF.js";
 import {
   Tooltip,
   TooltipModule
@@ -19,28 +18,31 @@ import {
   CheckIcon
 } from "./chunk-EDQYEZVT.js";
 import {
+  ChevronDownIcon
+} from "./chunk-LRX7CXFF.js";
+import {
   InputText,
   InputTextModule
-} from "./chunk-LBILEIJV.js";
+} from "./chunk-KITM5OKG.js";
 import {
-  NG_VALUE_ACCESSOR
-} from "./chunk-NRFNRQ5Z.js";
+  TimesIcon
+} from "./chunk-I24EWB4E.js";
 import {
   AutoFocus,
   AutoFocusModule
 } from "./chunk-NFPN44SM.js";
+import "./chunk-LVC4O23V.js";
 import {
   Ripple,
   RippleModule
 } from "./chunk-TAE7DVLQ.js";
 import {
-  TimesIcon
-} from "./chunk-I24EWB4E.js";
-import "./chunk-LVC4O23V.js";
-import "./chunk-FTZ22QI2.js";
-import {
   BaseComponent
 } from "./chunk-Q73PBUIA.js";
+import {
+  NG_VALUE_ACCESSOR
+} from "./chunk-NRFNRQ5Z.js";
+import "./chunk-FTZ22QI2.js";
 import {
   BaseStyle,
   DomHandler,

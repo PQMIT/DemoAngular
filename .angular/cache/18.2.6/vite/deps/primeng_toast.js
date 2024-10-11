@@ -2,19 +2,23 @@ import {
   CheckIcon
 } from "./chunk-EDQYEZVT.js";
 import {
+  TimesIcon
+} from "./chunk-I24EWB4E.js";
+import {
   Button,
   ButtonModule
 } from "./chunk-224UQGNK.js";
 import "./chunk-NFPN44SM.js";
 import {
-  RippleModule
-} from "./chunk-TAE7DVLQ.js";
-import {
-  TimesIcon
-} from "./chunk-I24EWB4E.js";
-import {
   BaseIcon
 } from "./chunk-LVC4O23V.js";
+import {
+  RippleModule
+} from "./chunk-TAE7DVLQ.js";
+import "./chunk-2OE7MQLL.js";
+import {
+  BaseComponent
+} from "./chunk-Q73PBUIA.js";
 import {
   animate,
   animateChild,
@@ -24,10 +28,6 @@ import {
   transition,
   trigger
 } from "./chunk-FTZ22QI2.js";
-import "./chunk-2OE7MQLL.js";
-import {
-  BaseComponent
-} from "./chunk-Q73PBUIA.js";
 import {
   BaseStyle,
   DomHandler,

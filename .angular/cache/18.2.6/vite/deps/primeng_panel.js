@@ -7,10 +7,14 @@ import {
   ButtonModule
 } from "./chunk-224UQGNK.js";
 import "./chunk-NFPN44SM.js";
+import "./chunk-LVC4O23V.js";
 import {
   RippleModule
 } from "./chunk-TAE7DVLQ.js";
-import "./chunk-LVC4O23V.js";
+import "./chunk-2OE7MQLL.js";
+import {
+  BaseComponent
+} from "./chunk-Q73PBUIA.js";
 import {
   animate,
   state,
@@ -18,10 +22,6 @@ import {
   transition,
   trigger
 } from "./chunk-FTZ22QI2.js";
-import "./chunk-2OE7MQLL.js";
-import {
-  BaseComponent
-} from "./chunk-Q73PBUIA.js";
 import {
   BaseStyle,
   Footer,

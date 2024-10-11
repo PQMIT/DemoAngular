@@ -9,14 +9,14 @@ import {
   BaseIcon
 } from "./chunk-LVC4O23V.js";
 import {
+  BaseComponent
+} from "./chunk-Q73PBUIA.js";
+import {
   animate,
   style,
   transition,
   trigger
 } from "./chunk-FTZ22QI2.js";
-import {
-  BaseComponent
-} from "./chunk-Q73PBUIA.js";
 import {
   BaseStyle,
   DomHandler,

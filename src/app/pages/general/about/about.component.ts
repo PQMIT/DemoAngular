@@ -27,6 +27,6 @@ import { CardModule } from "primeng/card";
 export class AboutComponent {
     constructor(private router: Router) {}
     goToHome() {
-        this.router.navigate(["/"]); // Điều hướng về trang chủ hoặc trang user
+        this.router.navigate(["/home"]); // Điều hướng về trang chủ hoặc trang user
     }
 }

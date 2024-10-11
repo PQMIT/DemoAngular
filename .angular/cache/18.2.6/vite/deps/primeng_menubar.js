@@ -3,22 +3,16 @@ import {
   AngleRightIcon
 } from "./chunk-RKBIVUIP.js";
 import {
-  RouterLink,
-  RouterLinkActive,
-  RouterModule
-} from "./chunk-QWENUQCO.js";
-import {
   Tooltip,
   TooltipModule
 } from "./chunk-W25WMRT4.js";
 import {
+  BaseIcon
+} from "./chunk-LVC4O23V.js";
+import {
   Ripple,
   RippleModule
 } from "./chunk-TAE7DVLQ.js";
-import {
-  BaseIcon
-} from "./chunk-LVC4O23V.js";
-import "./chunk-MGTFLGQJ.js";
 import {
   Badge,
   BadgeModule
@@ -26,6 +20,13 @@ import {
 import {
   BaseComponent
 } from "./chunk-Q73PBUIA.js";
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule
+} from "./chunk-QWENUQCO.js";
+import "./chunk-MGTFLGQJ.js";
+import "./chunk-ZLF6YWCQ.js";
 import {
   BaseStyle,
   DomHandler,
@@ -36,7 +37,6 @@ import {
   UniqueComponentId,
   zindexutils
 } from "./chunk-YRXQSFCQ.js";
-import "./chunk-ZLF6YWCQ.js";
 import {
   CommonModule,
   DOCUMENT,
