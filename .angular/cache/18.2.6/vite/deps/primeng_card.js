@@ -1,6 +1,6 @@
 import {
   BaseComponent
-} from "./chunk-Q73PBUIA.js";
+} from "./chunk-5UZ25CIA.js";
 import {
   BaseStyle,
   Footer,
@@ -8,7 +8,8 @@ import {
   ObjectUtils,
   PrimeTemplate,
   SharedModule
-} from "./chunk-YRXQSFCQ.js";
+} from "./chunk-BKBBF4WT.js";
+import "./chunk-3HMRNJKG.js";
 import {
   CommonModule,
   NgClass,

@@ -1,5 +1,5 @@
 <div class="p-fluid">
-    <h2>User Management</h2>
+    <!-- <h2>User Management</h2> -->
     <!-- <div class="p-field">
         <label for="search">Search</label>
         <input id="search" [(ngModel)]="searchQuery" pInputText />
@@ -12,6 +12,7 @@
         [tableStyle]="{ 'min-width': '20rem' }"
         [paginator]="true"
         [rows]="5"
+        stripedRows
         [rowsPerPageOptions]="[5, 10, 20]"
         [globalFilterFields]="['first_name', 'last_name', 'email', 'role']"
         (onEditComplete)="onEditComplete($event)"
@@ -44,16 +45,12 @@
                 <th>
                     <p-columnFilter type="text" field="gender" ariaLabel="Filter gender" />
                 </th>
-                <!-- <th>
-                    <p-columnFilter type="text" field="ip_address" ariaLabel="Filter ip_address" />
-                </th> -->
-                <!--  <th>
-                    <p-columnFilter type="text" field="role" ariaLabel="Filter role" />
-                </th> -->
                 <th>
                     <p-columnFilter type="text" field="address" ariaLabel="Filter address" />
                 </th>
-                <th><p-button size="small" label="AddUser" severity="info" (click)="showDialog()"></p-button></th>
+                <th>
+                    <p-button size="small" label="" severity="info" (click)="showDialog()"><i class="pi pi-plus"></i></p-button>
+                </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product let-editing="editing">
@@ -117,10 +114,10 @@
                 </td>
 
                 <td>
-                    <p-button *ngIf="product.isRowEdited" label="Save" severity="info" (click)="onChangeDataUser(product)" size="small"></p-button>
-                    <p-button label="ViewinDialog" severity="secondary" (click)="viewDetailInPage(product)" size="small"></p-button>
-                    <p-button label="ViewinPage" (click)="viewDetail(product)" size="small"></p-button>
-                    <p-button size="small" label="Delete" severity="danger" (click)="deleteUser($event, product)"></p-button>
+                    <p-button *ngIf="product.isRowEdited" label="" severity="info" (click)="onChangeDataUser(product)" size="small"><i class="pi pi-save"></i></p-button>
+                    <p-button label="" severity="secondary" (click)="viewDetailInPage(product)" size="small"><i class="pi pi-eye"></i></p-button>
+                    <p-button label="" (click)="viewDetail(product)" size="small"><i class="pi pi-external-link"></i></p-button>
+                    <p-button size="small" label="" severity="danger" (click)="deleteUser($event, product)"><i class="pi pi-trash"></i></p-button>
                 </td>
             </tr>
         </ng-template>
@@ -129,13 +126,13 @@
 <p-confirmdialog />
 
 <!-- dialog add new user -->
-<p-dialog header="Add Profile" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
-    <span class="p-text-secondary block mb-8">Your information.</span>
+<p-dialog header="Add Profile" [modal]="true" [(visible)]="visible" [style]="{ width: '50vw' }">
+    <span class="p-text-secondary block mb-12">Your information.</span>
     <div class="grid">
         <div class="col-12">
             <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
                 <div class="formgrid grid">
-                    <div class="field col-12">
+                    <div class="field col-4">
                         <label for="id">ID</label>
                         <input
                             pInputText
@@ -145,7 +142,7 @@
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         />
                     </div>
-                    <div class="field col-12">
+                    <div class="field col-4">
                         <label for="firstname">Firstname</label>
                         <input
                             pInputText
@@ -155,7 +152,7 @@
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         />
                     </div>
-                    <div class="field col-12">
+                    <div class="field col-4">
                         <label for="last_name">Last name</label>
                         <input
                             pInputText
@@ -166,7 +163,7 @@
                         />
                     </div>
 
-                    <div class="field col-12">
+                    <div class="field col-9">
                         <label for="email">Email</label>
                         <input
                             type="email"
@@ -177,7 +174,7 @@
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         />
                     </div>
-                    <div class="field col-12">
+                    <div class="field col-3">
                         <label for="gender">Gender</label>
                         <select
                             formControlName="gender"
@@ -190,7 +187,7 @@
                             <option>Female</option>
                         </select>
                     </div>
-                    <div class="field col-12">
+                    <div class="field col-6">
                         <label for="ip_address">Ip address</label>
                         <input
                             pInputText
@@ -200,7 +197,7 @@
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         />
                     </div>
-                    <div class="field col-12">
+                    <div class="field col-6">
                         <label for="role">Role</label>
                         <input
                             pInputText
@@ -221,18 +218,18 @@
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         ></textarea>
                     </div>
-                    <div class="field col-12">
+                    <div class="field col-9">
                         <label for="avatar">Avatar</label>
                         <textarea
                             pInputText
                             formControlName="avatar"
                             id="avatar"
                             type="text"
-                            rows="6"
+                            rows="8"
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         ></textarea>
                     </div>
-                    <div class="field col-12">
+                    <div class="field col-3">
                         <label for="status">Avatar</label>
                         <p-image [src]="userForm.get('avatar')?.value" [previewImageSrc]="userForm.get('avatar')?.value" alt="Image" width="200" [preview]="true" />
                     </div>
@@ -247,7 +244,7 @@
             </form>
         </div>
     </div>
-    <div class="flex justify-end gap-2">
+    <div class="flex justify-content-end gap-2">
         <p-button label="Cancel" severity="secondary" (click)="visible = false" />
         <p-button label="Save" [disabled]="userForm.invalid" (click)="addUser()" />
     </div>

@@ -1,21 +1,68 @@
-<div class="intro-container">
-    <h1>Welcome to User Management System</h1>
-    <p>This application helps you manage users efficiently and effectively.</p>
-    <div class="features">
-        <h2>Features</h2>
-        <ul>
-            <li>User Registration</li>
-            <li>Role Management</li>
-            <li>User Profiles</li>
-            <li>Data Analytics</li>
-            <li>Secure Authentication</li>
-        </ul>
-    </div>
-</div>
 <!-- test locale vietnamese datapicker -->
-<div class="grid mt-5">
+<!-- <div class="grid mt-5">
     <div class="col-12 col-offset-5">
         <h2>Test locale vietnamese</h2>
         <p-datepicker [(ngModel)]="date" />
+    </div>
+</div> -->
+
+<div class="block bg-primary font-bold text-center p-3 border-round mb-2">
+    <div class="card">
+        <p-carousel [value]="movies" [numVisible]="5" [numScroll]="2" [circular]="true" [responsiveOptions]="responsiveOptions">
+            <ng-template pTemplate="header" class="justify-content-start">
+                <h2>PHIM ĐỀ CỬ</h2>
+            </ng-template>
+            <ng-template let-product pTemplate="item">
+                <div class="border border-surface-200 dark:border-surface-700 rounded m-2 p-2">
+                    <div class="mb-2">
+                        <div class="relative mx-auto">
+                            <img src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" [alt]="product.name" class="w-full rounded-border" />
+                            <p-tag [value]="product.inventoryStatus" class="absolute" styleClass="dark:!bg-surface-900" [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+                        </div>
+                    </div>
+                    <div class="mb-2 font-medium">{{ product.name }}</div>
+                    <div class="flex justify-between items-center">
+                        <div class="mt-0 font-semibold text-xl">
+                            {{ "$" + product.price }}
+                        </div>
+                        <span>
+                            <p-button icon="pi pi-heart" severity="secondary" [outlined]="true" />
+                            <p-button icon="pi pi-shopping-cart" styleClass="ml-2" />
+                        </span>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="footer"> </ng-template>
+        </p-carousel>
+    </div>
+</div>
+<div class="block bg-primary font-bold text-center p-4 border-round mb-3">
+    <h2>PHIM LẺ MỚI CẬP NHẬT</h2>
+    <div class="grid nested-grid">
+        <div class="col-4">
+            <img alt="Card" class="w-full h-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+        </div>
+        <div class="col-8">
+            <div class="grid">
+                <div class="col-4">
+                    <img alt="Card" class="w-full h-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+                </div>
+                <div class="col-4">
+                    <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+                </div>
+                <div class="col-4">
+                    <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+                </div>
+                <div class="col-4">
+                    <img alt="Card" class="w-full h-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+                </div>
+                <div class="col-4">
+                    <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+                </div>
+                <div class="col-4">
+                    <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+                </div>
+            </div>
+        </div>
     </div>
 </div>
