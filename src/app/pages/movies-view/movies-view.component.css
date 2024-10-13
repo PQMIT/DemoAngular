@@ -1,0 +1,54 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.movie-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.movie-poster {
+  flex: 0 0 30%;
+}
+
+.poster-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.movie-details {
+  flex: 0 0 65%;
+  padding-left: 20px;
+  color:chocolate !important ;
+}
+
+.episode-list {
+  margin-top: 20px;
+}
+
+.episode-card {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.episode-thumbnail {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.episode-details {
+  margin-top: 10px;
+  padding: 10px;
+  color: chocolate;
+  background-color: #ccc;
+  opacity: 0.8;
+  téxt-align: center;
+}

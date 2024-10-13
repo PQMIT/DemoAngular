@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
                 // badge: "3",
                 routerLink: ["/about"],
             },
-            {
+            /* {
                 label: "Projects",
                 icon: "pi pi-search",
                 items: [
@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit {
                         ],
                     },
                 ],
-            },
+            }, */
         ];
 
         // Kiểm tra trạng thái đăng nhập khi component khởi tạo

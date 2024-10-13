@@ -1,128 +1,132 @@
-<div class="p-fluid">
-    <!-- <h2>User Management</h2> -->
-    <!-- <div class="p-field">
+<div class="block bg-primary text-center m-1 p-2 border-round mb-1">
+    <div class="p-fluid">
+        <!-- <h2>User Management</h2> -->
+        <!-- <div class="p-field">
         <label for="search">Search</label>
         <input id="search" [(ngModel)]="searchQuery" pInputText />
     </div> -->
 
-    <p-table
-        [value]="users"
-        dataKey="id"
-        styleClass="p-datatable-striped"
-        [tableStyle]="{ 'min-width': '20rem' }"
-        [paginator]="true"
-        [rows]="5"
-        stripedRows
-        [rowsPerPageOptions]="[5, 10, 20]"
-        [globalFilterFields]="['first_name', 'last_name', 'email', 'role']"
-        (onEditComplete)="onEditComplete($event)"
-    >
-        <ng-template pTemplate="header">
-            <tr>
-                <th>id</th>
-                <th>avatar</th>
-                <th>first_name</th>
-                <th>last_name</th>
-                <th>email</th>
-                <th>gender</th>
-                <th>address</th>
-                <th>Action</th>
-            </tr>
-            <tr>
-                <th>
-                    <!-- <p-columnFilter type="text" field="id" placeholder="Search Id" ariaLabel="Filter Id" /> -->
-                </th>
-                <th></th>
-                <th>
-                    <p-columnFilter type="text" field="first_name" ariaLabel="Filter first_name" />
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="last_name" ariaLabel="Filter last_name" />
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="email" ariaLabel="Filter email" />
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="gender" ariaLabel="Filter gender" />
-                </th>
-                <th>
-                    <p-columnFilter type="text" field="address" ariaLabel="Filter address" />
-                </th>
-                <th>
-                    <p-button size="small" label="" severity="info" (click)="showDialog()"><i class="pi pi-plus"></i></p-button>
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product let-editing="editing">
-            <tr>
-                <td>{{ product?.id }}</td>
-                <td><img [src]="product?.avatar" width="50" class="shadow-4" /></td>
+        <p-table
+            [value]="users"
+            dataKey="id"
+            styleClass="p-datatable-striped"
+            [tableStyle]="{ 'min-width': '20rem' }"
+            [paginator]="true"
+            [rows]="5"
+            stripedRows
+            [rowsPerPageOptions]="[5, 10, 20]"
+            [globalFilterFields]="['first_name', 'last_name', 'email', 'role']"
+            (onEditComplete)="onEditComplete($event)"
+            [scrollable]="true"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>id</th>
+                    <th>avatar</th>
+                    <th>first_name</th>
+                    <th>last_name</th>
+                    <th>email</th>
+                    <th>gender</th>
+                    <th>address</th>
+                    <th style="position: sticky; right: 0; z-index: 1000; background: white">Action</th>
+                </tr>
+                <tr>
+                    <th>
+                        <!-- <p-columnFilter type="text" field="id" placeholder="Search Id" ariaLabel="Filter Id" /> -->
+                    </th>
+                    <th></th>
+                    <th>
+                        <p-columnFilter type="text" field="first_name" ariaLabel="Filter first_name" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="last_name" ariaLabel="Filter last_name" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="email" ariaLabel="Filter email" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="gender" ariaLabel="Filter gender" />
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="address" ariaLabel="Filter address" />
+                    </th>
+                    <th style="position: sticky; right: 0; z-index: 1000; background: white">
+                        <p-button size="small" label="" severity="info" (click)="showDialog()"><i class="pi pi-plus"></i></p-button>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product let-editing="editing">
+                <tr>
+                    <td>{{ product?.id }}</td>
+                    <td><img [src]="product?.avatar" width="50" class="shadow-4" /></td>
 
-                <td [pEditableColumn]="product.first_name" pEditableColumnField="first_name">
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.first_name" (ngModelChange)="onRowEdit(product)" />
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{ product?.first_name }}
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
+                    <td [pEditableColumn]="product.first_name" pEditableColumnField="first_name">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.first_name" (ngModelChange)="onRowEdit(product)" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ product?.first_name }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
 
-                <td [pEditableColumn]="product.last_name" pEditableColumnField="last_name">
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.last_name" (ngModelChange)="onRowEdit(product)" />
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{ product?.last_name }}
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
+                    <td [pEditableColumn]="product.last_name" pEditableColumnField="last_name">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.last_name" (ngModelChange)="onRowEdit(product)" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ product?.last_name }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
 
-                <td [pEditableColumn]="product.email" pEditableColumnField="email">
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.email" (ngModelChange)="onRowEdit(product)" />
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{ product?.email }}
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
+                    <td [pEditableColumn]="product.email" pEditableColumnField="email">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.email" (ngModelChange)="onRowEdit(product)" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ product?.email }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
 
-                <td [pEditableColumn]="product.gender" pEditableColumnField="gender">
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.gender" (ngModelChange)="onRowEdit(product)" />
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{ product?.gender }}
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
+                    <td [pEditableColumn]="product.gender" pEditableColumnField="gender">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.gender" (ngModelChange)="onRowEdit(product)" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ product?.gender }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
 
-                <td [pEditableColumn]="product.address" pEditableColumnField="address">
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.address" (ngModelChange)="onRowEdit(product)" />
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{ product?.address }}
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
+                    <td [pEditableColumn]="product.address" pEditableColumnField="address">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.address" (ngModelChange)="onRowEdit(product)" />
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{ product?.address }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
 
-                <td>
-                    <p-button *ngIf="product.isRowEdited" label="" severity="info" (click)="onChangeDataUser(product)" size="small"><i class="pi pi-save"></i></p-button>
-                    <p-button label="" severity="secondary" (click)="viewDetailInPage(product)" size="small"><i class="pi pi-eye"></i></p-button>
-                    <p-button label="" (click)="viewDetail(product)" size="small"><i class="pi pi-external-link"></i></p-button>
-                    <p-button size="small" label="" severity="danger" (click)="deleteUser($event, product)"><i class="pi pi-trash"></i></p-button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+                    <td style="position: sticky; right: 0; z-index: 1000; background: white">
+                        <p-button *ngIf="product.isRowEdited" label="" severity="info" (click)="onChangeDataUser(product)" size="small"><i class="pi pi-save"></i></p-button>
+                        <p-button label="" severity="secondary" (click)="viewDetailInPage(product)" size="small"><i class="pi pi-eye"></i></p-button>
+                        <p-button label="" (click)="viewDetail(product)" size="small"><i class="pi pi-external-link"></i></p-button>
+                        <p-button size="small" label="" severity="danger" (click)="deleteUser($event, product)"><i class="pi pi-trash"></i></p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </div>
+
 <p-confirmdialog />
 
 <!-- dialog add new user -->

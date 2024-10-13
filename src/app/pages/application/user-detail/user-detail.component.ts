@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, Inject, OnInit, OnDestroy } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { DropdownModule } from "primeng/dropdown";
@@ -25,10 +25,11 @@ import { timeout } from "rxjs";
     styleUrl: "./user-detail.component.css",
     providers: [ConfirmationService, MessageService],
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, OnDestroy {
     userForm!: FormGroup;
     genders?: any[];
     visible: boolean = false;
+    private timeoutId: any; // Biến lưu ID của timeout để dọn dẹp
 
     constructor(private fb: FormBuilder, @Inject(PLATFORM_ID) private platformId: Object, private messageService: MessageService) {}
     showSuccess() {
@@ -135,6 +136,12 @@ export class UserDetailComponent implements OnInit {
             }
         } else {
             console.log("No user data found in localStorage");
+        }
+    }
+    ngOnDestroy() {
+        // Dọn dẹp timeout khi component bị hủy
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
         }
     }
 }

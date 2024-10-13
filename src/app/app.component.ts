@@ -22,6 +22,7 @@ import { Aura } from "primeng/themes/aura";
 import { Lara } from "primeng/themes/lara";
 import { Inject } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+import { SafeUrlPipe } from "./pipe/SafeUrlPipe";
 @Component({
     selector: "app-root",
     standalone: true,

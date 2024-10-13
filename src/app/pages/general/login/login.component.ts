@@ -34,6 +34,7 @@ import { BadgeModule } from "primeng/badge";
 import { Button } from "primeng/button";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { ProgressBarModule } from "primeng/progressbar";
+import { OnDestroy } from "@angular/core";
 @Component({
     selector: "app-login",
     standalone: true,
@@ -42,11 +43,13 @@ import { ProgressBarModule } from "primeng/progressbar";
     styleUrl: "./login.component.scss",
     providers: [MessageService],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
     username: string = "";
     password: string = "";
     loading: boolean = false; // Biến để điều khiển hiển thị thanh progressbar
     activeTab: boolean = false; // Tab mặc định được chọn
+    private timeoutId: any; // Biến lưu ID của timeout để dọn dẹp
+
     constructor(private authService: AuthService, private router: Router, private renderer: Renderer2, private messageService: MessageService) {}
     showSuccess() {
         this.messageService.add({ severity: "success", summary: "Success", detail: "Message Content" });
@@ -135,6 +138,12 @@ export class LoginComponent {
         const targetContent = document.querySelector(target);
         if (targetContent) {
             this.renderer.setStyle(targetContent, "display", "block");
+        }
+    }
+    ngOnDestroy() {
+        // Dọn dẹp timeout khi component bị hủy
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
         }
     }
 }

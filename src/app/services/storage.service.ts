@@ -4,20 +4,28 @@ import { Injectable } from "@angular/core";
     providedIn: "root",
 })
 export class StorageService {
-    // Lưu trữ dữ liệu vào localStorage
+    constructor() {}
+    // Set item vào localStorage
     setLocalStorage(key: string, value: any): void {
-        localStorage.setItem(key, JSON.stringify(value));
+        if (typeof window !== "undefined") {
+            localStorage.setItem(key, JSON.stringify(value));
+        }
     }
 
-    // Lấy dữ liệu từ localStorage
+    // Lấy item từ localStorage
     getLocalStorage(key: string): any {
-        const value = localStorage.getItem(key);
-        return value ? JSON.parse(value) : null;
+        if (typeof window !== "undefined") {
+            const storedValue = localStorage.getItem(key);
+            return storedValue ? JSON.parse(storedValue) : null;
+        }
+        return null;
     }
 
-    // Xóa dữ liệu từ localStorage
+    // Xóa item khỏi localStorage
     removeLocalStorage(key: string): void {
-        localStorage.removeItem(key);
+        if (typeof window !== "undefined") {
+            localStorage.removeItem(key);
+        }
     }
 
     // Lưu trữ dữ liệu vào sessionStorage

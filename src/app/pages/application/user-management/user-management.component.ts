@@ -17,6 +17,7 @@ import { DialogModule } from "primeng/dialog";
 import { ImageModule } from "primeng/image";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DialogFormUserComponent } from "../dialog-form-user/dialog-form-user.component";
+import { OnDestroy } from "@angular/core";
 @Component({
     selector: "app-user-management",
     standalone: true,
@@ -39,7 +40,7 @@ import { DialogFormUserComponent } from "../dialog-form-user/dialog-form-user.co
     ],
     providers: [ConfirmationService, MessageService],
 })
-export class UserManagementComponent {
+export class UserManagementComponent implements OnDestroy {
     // @ViewChild(DialogFormUserComponent) child;
 
     dataUser: any; // Dữ liệu user được chọn để xem chi tiết
@@ -65,6 +66,7 @@ export class UserManagementComponent {
     isDataChanged = false; // Trạng thái theo dõi thay đổi dữ liệu
     isRowEdited = false; // Trạng thái chỉnh sửa dòng
 
+    private timeoutId: any; // Biến lưu ID của timeout để dọn dẹp
     // Hàm hiển thị dialog
     showDialog() {
         this.visible = true;
@@ -306,5 +308,12 @@ export class UserManagementComponent {
         console.log("Save user changes", user);
         user.isRowEdited = false; // Sau khi lưu xong, đặt lại cờ
         // Thực hiện logic lưu dữ liệu
+    }
+
+    ngOnDestroy() {
+        // Dọn dẹp timeout khi component bị hủy
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+        }
     }
 }
