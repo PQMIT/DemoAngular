@@ -6,7 +6,7 @@
     </div>
 </div> -->
 <!-- part1 -->
-<div class="block bg-primary p-1 border-round mb-1">
+<div class="block bg-primary p-1 border-round mb-1" *ngIf="shouldRenderCarousel" q>
     <div class="card">
         <!-- Skeleton loader for carousel -->
         <div class="mx-7">
@@ -67,7 +67,7 @@
             </p-carousel>
         </div>
 
-        <p-carousel [value]="movies" *ngIf="!isLoading" [numVisible]="5" [numScroll]="2" [circular]="true" [responsiveOptions]="responsiveOptions">
+        <p-carousel [value]="movies" *ngIf="!isLoading" [numVisible]="5" [numScroll]="2" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="autoplayInterval">
             <!-- Header for the carousel -->
             <ng-template pTemplate="header" class="justify-content-start">
                 <h1 class="mx-7" style="color: #71dd1c">PHIM ĐỀ CỬ</h1>

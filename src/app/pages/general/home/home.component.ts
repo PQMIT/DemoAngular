@@ -1,5 +1,5 @@
 import { DatePickerModule } from "primeng/datepicker";
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CalendarModule } from "primeng/calendar";
 import { registerLocaleData } from "@angular/common";
@@ -15,6 +15,8 @@ import { MoviesService } from "../../../services/movies.service";
 import { StorageService } from "../../../services/storage.service";
 import { RouterLink } from "@angular/router";
 import { forkJoin } from "rxjs";
+import { isPlatformBrowser } from "@angular/common";
+
 registerLocaleData(localeVi);
 @Component({
     selector: "app-home",
@@ -22,6 +24,7 @@ registerLocaleData(localeVi);
     imports: [DatePickerModule, FormsModule, CalendarModule, DatePickerModule, AnimateOnScrollModule, CarouselModule, ButtonModule, TagModule, CardModule, SkeletonModule, CommonModule, RouterLink],
     templateUrl: "./home.component.html",
     styleUrl: "./home.component.css",
+    host: { ngSkipHydration: "true" },
 })
 export class HomeComponent implements OnInit, OnDestroy {
     // Cấu hình locale tiếng Việt
@@ -31,6 +34,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     isLoading = true; // Ban đầu là true để hiện skeleton
     movies: any[] = [];
     private timeoutId: any; // Biến lưu ID của timeout để dọn dẹp
+    autoplayInterval: number | null = null;
+    shouldRenderCarousel = false;
     moviesCategories: any[] = [
         {
             status: "success",
@@ -125,7 +130,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     ];
 
     responsiveOptions: any[] | undefined;
-    constructor(private moviesService: MoviesService, private storageService: StorageService) {
+    constructor(private moviesService: MoviesService, private storageService: StorageService, @Inject(PLATFORM_ID) private platformId: Object) {
         this.vi = {
             firstDayOfWeek: 1,
             dayNames: ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"],
@@ -158,6 +163,13 @@ export class HomeComponent implements OnInit, OnDestroy {
                 numScroll: 1,
             },
         ];
+        if (isPlatformBrowser(this.platformId)) {
+            // Delay rendering of the carousel to avoid SSR issues
+            setTimeout(() => {
+                this.shouldRenderCarousel = true;
+                this.autoplayInterval = 2000;
+            }, 100); // Delay 100ms before rendering carousel
+        }
         this.fetchMovies(); // Gọi hàm fetchMovies() để lấy danh sách phim
         console.log(this.moviesCategories);
     }

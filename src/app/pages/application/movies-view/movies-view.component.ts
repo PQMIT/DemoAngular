@@ -24,6 +24,7 @@ import { SafeUrlPipe } from "../../../pipe/SafeUrlPipe";
 import { ActivatedRoute } from "@angular/router";
 import { MoviesService } from "../../../services/movies.service";
 import { StorageService } from "../../../services/storage.service";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
 @Component({
     selector: "app-movies-view",
     standalone: true,
@@ -42,6 +43,7 @@ import { StorageService } from "../../../services/storage.service";
         TabPanel,
         TabView,
         CarouselModule,
+        ProgressSpinnerModule,
     ],
     templateUrl: "./movies-view.component.html",
     styleUrl: "./movies-view.component.css",
@@ -89,9 +91,10 @@ export class MoviesViewComponent implements OnInit {
         // Thêm các tập khác tương tự
     ];
 
+    isLoading: boolean = true; // Trạng thái tải dữ liệu
     showPlayer = false;
     currentEpisodeUrl: SafeResourceUrl | null = null;
-
+    episodes_current: String = "";
     movieSlug: string | null = null; // Biến để lưu slug
 
     constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private moviesService: MoviesService, private storageService: StorageService) {}
@@ -125,6 +128,8 @@ export class MoviesViewComponent implements OnInit {
     }
 
     playEpisode(episode: any) {
+        console.log(episode.name);
+        this.episodes_current = episode.name;
         this.currentEpisodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(episode.link_embed);
         this.showPlayer = true;
     }
@@ -133,5 +138,9 @@ export class MoviesViewComponent implements OnInit {
         // this.currentEpisodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://trailer-url");
         this.currentEpisodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/Yug8gbDd5EQ");
         this.showPlayer = true;
+    }
+    onVideoLoad() {
+        // Khi video trong iframe đã load xong, set lại isLoading = false
+        this.isLoading = false;
     }
 }

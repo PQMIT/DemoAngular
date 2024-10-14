@@ -66,7 +66,10 @@
     </div>
 
     <!-- Dialog để hiển thị trailer hoặc tập phim -->
-    <p-dialog [(visible)]="showPlayer" header="Trailer Phim" [modal]="true" [closable]="true" [style]="{ width: '80vw' }" [baseZIndex]="10000">
+    <p-dialog [(visible)]="showPlayer" header="Xem Phim {{ movie.name }} {{ episodes_current }}" [modal]="true" [closable]="true" [style]="{ width: '80vw' }" [baseZIndex]="100">
+        <!-- <div class="card flex justify-content-center" *ngIf="isLoading">
+            <p-progressSpinner ariaLabel="loading" />
+        </div> -->
         <iframe *ngIf="currentEpisodeUrl" [src]="currentEpisodeUrl" width="100%" height="700px" frameborder="0"></iframe>
         <!-- <iframe *ngIf="currentEpisodeUrl" [src]="currentEpisodeUrl | safeUrl" width="100%" height="400px" frameborder="0"></iframe> -->
     </p-dialog>

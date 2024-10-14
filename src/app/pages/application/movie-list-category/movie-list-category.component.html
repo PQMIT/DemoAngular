@@ -1,6 +1,6 @@
 <div class="container">
     <h1>
-        <span style="font-style: italic; color: #ff6f61"></span>
+        <span style="font-style: italic; color: #ff6f61">{{ ogDataMovie?.data?.seoOnPage?.titleHead }}</span>
     </h1>
 
     <!-- Ô nhập tìm kiếm -->
@@ -17,12 +17,10 @@
     <div *ngIf="!isLoading && pagedMovies.length === 0" class="no-movies-found">
         <i class="pi pi-search"></i>
         <!-- Thêm biểu tượng tìm kiếm -->
-        <p>Không tìm thấy phim nào với từ khóa:</p>
-        <p class="search-term">"{{ searchTerm }}"</p>
+        <p>Không tìm thấy phim nào</p>
         <!-- Hiển thị từ khóa tìm kiếm -->
     </div>
 
-    <p-paginator [rows]="rows" [totalRecords]="ogDataMovie.data.params.pagination.totalItems || 0" (onPageChange)="paginate($event)"></p-paginator>
     <!-- movie.component.html -->
     <div *ngIf="!isLoading && pagedMovies.length > 0">
         <div class="movie-card" *ngFor="let movie of pagedMovies" [routerLink]="['/moviesView', movie.slug]">
@@ -33,15 +31,15 @@
                     <div class="left-subcontent">
                         <h4>Năm phát hành: {{ movie.year }}</h4>
                         <h4>Thời lượng: {{ movie.time }}</h4>
-                        <h4>Episode_current: {{ movie.episode_current }}</h4>
+                        <h4>Tập hiện tại: {{ movie.episode_current }}</h4>
                     </div>
                     <div class="right-subcontent">
-                        <h4>Quality: {{ movie.quality }}</h4>
-                        <h4>Lang: {{ movie.lang }}</h4>
+                        <h4>Chất lượng phim: {{ movie.quality }}</h4>
+                        <h4>Ngôn ngữ: {{ movie.lang }}</h4>
                     </div>
                 </div>
                 <div>
-                    <h4>Category:</h4>
+                    <h4>Thể loại:</h4>
                     <div class="category-container">
                         <span *ngFor="let cat of movie.category" class="category-badge">{{ cat.name }}</span>
                     </div>
@@ -50,5 +48,16 @@
         </div>
 
         <!-- Thông báo không có kết quả -->
+        <p-paginator
+            [rows]="rows"
+            [totalRecords]="ogDataMovie.data.params.pagination.totalItems || 0"
+            [rowsPerPageOptions]="[10, 20, 30]"
+            [first]="first"
+            [showPageLinks]="true"
+            [showFirstLastIcon]="false"
+            [showCurrentPageReport]="true"
+            (onPageChange)="paginate($event)"
+            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+        ></p-paginator>
     </div>
 </div>
