@@ -20,10 +20,10 @@ import { TabView } from "primeng/tabview";
 import { TabPanel } from "primeng/tabview";
 import { TabViewModule } from "primeng/tabview";
 import { CarouselModule } from "primeng/carousel";
-import { SafeUrlPipe } from "../../pipe/SafeUrlPipe";
+import { SafeUrlPipe } from "../../../pipe/SafeUrlPipe";
 import { ActivatedRoute } from "@angular/router";
-import { MoviesService } from "../../services/movies.service";
-import { StorageService } from "../../services/storage.service";
+import { MoviesService } from "../../../services/movies.service";
+import { StorageService } from "../../../services/storage.service";
 @Component({
     selector: "app-movies-view",
     standalone: true,

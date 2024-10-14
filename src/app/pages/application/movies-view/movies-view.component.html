@@ -12,8 +12,13 @@
             <p><strong>Status:</strong> {{ movie.status }}</p>
             <p><strong>Created:</strong> {{ movie.created.time }}</p>
             <p><strong>Time:</strong> {{ movie.time }}</p>
-            <p><strong>Episode current:</strong> {{ movie.episode_current }}</p>
-            <p><strong>Quality:</strong> {{ movie.quality }}</p>
+            <strong>Episode current:</strong>
+            <div class="brand_episode px-2 inline-flex text-xm leading-5 font-semibold rounded-full">
+                {{ movie.episode_current }}
+            </div>
+            <p>
+                <strong>Quality: </strong><span class="quality_episode">{{ movie.quality }}</span>
+            </p>
             <p><strong>Lang:</strong> {{ movie.lang }}</p>
 
             <p-button label="Watch Trailer" icon="pi pi-play" (click)="showTrailer()"></p-button>

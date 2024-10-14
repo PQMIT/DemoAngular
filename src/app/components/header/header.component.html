@@ -47,6 +47,7 @@
         </ng-template>
         <ng-template pTemplate="end">
             <div class="flex items-center gap-2">
+                <input type="text" pInputText placeholder="Tìm kiếm tên phim" (keyup.enter)="onSearch($event)" class="w-32 sm:w-auto" />
                 <p-button label="Logout" (click)="onLogout()" *ngIf="isLoggedIn"></p-button>
                 <p-button label="Login" [routerLink]="['/login']" *ngIf="!isLoggedIn"></p-button>
                 <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />

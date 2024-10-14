@@ -50,5 +50,22 @@
   color: chocolate;
   background-color: #ccc;
   opacity: 0.8;
-  téxt-align: center;
+  text-align: center;
+}
+.brand_episode{
+  background: antiquewhite;
+  color: yellowgreen;
+  padding: 5px 0;
+}
+.quality_episode{
+    color: #fff;
+    /* position: absolute; */
+    /* bottom: 0; */
+    /* right: 0; */
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 5px 10px;
+    margin: 0;
+    background: #408BEA;
+        font-style: italic;
 }

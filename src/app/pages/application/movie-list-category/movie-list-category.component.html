@@ -1,0 +1,54 @@
+<div class="container">
+    <h1>
+        <span style="font-style: italic; color: #ff6f61"></span>
+    </h1>
+
+    <!-- Ô nhập tìm kiếm -->
+    <!-- <input type="text" pInputText placeholder="Tìm kiếm tên phim" (keyup.enter)="onSearch($event)" [(ngModel)]="searchTerm" class="w-32 sm:w-auto mb-3" /> -->
+
+    <!-- <button (click)="search()" class="btn btn-primary">Tìm kiếm</button> -->
+
+    <!-- Hiển thị skeleton loader nếu đang tải -->
+    <div *ngIf="isLoading" class="skeleton-loader">
+        <p>Đang tìm kiếm ...</p>
+    </div>
+
+    <!-- movie.component.html -->
+    <div *ngIf="!isLoading && pagedMovies.length === 0" class="no-movies-found">
+        <i class="pi pi-search"></i>
+        <!-- Thêm biểu tượng tìm kiếm -->
+        <p>Không tìm thấy phim nào với từ khóa:</p>
+        <p class="search-term">"{{ searchTerm }}"</p>
+        <!-- Hiển thị từ khóa tìm kiếm -->
+    </div>
+
+    <p-paginator [rows]="rows" [totalRecords]="ogDataMovie.data.params.pagination.totalItems || 0" (onPageChange)="paginate($event)"></p-paginator>
+    <!-- movie.component.html -->
+    <div *ngIf="!isLoading && pagedMovies.length > 0">
+        <div class="movie-card" *ngFor="let movie of pagedMovies" [routerLink]="['/moviesView', movie.slug]">
+            <img [src]="ogDataMovie.data.APP_DOMAIN_CDN_IMAGE + '/' + movie.poster_url" [alt]="movie.name" />
+            <div class="movie-content">
+                <h2 style="cursor: pointer">{{ movie.name }}</h2>
+                <div class="subcontent">
+                    <div class="left-subcontent">
+                        <h4>Năm phát hành: {{ movie.year }}</h4>
+                        <h4>Thời lượng: {{ movie.time }}</h4>
+                        <h4>Episode_current: {{ movie.episode_current }}</h4>
+                    </div>
+                    <div class="right-subcontent">
+                        <h4>Quality: {{ movie.quality }}</h4>
+                        <h4>Lang: {{ movie.lang }}</h4>
+                    </div>
+                </div>
+                <div>
+                    <h4>Category:</h4>
+                    <div class="category-container">
+                        <span *ngFor="let cat of movie.category" class="category-badge">{{ cat.name }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông báo không có kết quả -->
+    </div>
+</div>

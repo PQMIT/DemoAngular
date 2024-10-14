@@ -8,16 +8,20 @@ import { CommonModule } from "@angular/common";
 import { RippleModule } from "primeng/ripple";
 import { AuthService } from "../../services/AuthService";
 import { ButtonModule } from "primeng/button";
+import { InputGroupModule } from "primeng/inputgroup";
+import { InputGroupAddonModule } from "primeng/inputgroupaddon";
+import { Router } from "@angular/router";
 @Component({
     selector: "app-header",
     templateUrl: "./header.component.html",
     standalone: true,
-    imports: [MenubarModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, CommonModule, ButtonModule],
+    imports: [MenubarModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, CommonModule, ButtonModule, InputTextModule, InputGroupModule, InputGroupAddonModule],
 })
 export class HeaderComponent implements OnInit {
     items: MenuItem[] | undefined;
     isLoggedIn: boolean = false;
-    constructor(private authService: AuthService) {}
+    filteredMovies: any[] = []; // Mảng chứa danh sách phim đã lọc
+    constructor(private authService: AuthService, private router: Router) {}
 
     ngOnInit() {
         this.items = [
@@ -83,6 +87,20 @@ export class HeaderComponent implements OnInit {
         this.authService.isLoggedIn$.subscribe((status) => {
             this.isLoggedIn = status;
         });
+    }
+    // Phương thức gọi khi người dùng tìm kiếm
+    // Phương thức gọi khi người dùng tìm kiếm
+    onSearch(event: Event) {
+        const inputElement = event.target as HTMLInputElement; // Ép kiểu event.target thành HTMLInputElement
+        const searchTerm = inputElement.value; // Lấy giá trị từ input
+        if (searchTerm) {
+            // Lọc danh sách phim dựa trên tên phim
+            // this.filteredMovies = this.movies.filter((movie) => movie.name.toLowerCase().includes(searchTerm.toLowerCase()));
+            this.router.navigate(["/search"], { queryParams: { search: searchTerm } });
+        } else {
+            // Nếu không có từ khóa tìm kiếm, hiển thị toàn bộ danh sách
+            // this.filteredMovies = [...this.movies];
+        }
     }
     onLogout() {
         this.authService.logout();

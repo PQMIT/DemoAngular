@@ -5,6 +5,7 @@
         <p-datepicker [(ngModel)]="date" />
     </div>
 </div> -->
+<!-- part1 -->
 <div class="block bg-primary p-1 border-round mb-1">
     <div class="card">
         <!-- Skeleton loader for carousel -->
@@ -91,7 +92,7 @@
                     <div class="mb-2 font-medium">
                         <!-- <p-skeleton width="10rem" height="1.5rem" *ngIf="!movie"></p-skeleton> -->
                         <div *ngIf="movie" [routerLink]="['/moviesView', movie.slug]">
-                            <strong>{{ movie.name }}</strong>
+                            <strong style="cursor: pointer">{{ movie.name }}</strong>
                         </div>
                     </div>
 
@@ -114,79 +115,92 @@
         </p-carousel>
     </div>
 </div>
-
-<div class="block bg-primary p-1 border-round mb-1">
-    <h1 class="px-7" style="color: #71dd1c">PHIM LẺ MỚI CẬP NHẬT</h1>
-    <div class="grid nested-grid p-2 mb-2 mx-6" *ngIf="isLoading">
-        <!-- <div class="col-3">
-            <img alt="Card" class="w-full" style="height: 500px" src="{{ movies[0].poster_url }}" />
-        </div> -->
-        <div class="col-3">
-            <div class="card1">
-                <div class="card1-image">
-                    <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
-                </div>
-            </div>
+<!------>>
+<div *ngIf="isLoading">
+    <div class="block bg-primary p-1 border-round mb-1" *ngFor="let i of [1, 2, 3, 4]">
+        <div class="flex" style="align-items: center; justify-content: space-between">
+            <h1 class="px-7" style="color: #71dd1c; text-transform: uppercase">Phim lẻ Mới cập nhật</h1>
+            <a style="text-decoration: none; color: #71dd1c; text-transform: uppercase" [routerLink]="['/movieListCategory']" class="px-7">XEM TẤT CẢ >></a>
         </div>
-
-        <div class="col-9">
-            <div class="grid">
-                <div class="col-3">
-                    <div class="card2">
-                        <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card2">
-                        <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card2">
-                        <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card2">
-                        <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card2">
-                        <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card2">
-                        <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card2">
-                        <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card2">
-                        <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
+        <div class="grid nested-grid p-2 mb-2 mx-6">
+            <div class="col-3">
+                <div class="card1">
+                    <div class="card1-image">
+                        <p-skeleton size="30rem" styleClass="mx-0"></p-skeleton>
                     </div>
                 </div>
             </div>
+
+            <div class="col-9">
+                <div class="grid">
+                    <div class="col-3">
+                        <div class="card2">
+                            <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card2">
+                            <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card2">
+                            <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card2">
+                            <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card2">
+                            <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card2">
+                            <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card2">
+                            <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card2">
+                            <p-skeleton size="29rem" styleClass="mr-2"></p-skeleton>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+<!-- part2 -->
+<div class="block bg-primary p-1 border-round mb-1" *ngFor="let category of moviesCategories">
+    <div class="flex" style="align-items: center; justify-content: space-between">
+        <h1 class="px-7" style="color: #71dd1c; text-transform: uppercase">{{ category.data.titlePage }} Mới cập nhật</h1>
+        <a style="text-decoration: none; color: #71dd1c; text-transform: uppercase" [routerLink]="['/movieListCategory', category.data.type_list]" [queryParams]="{ page: 1 }" class="px-7"
+            >XEM TẤT CẢ >></a
+        >
     </div>
     <div class="grid nested-grid p-2 mb-2 mx-6" *ngIf="!isLoading">
         <!-- <div class="col-3">
             <img alt="Card" class="w-full" style="height: 500px" src="{{ movies[0].poster_url }}" />
         </div> -->
         <div class="col-3">
-            <div class="card1">
+            <div class="card1" [routerLink]="['/moviesView', category.data.items[0]?.slug]">
                 <div class="card1-image">
-                    <img src="{{ movies[0]?.poster_url }}" alt="{{ movies[0]?.name }}" />
+                    <!-- <img src="{{ movies[0]?.poster_url }}" alt="{{ movies[0]?.name }}" /> -->
+                    <img [src]="category.data.APP_DOMAIN_CDN_IMAGE + '/' + category.data.items[0].poster_url" alt="{{ category.data.items[0].name }}" />
                 </div>
                 <div class="card1-content">
-                    <h3>{{ movies[0]?.name }}</h3>
-                    <h3>Tác gốc: {{ movies[0]?.origin_name }}</h3>
-                    <h3>Xuất bản: {{ movies[0]?.year }}</h3>
+                    <h3>{{ category.data.items[0].name }}</h3>
+                    <h3>Tác gốc: {{ category.data.items[0]?.origin_name }}</h3>
+                    <h3>Xuất bản: {{ category.data.items[0]?.year }}</h3>
+                    <h3>SLUG: {{ category.data.items[0]?.slug }}</h3>
                     <p>This is a romantic drama featuring intense relationships and captivating moments.</p>
                 </div>
             </div>
@@ -194,15 +208,16 @@
 
         <div class="col-9">
             <div class="grid">
-                <div class="col-3" *ngFor="let movie of movies.slice(2); let i = index">
+                <div class="col-3" *ngFor="let movie of category.data.items.slice(2); let i = index">
                     <div class="card2">
                         <div class="card2-image">
-                            <img [src]="movie.poster_url" [alt]="movie.name || 'Movie Poster'" />
+                            <img [src]="'https://phimimg.com/' + movie.poster_url" [alt]="movie.name || 'Movie Poster'" />
                         </div>
                         <div class="card2-content">
-                            <h3>{{ movie.name }}</h3>
-                            <h3>Tác gốc: {{ movie.origin_name }}</h3>
-                            <h3>Xuất bản: {{ movie.year }}</h3>
+                            <p>{{ movie.name }}</p>
+                            <p>Tác gốc: {{ movie.origin_name }}</p>
+                            <p>Xuất bản: {{ movie.year }}</p>
+                            <p>SLUG: {{ category.data.items[0]?.slug }}</p>
                             <p>This is a romantic drama featuring intense relationships and captivating moments.</p>
                         </div>
                     </div>
