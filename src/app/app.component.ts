@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { RouterModule, RouterOutlet } from "@angular/router";
 import { PanelModule } from "primeng/panel"; // Import PanelModule
 // import { HeaderModule } from "./components/header/header.module";
@@ -57,8 +57,15 @@ import { SafeUrlPipe } from "./pipe/SafeUrlPipe";
 })
 export class AppComponent {
     title = "DemoAngular";
-    constructor(private config: PrimeNGConfig, private primengConfig: PrimeNGConfig) {
-        this.config.theme.set({ preset: Aura });
+    config: PrimeNGConfig = inject(PrimeNGConfig);
+    constructor(private primengConfig: PrimeNGConfig) {
+        // Default theme configuration
+        this.config.theme.set({
+            preset: Aura,
+            options: {
+                darkModeSelector: ".my-app-dark",
+            },
+        });
         this.setLocale();
     }
     // Cấu hình locale tiếng Việt
@@ -75,5 +82,9 @@ export class AppComponent {
             dateFormat: "dd/mm/yy",
             weekHeader: "Tuần",
         });
+    }
+    toggleDarkMode() {
+        const element = document.querySelector("html");
+        element?.classList.toggle("my-app-dark");
     }
 }

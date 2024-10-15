@@ -24,10 +24,10 @@
 
     <!-- movie.component.html -->
     <div *ngIf="!isLoading && pagedMovies.length > 0">
-        <div class="movie-card" *ngFor="let movie of pagedMovies" [routerLink]="['/moviesView', movie.slug]">
+        <div class="movie-card" *ngFor="let movie of pagedMovies">
             <img [src]="filteredMovies.data.APP_DOMAIN_CDN_IMAGE + '/' + movie.poster_url" [alt]="movie.name" />
             <div class="movie-content">
-                <h2 style="cursor: pointer">{{ movie.name }}</h2>
+                <h2 [routerLink]="['/moviesView', movie.slug]" style="cursor: pointer">{{ movie.name }}</h2>
                 <div class="subcontent">
                     <div class="left-subcontent">
                         <h4>Năm phát hành: {{ movie.year }}</h4>
@@ -37,6 +37,11 @@
                     <div class="right-subcontent">
                         <h4>Quality: {{ movie.quality }}</h4>
                         <h4>Lang: {{ movie.lang }}</h4>
+                        <span>
+                            <!-- <p-skeleton shape="circle" size="2rem" *ngIf="!movie"></p-skeleton> -->
+                            <p-button *ngIf="movie" icon="pi pi-heart" severity="secondary" [outlined]="true"></p-button>
+                            <p-button *ngIf="movie" icon="pi pi-shopping-cart" styleClass="ml-2"></p-button>
+                        </span>
                     </div>
                 </div>
                 <div>

@@ -28,7 +28,7 @@
                     <th>email</th>
                     <th>gender</th>
                     <th>address</th>
-                    <th style="position: sticky; right: 0; z-index: 1000; background: white">Action</th>
+                    <th style="position: sticky; right: 0; z-index: 1000; background: #ffffff82">Action</th>
                 </tr>
                 <tr>
                     <th>
@@ -50,7 +50,7 @@
                     <th>
                         <p-columnFilter type="text" field="address" ariaLabel="Filter address" />
                     </th>
-                    <th style="position: sticky; right: 0; z-index: 1000; background: white">
+                    <th style="position: sticky; right: 0; z-index: 1000; background: #ffffff82">
                         <p-button size="small" label="" severity="info" (click)="showDialog()"><i class="pi pi-plus"></i></p-button>
                     </th>
                 </tr>
@@ -115,7 +115,7 @@
                         </p-cellEditor>
                     </td>
 
-                    <td style="position: sticky; right: 0; z-index: 1000; background: white">
+                    <td style="position: sticky; right: 0; z-index: 1000; background: #ffffff82">
                         <p-button *ngIf="product.isRowEdited" label="" severity="info" (click)="onChangeDataUser(product)" size="small"><i class="pi pi-save"></i></p-button>
                         <p-button label="" severity="secondary" (click)="viewDetailInPage(product)" size="small"><i class="pi pi-eye"></i></p-button>
                         <p-button label="" (click)="viewDetail(product)" size="small"><i class="pi pi-external-link"></i></p-button>

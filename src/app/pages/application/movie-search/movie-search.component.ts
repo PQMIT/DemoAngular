@@ -4,10 +4,11 @@ import { MoviesService } from "../../../services/movies.service";
 import { CommonModule } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { PaginatorModule } from "primeng/paginator";
+import { ButtonModule } from "primeng/button";
 @Component({
     selector: "app-movie-search",
     standalone: true,
-    imports: [CommonModule, RouterLink, PaginatorModule],
+    imports: [CommonModule, RouterLink, PaginatorModule, ButtonModule],
     templateUrl: "./movie-search.component.html",
     styleUrl: "./movie-search.component.css",
     providers: [MoviesService],

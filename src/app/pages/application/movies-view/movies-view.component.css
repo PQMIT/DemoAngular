@@ -23,7 +23,7 @@
 .movie-details {
   flex: 0 0 65%;
   padding-left: 20px;
-  color:chocolate !important ;
+  color:#955151 !important ;
 }
 
 .episode-list {
@@ -47,14 +47,15 @@
 .episode-details {
   margin-top: 10px;
   padding: 10px;
-  color: chocolate;
+  color: #955151;
   background-color: #ccc;
   opacity: 0.8;
   text-align: center;
 }
 .brand_episode{
-  background: antiquewhite;
-  color: yellowgreen;
+  background-color: bisque; 
+  font-style: italic;
+  color: rgb(23, 151, 87);
   padding: 5px 0;
 }
 .quality_episode{

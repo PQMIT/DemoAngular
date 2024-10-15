@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { MenubarModule } from "primeng/menubar";
 import { BadgeModule } from "primeng/badge";
@@ -11,6 +11,8 @@ import { ButtonModule } from "primeng/button";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { Router } from "@angular/router";
+import { PrimeNGConfig } from "primeng/api";
+import { Aura } from "primeng/themes/aura";
 @Component({
     selector: "app-header",
     templateUrl: "./header.component.html",
@@ -21,7 +23,15 @@ export class HeaderComponent implements OnInit {
     items: MenuItem[] | undefined;
     isLoggedIn: boolean = false;
     filteredMovies: any[] = []; // Mảng chứa danh sách phim đã lọc
-    constructor(private authService: AuthService, private router: Router) {}
+    config: PrimeNGConfig = inject(PrimeNGConfig);
+    constructor(private authService: AuthService, private router: Router, private primengConfig: PrimeNGConfig) {
+        this.config.theme.set({
+            preset: Aura,
+            options: {
+                darkModeSelector: ".my-app-dark",
+            },
+        });
+    }
 
     ngOnInit() {
         this.items = [
@@ -31,7 +41,12 @@ export class HeaderComponent implements OnInit {
                 routerLink: ["/home"],
             },
             {
-                label: "User maganement",
+                label: "Movie Saved",
+                icon: "pi pi-bookmark",
+                routerLink: ["/movieSaved"],
+            },
+            {
+                label: "User",
                 icon: "pi pi-star",
                 routerLink: ["/user"],
             },
@@ -41,54 +56,18 @@ export class HeaderComponent implements OnInit {
                 // badge: "3",
                 routerLink: ["/about"],
             },
-            /* {
-                label: "Projects",
-                icon: "pi pi-search",
-                items: [
-                    {
-                        label: "Core",
-                        icon: "pi pi-bolt",
-                        shortcut: "⌘+S",
-                    },
-                    {
-                        label: "Blocks",
-                        icon: "pi pi-server",
-                        shortcut: "⌘+B",
-                    },
-                    {
-                        label: "UI Kit",
-                        icon: "pi pi-pencil",
-                        shortcut: "⌘+U",
-                    },
-                    {
-                        separator: true,
-                    },
-                    {
-                        label: "Templates",
-                        icon: "pi pi-palette",
-                        items: [
-                            {
-                                label: "Apollo",
-                                icon: "pi pi-palette",
-                                badge: "2",
-                            },
-                            {
-                                label: "Ultima",
-                                icon: "pi pi-palette",
-                                badge: "3",
-                            },
-                        ],
-                    },
-                ],
-            }, */
         ];
 
         // Kiểm tra trạng thái đăng nhập khi component khởi tạo
-        this.authService.isLoggedIn$.subscribe((status) => {
-            this.isLoggedIn = status;
-        });
+        // this.authService.isLoggedIn$.subscribe((status) => {
+        //     this.isLoggedIn = status;
+        // });
     }
-    // Phương thức gọi khi người dùng tìm kiếm
+    // Phương thức chuyển đổi chế độ sáng/tối
+    toggleDarkMode() {
+        const element = document.querySelector("html");
+        element?.classList.toggle("my-app-dark");
+    }
     // Phương thức gọi khi người dùng tìm kiếm
     onSearch(event: Event) {
         const inputElement = event.target as HTMLInputElement; // Ép kiểu event.target thành HTMLInputElement

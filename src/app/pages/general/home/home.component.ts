@@ -16,6 +16,7 @@ import { StorageService } from "../../../services/storage.service";
 import { RouterLink } from "@angular/router";
 import { forkJoin } from "rxjs";
 import { isPlatformBrowser } from "@angular/common";
+import e from "express";
 
 registerLocaleData(localeVi);
 @Component({
@@ -36,100 +37,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     private timeoutId: any; // Biến lưu ID của timeout để dọn dẹp
     autoplayInterval: number | null = null;
     shouldRenderCarousel = false;
-    moviesCategories: any[] = [
-        {
-            status: "success",
-            msg: "",
-            data: {
-                seoOnPage: {
-                    og_type: "website",
-                    titleHead: "Phim lẻ | Phim lẻ hay tuyển chọn | Phim lẻ mới nhất 2024",
-                    descriptionHead: "Phim lẻ mới nhất tuyển chọn chất lượng cao, phim lẻ mới nhất 2024 vietsub cập nhật nhanh nhất. Phim lẻ vietsub nhanh nhất",
-                    og_image: ["/upload/vod/20241011-1/e25e80078dc59db1f5dba1ef56041b2c.jpg"],
-                    og_url: "danh-sach/phim-le",
-                },
-                breadCrumb: [
-                    {
-                        name: "Phim Lẻ",
-                        slug: "/danh-sach/phim-le",
-                        isCurrent: false,
-                        position: 2,
-                    },
-                    {
-                        name: "Trang 1",
-                        isCurrent: true,
-                        position: 3,
-                    },
-                ],
-                titlePage: "Phim Lẻ",
-                items: [
-                    {
-                        modified: {
-                            time: "2024-10-11T15:14:54.000Z",
-                        },
-                        _id: "243098afe85a1d30b6e02a9e0574331f",
-                        name: "Chiến Tranh, Loạn Lạc",
-                        slug: "chien-tranh-loan-lac",
-                        origin_name: "Uprising",
-                        type: "single",
-                        poster_url: "upload/vod/20241011-1/e25e80078dc59db1f5dba1ef56041b2c.jpg",
-                        thumb_url: "upload/vod/20241011-1/d2ce7a33356f0cfb36255b3a4017153b.jpg",
-                        sub_docquyen: false,
-                        chieurap: false,
-                        time: "126 phút",
-                        episode_current: "Full",
-                        quality: "FHD",
-                        lang: "Vietsub",
-                        year: 2024,
-                        category: [
-                            {
-                                id: "9822be111d2ccc29c7172c78b8af8ff5",
-                                name: "Hành Động",
-                                slug: "hanh-dong",
-                            },
-                            {
-                                id: "37a7b38b6184a5ebd3c43015aa20709d",
-                                name: "Chính Kịch",
-                                slug: "chinh-kich",
-                            },
-                            {
-                                id: "f8ec3e9b77c509fdf64f0c387119b916",
-                                name: "Lịch Sử",
-                                slug: "lich-su",
-                            },
-                        ],
-                        country: [
-                            {
-                                id: "05de95be5fc404da9680bbb3dd8262e6",
-                                name: "Hàn Quốc",
-                                slug: "han-quoc",
-                            },
-                        ],
-                    },
-                ],
-                params: {
-                    type_slug: "danh-sach",
-                    filterCategory: [""],
-                    filterCountry: [""],
-                    filterYear: "",
-                    filterType: "",
-                    sortField: "modified.time",
-                    sortType: "desc",
-                    pagination: {
-                        totalItems: 12880,
-                        totalItemsPerPage: 10,
-                        currentPage: 1,
-                        totalPages: 1288,
-                    },
-                },
-                type_list: "phim-le",
-                APP_DOMAIN_FRONTEND: "https://phimapi.com",
-                APP_DOMAIN_CDN_IMAGE: "https://phimimg.com",
-            },
-        },
-    ];
-
+    isStatusLike: any[] = [];
+    moviesCategories: any[] = [];
     responsiveOptions: any[] | undefined;
+    moviesSaved: any[] = [];
+
     constructor(private moviesService: MoviesService, private storageService: StorageService, @Inject(PLATFORM_ID) private platformId: Object) {
         this.vi = {
             firstDayOfWeek: 1,
@@ -163,15 +75,16 @@ export class HomeComponent implements OnInit, OnDestroy {
                 numScroll: 1,
             },
         ];
-        if (isPlatformBrowser(this.platformId)) {
-            // Delay rendering of the carousel to avoid SSR issues
-            setTimeout(() => {
-                this.shouldRenderCarousel = true;
-                this.autoplayInterval = 2000;
-            }, 100); // Delay 100ms before rendering carousel
-        }
+        this.shouldRenderCarousel = true;
+        // if (isPlatformBrowser(this.platformId)) {
+        //     // Delay rendering of the carousel to avoid SSR issues
+        //     setTimeout(() => {
+        //         this.shouldRenderCarousel = true;
+        //         // this.autoplayInterval = 2000;
+        //     }, 100); // Delay 100ms before rendering carousel
+        // }
         this.fetchMovies(); // Gọi hàm fetchMovies() để lấy danh sách phim
-        console.log(this.moviesCategories);
+        // console.log(this.moviesCategories);
     }
     // Hàm gọi service để lấy dữ liệu từ API
 
@@ -180,7 +93,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         // Thực hiện nhiều request đồng thời
         forkJoin({
-            phimMoiCapNhat: this.moviesService.getPhimMoiCapNhat(),
+            phimMoiCapNhat: this.moviesService.getPhimMoiCapNhat("phim-moi-cap-nhat?page=1&limit=10"),
             phimLe: this.moviesService.getPhimFromCategory("phim-le"),
             phimBo: this.moviesService.getPhimFromCategory("phim-bo"),
             hoatHinh: this.moviesService.getPhimFromCategory("hoat-hinh"),
@@ -196,14 +109,33 @@ export class HomeComponent implements OnInit, OnDestroy {
                 // Lưu moviesCategories vào localStorage
                 this.storageService.setLocalStorage("moviesCategories", this.moviesCategories);
 
-                // Kiểm tra kết quả
-                console.log(this.moviesCategories[0].data.APP_DOMAIN_CDN_IMAGE + "/" + this.moviesCategories[0].data.items[0].poster_url);
+                // Kiểm tra kết quả link ảnh
+                // console.log(this.moviesCategories[0].data.APP_DOMAIN_CDN_IMAGE + "/" + this.moviesCategories[0].data.items[0].poster_url);
             },
             error: (error) => {
                 this.isLoading = false; // Tắt skeleton nếu có lỗi
                 console.error("Lỗi khi lấy dữ liệu phim:", error);
             },
         });
+    }
+    handleLike(event: Event, status: any, movie: any) {
+        // console.log(movie);
+        // Lấy danh sách phim đã lưu từ localStorage hoặc khởi tạo rỗng nếu chưa có
+        let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
+        // Toggle trạng thái like
+        this.isStatusLike[status] = !this.isStatusLike[status];
+        // Kiểm tra xem bộ phim đã có trong danh sách chưa
+        const isMovieSaved = savedMovies.some((savedMovie: any) => savedMovie._id === movie._id);
+        if (!isMovieSaved && this.isStatusLike[status]) {
+            // Thêm phim vào danh sách nếu chưa tồn tại
+            savedMovies.push(movie);
+            this.storageService.setLocalStorage("moviesSaved", savedMovies);
+        } else {
+            // Xóa phim khỏi danh sách nếu đã tồn tại
+            savedMovies = savedMovies.filter((savedMovie: any) => savedMovie._id !== movie._id);
+            this.storageService.setLocalStorage("moviesSaved", savedMovies);
+        }
+        // console.log(this.isStatusLike);
     }
 
     ngOnDestroy() {

@@ -1,32 +1,24 @@
 <div class="container">
     <h1>
-        <span *ngIf="ogDataMovie.data" style="color: #955151">{{ ogDataMovie?.data?.seoOnPage?.titleHead }}</span>
-        <span *ngIf="!ogDataMovie.data" style="color: #955151">PHIM MỚI CẬP NHẬT</span>
+        <span style="color: #955151">PHIM ĐÃ LƯU</span>
     </h1>
-
-    <!-- Ô nhập tìm kiếm -->
-    <!-- <input type="text" pInputText placeholder="Tìm kiếm tên phim" (keyup.enter)="onSearch($event)" [(ngModel)]="searchTerm" class="w-32 sm:w-auto mb-3" /> -->
-
-    <!-- <button (click)="search()" class="btn btn-primary">Tìm kiếm</button> -->
-
     <!-- Hiển thị skeleton loader nếu đang tải -->
     <div *ngIf="isLoading" class="skeleton-loader">
-        <p>Đang tìm kiếm ...</p>
+        <p>Đang lấy thông tin ...</p>
     </div>
 
     <!-- movie.component.html -->
     <div *ngIf="!isLoading && listMovies.length === 0" class="no-movies-found">
         <i class="pi pi-search"></i>
         <!-- Thêm biểu tượng tìm kiếm -->
-        <p>Không tìm thấy phim nào</p>
+        <p>Không có bộ phim nào được lưu</p>
         <!-- Hiển thị từ khóa tìm kiếm -->
     </div>
 
     <!-- movie.component.html -->
     <div *ngIf="!isLoading && listMovies.length > 0">
         <div class="movie-card" *ngFor="let movie of listMovies" [routerLink]="['/moviesView', movie.slug]">
-            <img *ngIf="ogDataMovie.data" [src]="ogDataMovie?.data?.APP_DOMAIN_CDN_IMAGE + '/' + movie.poster_url" [alt]="movie.name" />
-            <img *ngIf="!ogDataMovie.data" [src]="movie.poster_url" [alt]="movie.name" />
+            <img [src]="movie.poster_url" [alt]="movie.name" />
             <div class="movie-content">
                 <h2 style="cursor: pointer">{{ movie.name }}</h2>
                 <div class="subcontent">
@@ -57,8 +49,8 @@
         <!-- Thông báo không có kết quả -->
         <p-paginator
             [rows]="rows"
-            [totalRecords]="ogDataMovie?.data?.params?.pagination?.totalItems || ogDataMovie.pagination.totalItems"
-            [rowsPerPageOptions]="[10, 20, 30]"
+            [totalRecords]="listMovies.length || 0"
+            [rowsPerPageOptions]="[5, 10, 20, 50]"
             [first]="first"
             [showPageLinks]="true"
             [showFirstLastIcon]="false"

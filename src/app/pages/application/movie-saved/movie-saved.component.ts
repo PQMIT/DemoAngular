@@ -4,15 +4,17 @@ import { MoviesService } from "../../../services/movies.service";
 import { CommonModule } from "@angular/common";
 import { RouterLink, Router } from "@angular/router";
 import { PaginatorModule } from "primeng/paginator";
+import { StorageService } from "../../../services/storage.service";
+import { Toast } from "primeng/toast";
 @Component({
-    selector: "app-movie-list-category",
+    selector: "app-movie-saved",
     standalone: true,
     imports: [CommonModule, RouterLink, PaginatorModule],
-    templateUrl: "./movie-list-category.component.html",
-    styleUrl: "./movie-list-category.component.css",
-    providers: [MoviesService],
+    templateUrl: "./movie-saved.component.html",
+    styleUrl: "./movie-saved.component.css",
+    providers: [MoviesService, StorageService],
 })
-export class MovieListCategoryComponent {
+export class MovieSavedComponent {
     // searchTerm: string | null = null; // Từ khóa tìm kiếm
     isLoading: boolean = true; // Trạng thái tải dữ liệu
     first = 0; // Trang bắt đầu, page đầu tiên sẽ là 0
@@ -22,8 +24,7 @@ export class MovieListCategoryComponent {
     categoryType: string = "";
     currentPage: number = 1;
     queryParam: string = "";
-    constructor(private route: ActivatedRoute, private moviesService: MoviesService, private router: Router) {}
-
+    constructor(private route: ActivatedRoute, private moviesService: MoviesService, private router: Router, private storageService: StorageService) {}
     ngOnInit(): void {
         this.route.paramMap.subscribe((params) => {
             this.categoryType = params.get("slug") || ""; // Lấy path variable "type_list"
@@ -42,11 +43,16 @@ export class MovieListCategoryComponent {
 
     // Phương thức để tìm kiếm
     getMovie(currentPage: any, rows: any): void {
-        if (!this.categoryType) return; // Không thực hiện gì nếu không có categoryType
+        // if (!this.categoryType) return; // Không thực hiện gì nếu không có categoryType
         this.isLoading = true; // Bắt đầu tải dữ liệu
-        const queryParam = `${this.categoryType}?page=${currentPage}&limit=${rows}`;
-        console.log(queryParam);
-        switch (this.categoryType) {
+        this.listMovies = this.storageService.getLocalStorage("moviesSaved") || [];
+        console.log(this.storageService.getLocalStorage("moviesSaved"));
+        this.isLoading = false;
+
+        // const queryParam = `${this.categoryType}?page=${currentPage}&limit=${rows}`;
+        // console.log(queryParam);
+        //call api
+        /* switch (this.categoryType) {
             case "phim-moi-cap-nhat":
                 this.moviesService.getPhimMoiCapNhat(queryParam).subscribe({
                     next: (movies) => {
@@ -77,7 +83,7 @@ export class MovieListCategoryComponent {
                     },
                 });
                 break;
-        }
+        } */
     }
 
     paginate(event: any) {
