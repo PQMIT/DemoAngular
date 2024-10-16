@@ -20,6 +20,6 @@ export const routes: Routes = [
     { path: "user", component: UserManagementComponent, canActivate: [AuthGuard] },
     { path: "userDetail/:id", component: UserDetailComponent, canActivate: [AuthGuard] },
     { path: "about", component: AboutComponent },
-    { path: "", redirectTo: "/login", pathMatch: "full" },
+    { path: "", redirectTo: "/home", pathMatch: "full" },
     // Lazy loading UserModule
 ];

@@ -2,7 +2,7 @@ import { DatePickerModule } from "primeng/datepicker";
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { CalendarModule } from "primeng/calendar";
-import { registerLocaleData } from "@angular/common";
+import { isPlatformServer, registerLocaleData } from "@angular/common";
 import localeVi from "@angular/common/locales/vi";
 import { AnimateOnScrollModule } from "primeng/animateonscroll";
 import { CarouselModule } from "primeng/carousel";
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     movies: any[] = [];
     private timeoutId: any; // Biến lưu ID của timeout để dọn dẹp
     autoplayInterval: number | null = null;
-    shouldRenderCarousel = false;
+    // shouldRenderCarousel = false;
     isStatusLike: any[] = [];
     moviesCategories: any[] = [];
     responsiveOptions: any[] | undefined;
@@ -75,16 +75,16 @@ export class HomeComponent implements OnInit, OnDestroy {
                 numScroll: 1,
             },
         ];
-        this.shouldRenderCarousel = true;
-        // if (isPlatformBrowser(this.platformId)) {
-        //     // Delay rendering of the carousel to avoid SSR issues
-        //     setTimeout(() => {
-        //         this.shouldRenderCarousel = true;
-        //         // this.autoplayInterval = 2000;
-        //     }, 100); // Delay 100ms before rendering carousel
-        // }
-        this.fetchMovies(); // Gọi hàm fetchMovies() để lấy danh sách phim
+
+        if (isPlatformBrowser(this.platformId)) {
+            // Trực tiếp gọi hàm fetchMovies() mà không cần setTimeout
+            // this.fetchMovies();
+            this.autoplayInterval = 2000;
+        }
+
+        this.fetchMovies();
         // console.log(this.moviesCategories);
+        // console.log("Header component initialized");
     }
     // Hàm gọi service để lấy dữ liệu từ API
 
@@ -143,5 +143,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.timeoutId) {
             clearTimeout(this.timeoutId);
         }
+        // console.log("Header component destroyed");
     }
 }

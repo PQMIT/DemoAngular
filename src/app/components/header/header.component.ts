@@ -19,11 +19,34 @@ import { Aura } from "primeng/themes/aura";
     standalone: true,
     imports: [MenubarModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, CommonModule, ButtonModule, InputTextModule, InputGroupModule, InputGroupAddonModule],
 })
-export class HeaderComponent implements OnInit {
-    items: MenuItem[] | undefined;
+export class HeaderComponent {
+    items: MenuItem[] = [
+        {
+            label: "Home",
+            icon: "pi pi-home",
+            routerLink: ["/home"],
+        },
+        {
+            label: "Movie Saved",
+            icon: "pi pi-bookmark",
+            routerLink: ["/movieSaved"],
+        },
+        {
+            label: "User",
+            icon: "pi pi-star",
+            routerLink: ["/user"],
+        },
+        {
+            label: "About",
+            icon: "pi pi-envelope",
+            // badge: "3",
+            routerLink: ["/about"],
+        },
+    ];
     isLoggedIn: boolean = false;
     filteredMovies: any[] = []; // Mảng chứa danh sách phim đã lọc
     config: PrimeNGConfig = inject(PrimeNGConfig);
+
     constructor(private authService: AuthService, private router: Router, private primengConfig: PrimeNGConfig) {
         this.config.theme.set({
             preset: Aura,
@@ -33,36 +56,15 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-        this.items = [
-            {
-                label: "Home",
-                icon: "pi pi-home",
-                routerLink: ["/home"],
-            },
-            {
-                label: "Movie Saved",
-                icon: "pi pi-bookmark",
-                routerLink: ["/movieSaved"],
-            },
-            {
-                label: "User",
-                icon: "pi pi-star",
-                routerLink: ["/user"],
-            },
-            {
-                label: "About",
-                icon: "pi pi-envelope",
-                // badge: "3",
-                routerLink: ["/about"],
-            },
-        ];
+    // ngOnInit() {
 
-        // Kiểm tra trạng thái đăng nhập khi component khởi tạo
-        // this.authService.isLoggedIn$.subscribe((status) => {
-        //     this.isLoggedIn = status;
-        // });
-    }
+    //     console.log("Header component initialized");
+
+    //     // Kiểm tra trạng thái đăng nhập khi component khởi tạo
+    //     this.authService.isLoggedIn$.subscribe((status) => {
+    //         this.isLoggedIn = status;
+    //     });
+    // }
     // Phương thức chuyển đổi chế độ sáng/tối
     toggleDarkMode() {
         const element = document.querySelector("html");
@@ -84,4 +86,7 @@ export class HeaderComponent implements OnInit {
     onLogout() {
         this.authService.logout();
     }
+    // ngOnDestroy() {
+    //     console.log("Header component destroyed");
+    // }
 }
