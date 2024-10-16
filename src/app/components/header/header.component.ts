@@ -13,11 +13,26 @@ import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { Router } from "@angular/router";
 import { PrimeNGConfig } from "primeng/api";
 import { Aura } from "primeng/themes/aura";
+import { OverlayPanelModule } from "primeng/overlaypanel";
+import { PopoverModule } from "primeng/popover";
 @Component({
     selector: "app-header",
     templateUrl: "./header.component.html",
     standalone: true,
-    imports: [MenubarModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, CommonModule, ButtonModule, InputTextModule, InputGroupModule, InputGroupAddonModule],
+    imports: [
+        MenubarModule,
+        BadgeModule,
+        AvatarModule,
+        InputTextModule,
+        RippleModule,
+        CommonModule,
+        ButtonModule,
+        InputTextModule,
+        InputGroupModule,
+        InputGroupAddonModule,
+        OverlayPanelModule,
+        PopoverModule,
+    ],
 })
 export class HeaderComponent {
     items: MenuItem[] = [
@@ -43,6 +58,13 @@ export class HeaderComponent {
             routerLink: ["/about"],
         },
     ];
+    notifications = [
+        { message: "You have a new message from John. You have a new message from John." },
+        { message: "Your order has been shipped.You have a new message from John." },
+        { message: "Don't forget the meeting at 2 PM. You have a new message from John." },
+    ];
+    isRinging = false; // Biến theo dõi trạng thái rung
+
     isLoggedIn: boolean = false;
     filteredMovies: any[] = []; // Mảng chứa danh sách phim đã lọc
     config: PrimeNGConfig = inject(PrimeNGConfig);
@@ -86,6 +108,27 @@ export class HeaderComponent {
     onLogout() {
         this.authService.logout();
     }
+    viewAllNotifications() {
+        // Điều hướng hoặc mở modal hiển thị danh sách đầy đủ các thông báo
+        console.log("Xem tất cả các thông báo");
+    }
+
+    // Hàm giả lập nhận thông báo mới
+    receiveNotification(newMessage: string) {
+        this.notifications.push({ message: newMessage });
+        this.triggerRing(); // Gọi hàm rung khi nhận thông báo mới
+    }
+
+    // Hàm kích hoạt hiệu ứng rung
+    triggerRing() {
+        this.isRinging = true;
+        console.log("Ringing triggered:", this.isRinging); // Kiểm tra giá trị
+        setTimeout(() => {
+            this.isRinging = false; // Tắt hiệu ứng sau 1 giây
+            console.log("Ringing ended:", this.isRinging); // Kiểm tra giá trị
+        }, 1000);
+    }
+
     // ngOnDestroy() {
     //     console.log("Header component destroyed");
     // }

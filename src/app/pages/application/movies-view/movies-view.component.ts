@@ -25,6 +25,9 @@ import { ActivatedRoute } from "@angular/router";
 import { MoviesService } from "../../../services/movies.service";
 import { StorageService } from "../../../services/storage.service";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { FormControl } from "@angular/forms";
+import { RatingModule } from "primeng/rating";
+import { Episode, Movie, Comment } from "../../../models/movies";
 @Component({
     selector: "app-movies-view",
     standalone: true,
@@ -44,37 +47,15 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
         TabView,
         CarouselModule,
         ProgressSpinnerModule,
+        FormsModule,
+        RatingModule,
     ],
     templateUrl: "./movies-view.component.html",
     styleUrl: "./movies-view.component.css",
     providers: [ConfirmationService, MessageService, MoviesService, StorageService],
 })
 export class MoviesViewComponent implements OnInit {
-    movie = {
-        name: "Castle In The Time",
-        content: "A romantic drama with time travel elements.",
-        year: 2023,
-        origin_name: "China",
-        time: "64 phút/tập",
-        episode_current: "Hoàn Tất (16/16)",
-        status: "Ongoing",
-        created: {
-            time: "2024-10-13T13:18:13.000Z",
-        },
-        actor: ["송혜교", "김정현", "유인나", "김지호"],
-        genres: ["Drama", "Romance", "Fantasy"],
-        longDescription: "Castle In The Time tells the story of a young woman who discovers she has the ability to time travel...",
-        poster_url: "assets/castle-in-the-time-poster.jpg",
-        tmdb: {
-            type: "tv",
-            id: "129887",
-            season: 1,
-            vote_average: 5.9,
-            vote_count: 34,
-        },
-        quality: "FHD",
-        lang: "Vietsub",
-    };
+    movie: Movie = {}; // Biến để lưu thông tin phim
     episodes = [
         {
             server_name: "Server 1",
@@ -87,15 +68,39 @@ export class MoviesViewComponent implements OnInit {
                 },
             ],
         },
-
-        // Thêm các tập khác tương tự
     ];
+    formGroup!: FormGroup;
 
     isLoading: boolean = true; // Trạng thái tải dữ liệu
     showPlayer = false;
     currentEpisodeUrl: SafeResourceUrl | null = null;
     episodes_current: String = "";
     movieSlug: string | null = null; // Biến để lưu slug
+    // Danh sách các comment giả lập
+    comments: Comment[] = [
+        {
+            user: "John Doe",
+            message: "This movie was amazing!",
+            timestamp: "2024-10-16 10:45",
+        },
+        {
+            user: "Jane Smith",
+            message: "I loved the visual effects!",
+            timestamp: "2024-10-16 11:20",
+        },
+        {
+            user: "Alice Johnson",
+            message: "The story was a bit confusing, but still great!",
+            timestamp: "2024-10-16 12:15",
+        },
+    ];
+    newComment: Comment = {
+        user: "",
+        message: "",
+        timestamp: "",
+    };
+
+    movieUrl: string = "https://your-website-url.com/movie-details"; // URL phim chi tiết
 
     constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private moviesService: MoviesService, private storageService: StorageService) {}
 
@@ -105,6 +110,9 @@ export class MoviesViewComponent implements OnInit {
             this.movieSlug = params["slug"];
             console.log(this.movieSlug); // Kiểm tra slug
             this.fetchMovies(); // Gọi hàm để lấy dữ liệu phim
+        });
+        this.formGroup = new FormGroup({
+            value: new FormControl(4),
         });
     }
     fetchMovies() {
@@ -117,6 +125,7 @@ export class MoviesViewComponent implements OnInit {
                     // console.log(movies.episodes[0].server_data);
                     this.movie = movies.movie;
                     this.episodes = movies.episodes;
+                    console.log(this.episodes);
                 },
                 (error) => {
                     console.error("Lỗi khi lấy danh sách phim:", error);
@@ -142,5 +151,29 @@ export class MoviesViewComponent implements OnInit {
     onVideoLoad() {
         // Khi video trong iframe đã load xong, set lại isLoading = false
         this.isLoading = false;
+    }
+    // Hàm này sẽ được gọi khi người dùng submit form
+    addComment() {
+        if (this.newComment.user && this.newComment.message) {
+            this.newComment.timestamp = new Date().toISOString(); // Lấy thời gian hiện tại
+            this.comments.push({ ...this.newComment }); // Thêm comment mới vào danh sách
+            this.newComment.message = ""; // Reset lại nội dung sau khi gửi
+        }
+    }
+
+    shareOnFacebook() {
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.movieUrl)}`;
+        window.open(facebookUrl, "_blank");
+    }
+
+    shareOnTwitter() {
+        const text = encodeURIComponent("Check out this awesome movie!");
+        const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(this.movieUrl)}&text=${text}`;
+        window.open(twitterUrl, "_blank");
+    }
+
+    shareOnLinkedIn() {
+        const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(this.movieUrl)}`;
+        window.open(linkedInUrl, "_blank");
     }
 }

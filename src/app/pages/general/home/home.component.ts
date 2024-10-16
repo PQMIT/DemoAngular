@@ -17,6 +17,7 @@ import { RouterLink } from "@angular/router";
 import { forkJoin } from "rxjs";
 import { isPlatformBrowser } from "@angular/common";
 import e from "express";
+import { Title } from "@angular/platform-browser";
 
 registerLocaleData(localeVi);
 @Component({
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     responsiveOptions: any[] | undefined;
     moviesSaved: any[] = [];
 
-    constructor(private moviesService: MoviesService, private storageService: StorageService, @Inject(PLATFORM_ID) private platformId: Object) {
+    constructor(private moviesService: MoviesService, private storageService: StorageService, @Inject(PLATFORM_ID) private platformId: Object, private titleService: Title) {
         this.vi = {
             firstDayOfWeek: 1,
             dayNames: ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"],
@@ -58,6 +59,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        // Set the page title
+        this.titleService.setTitle("MoviePro Angular - Trang chủ");
         this.responsiveOptions = [
             {
                 breakpoint: "1199px",
@@ -78,13 +81,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         if (isPlatformBrowser(this.platformId)) {
             // Trực tiếp gọi hàm fetchMovies() mà không cần setTimeout
-            // this.fetchMovies();
             this.autoplayInterval = 2000;
         }
 
         this.fetchMovies();
-        // console.log(this.moviesCategories);
-        // console.log("Header component initialized");
     }
     // Hàm gọi service để lấy dữ liệu từ API
 
@@ -143,6 +143,5 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (this.timeoutId) {
             clearTimeout(this.timeoutId);
         }
-        // console.log("Header component destroyed");
     }
 }

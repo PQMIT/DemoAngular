@@ -1,16 +1,14 @@
 <div class="container">
     <!-- Phần tiêu đề và thông tin phim -->
     <div class="movie-info">
-        <div class="movie-poster">
-            <img [src]="movie.poster_url" alt="{{ movie.name }}" class="poster-img" />
-        </div>
+        <div class="movie-poster"><img [src]="movie.poster_url" alt="{{ movie.name }}" class="poster-img" /></div>
         <div class="movie-details">
             <h2>{{ movie.name }}</h2>
             <p><strong>Origin:</strong> {{ movie.origin_name }}</p>
             <p>{{ movie.content }}</p>
             <p><strong>Year:</strong> {{ movie.year }}</p>
             <p><strong>Status:</strong> {{ movie.status }}</p>
-            <p><strong>Created: </strong>{{ movie.created.time | date : "dd/MM/yyyy, HH:mm:ss" }}</p>
+            <p><strong>Created: </strong>{{ movie.created?.time | date : "dd/MM/yyyy, HH:mm:ss" }}</p>
             <p><strong>Time:</strong> {{ movie.time }}</p>
             <strong>Episode current:</strong>
             <div class="brand_episode px-2 inline-flex text-xm leading-5 font-semibold rounded-full">
@@ -22,6 +20,12 @@
             <p><strong>Lang:</strong> {{ movie.lang }}</p>
 
             <p-button label="Watch Trailer" icon="pi pi-play" (click)="showTrailer()"></p-button>
+
+            <div class="share-buttons">
+                <button (click)="shareOnFacebook()"><i class="pi pi-facebook"></i> Share</button>
+                <button (click)="shareOnTwitter()"><i class="pi pi-twitter"> Share</i></button>
+                <button (click)="shareOnLinkedIn()"><i class="pi pi-linkedin"></i> Share</button>
+            </div>
         </div>
     </div>
 
@@ -29,24 +33,26 @@
     <div class="episode-list">
         <p-tabView>
             <p-tabPanel header="Episodes">
-                <p-carousel [value]="episodes[0].server_data" [numVisible]="5" [numScroll]="1" [circular]="true">
-                    <ng-template let-episode pTemplate="item">
-                        <div
-                            class="episode-card"
-                            class="card_episode"
-                            style="background-image: url('{{ movie.poster_url }}'); background-size: cover; background-position: center; width: 200px;"
-                            [routerLink]="episode.link_embed"
-                        >
-                            <!-- <img [src]="movie.poster_url" alt="{{ episode.name }}" class="episode-thumbnail" /> -->
-                            <div class="episode-details">
-                                <h2>{{ episode.name }}</h2>
-                                <h4>{{ episode.filename }}</h4>
-                                <p>{{ episode.duration }}</p>
-                                <p-button label="Watch" icon="pi pi-play" (click)="playEpisode(episode)"></p-button>
+                <div class="flex" *ngFor="let episode of episodes">
+                    <p-carousel [value]="episode.server_data" [numVisible]="5" [numScroll]="1" [circular]="true" autoplayInterval="2000">
+                        <ng-template let-episode pTemplate="item">
+                            <div
+                                class="episode-card"
+                                class="card_episode"
+                                style="background-image: url('{{ movie.poster_url }}'); background-size: cover; background-position: center; width: 200px;"
+                                [routerLink]="episode.link_embed"
+                            >
+                                <!-- <img [src]="movie.poster_url" alt="{{ episode.name }}" class="episode-thumbnail" /> -->
+                                <div class="episode-details">
+                                    <h2>{{ episode.name }}</h2>
+                                    <h4>{{ episode.filename }}</h4>
+                                    <p>{{ episode.duration }}</p>
+                                    <p-button label="Watch" icon="pi pi-play" (click)="playEpisode(episode)"></p-button>
+                                </div>
                             </div>
-                        </div>
-                    </ng-template>
-                </p-carousel>
+                        </ng-template>
+                    </p-carousel>
+                </div>
             </p-tabPanel>
 
             <p-tabPanel header="Description">
@@ -56,11 +62,36 @@
                 <span>{{ movie.actor }}</span>
             </p-tabPanel>
             <p-tabPanel header="TMDB">
-                <p>Type: {{ movie.tmdb.type }}</p>
-                <p>Id: {{ movie.tmdb.id }}</p>
-                <p>Season: {{ movie.tmdb.season }}</p>
-                <p>Vote Average: {{ movie.tmdb.vote_average }}</p>
-                <p>Vote Count: {{ movie.tmdb.vote_count }}</p>
+                <p>Type: {{ movie.tmdb?.type || "" }}</p>
+                <p>Id: {{ movie.tmdb?.id || "" }}</p>
+                <p>Season: {{ movie.tmdb?.season || "" }}</p>
+                <p>Vote Average: {{ movie.tmdb?.vote_average || "" }}</p>
+                <p>Vote Count: {{ movie.tmdb?.vote_count || "" }}</p>
+            </p-tabPanel>
+            <p-tabPanel header="Rate">
+                <div class="card flex justify-center">
+                    <form [formGroup]="formGroup">
+                        <p-rating formControlName="value" />
+                    </form>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Comment">
+                <!-- Danh sách comment -->
+                <div *ngFor="let comment of comments" class="comment">
+                    <div class="comment-header">
+                        <strong>{{ comment.user }}</strong> - <small>{{ comment.timestamp | date : "dd/MM/yyyy, HH:mm:ss" }}</small>
+                    </div>
+                    <div class="comment-message">
+                        {{ comment.message }}
+                    </div>
+                </div>
+
+                <!-- Form viết comment -->
+                <div class="comment-form">
+                    <input [(ngModel)]="newComment.user" placeholder="Your Name" />
+                    <textarea [(ngModel)]="newComment.message" placeholder="Write a comment..."></textarea>
+                    <button (click)="addComment()">Submit</button>
+                </div>
             </p-tabPanel>
         </p-tabView>
     </div>
