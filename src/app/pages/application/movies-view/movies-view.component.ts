@@ -28,6 +28,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { FormControl } from "@angular/forms";
 import { RatingModule } from "primeng/rating";
 import { Episode, Movie, Comment } from "../../../models/movies";
+import { ToastModule } from "primeng/toast";
 @Component({
     selector: "app-movies-view",
     standalone: true,
@@ -49,6 +50,7 @@ import { Episode, Movie, Comment } from "../../../models/movies";
         ProgressSpinnerModule,
         FormsModule,
         RatingModule,
+        ToastModule,
     ],
     templateUrl: "./movies-view.component.html",
     styleUrl: "./movies-view.component.css",
@@ -101,10 +103,20 @@ export class MoviesViewComponent implements OnInit {
     };
     isStatusLike: boolean = false;
 
-    movieUrl: string = "https://your-website-url.com/movie-details"; // URL phim chi tiết
+    movieUrl: string = ""; // URL phim chi tiết
 
-    constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private moviesService: MoviesService, private storageService: StorageService) {}
+    constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private moviesService: MoviesService, private storageService: StorageService, private messageService: MessageService) {}
+    showSuccess(movie: any) {
+        this.messageService.add({ severity: "success", summary: "Success", detail: `${movie.name} - Saved` });
+    }
 
+    showInfo() {
+        this.messageService.add({ severity: "info", summary: "Info", detail: "Message Content" });
+    }
+
+    showWarn(movie: any) {
+        this.messageService.add({ severity: "warn", summary: "Warn", detail: `${movie.name} - Unsaved` });
+    }
     ngOnInit(): void {
         // Lấy slug từ URL
         this.route.params.subscribe((params) => {
@@ -165,17 +177,20 @@ export class MoviesViewComponent implements OnInit {
     }
 
     shareOnFacebook() {
+        this.movieUrl = "https://website.com/moviesView/tram-truong";
         const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.movieUrl)}`;
         window.open(facebookUrl, "_blank");
     }
 
     shareOnTwitter() {
-        const text = encodeURIComponent("Check out this awesome movie!");
+        this.movieUrl = window.location.href;
+        const text = encodeURIComponent("Bộ phim thật tuyệt vời! Hãy xem ngay tại đây: ");
         const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(this.movieUrl)}&text=${text}`;
         window.open(twitterUrl, "_blank");
     }
 
     shareOnLinkedIn() {
+        this.movieUrl = window.location.href;
         const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(this.movieUrl)}`;
         window.open(linkedInUrl, "_blank");
     }
@@ -191,10 +206,12 @@ export class MoviesViewComponent implements OnInit {
             // Thêm phim vào danh sách nếu chưa tồn tại
             savedMovies.push(movie);
             this.storageService.setLocalStorage("moviesSaved", savedMovies);
+            this.showSuccess(movie);
         } else {
             // Xóa phim khỏi danh sách nếu đã tồn tại
             savedMovies = savedMovies.filter((savedMovie: any) => savedMovie._id !== movie._id);
             this.storageService.setLocalStorage("moviesSaved", savedMovies);
+            this.showWarn(movie);
         }
         // console.log(this.isStatusLike);
     }

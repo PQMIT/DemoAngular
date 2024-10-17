@@ -89,6 +89,42 @@
     color: #ff6f61;
 }
 
+/* Simple styling for search input and movie list */
+.search-container {
+  margin-bottom: 20px;
+  position: relative;
+
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.movie-list {
+  list-style-type: none;
+  padding: 10px;
+  position: absolute;
+  z-index: 100;
+  background: antiquewhite;
+  width: 60vw;
+  top: 200px;
+}
+
+.movie-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.movie-item:last-child {
+  border-bottom: none;
+}
+
+
+
 
 @keyframes pulse {
   0% {

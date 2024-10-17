@@ -19,14 +19,31 @@ import { isPlatformBrowser } from "@angular/common";
 import e from "express";
 import { Title } from "@angular/platform-browser";
 import { combineLatest } from "rxjs";
+import { MessageService } from "primeng/api";
+import { ToastModule } from "primeng/toast";
 registerLocaleData(localeVi);
 @Component({
     selector: "app-home",
     standalone: true,
-    imports: [DatePickerModule, FormsModule, CalendarModule, DatePickerModule, AnimateOnScrollModule, CarouselModule, ButtonModule, TagModule, CardModule, SkeletonModule, CommonModule, RouterLink],
+    imports: [
+        DatePickerModule,
+        FormsModule,
+        CalendarModule,
+        DatePickerModule,
+        AnimateOnScrollModule,
+        CarouselModule,
+        ButtonModule,
+        TagModule,
+        CardModule,
+        SkeletonModule,
+        CommonModule,
+        RouterLink,
+        ToastModule,
+    ],
     templateUrl: "./home.component.html",
     styleUrl: "./home.component.css",
     host: { ngSkipHydration: "true" },
+    providers: [MoviesService, StorageService, MessageService],
 })
 export class HomeComponent implements OnInit, OnDestroy {
     // Cấu hình locale tiếng Việt
@@ -42,8 +59,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     moviesCategories: any[] = [];
     responsiveOptions: any[] | undefined;
     moviesSaved: any[] = [];
-
-    constructor(private moviesService: MoviesService, private storageService: StorageService, @Inject(PLATFORM_ID) private platformId: Object, private titleService: Title) {
+    constructor(
+        private moviesService: MoviesService,
+        private storageService: StorageService,
+        @Inject(PLATFORM_ID) private platformId: Object,
+        private titleService: Title,
+        private messageService: MessageService
+    ) {
         this.vi = {
             firstDayOfWeek: 1,
             dayNames: ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"],
@@ -57,31 +79,24 @@ export class HomeComponent implements OnInit, OnDestroy {
             weekHeader: "Tuần",
         };
     }
+    showSuccess(movie: any) {
+        this.messageService.add({ severity: "success", summary: "Success", detail: `${movie.name} - Saved` });
+    }
 
+    showInfo() {
+        this.messageService.add({ severity: "info", summary: "Info", detail: "Message Content" });
+    }
+
+    showWarn(movie: any) {
+        this.messageService.add({ severity: "warn", summary: "Warn", detail: `${movie.name} - Unsaved` });
+    }
     ngOnInit(): void {
         // Set the page title
         this.titleService.setTitle("MoviePro Angular - Trang chủ");
-        this.responsiveOptions = [
-            {
-                breakpoint: "1199px",
-                numVisible: 1,
-                numScroll: 1,
-            },
-            {
-                breakpoint: "991px",
-                numVisible: 2,
-                numScroll: 1,
-            },
-            {
-                breakpoint: "767px",
-                numVisible: 1,
-                numScroll: 1,
-            },
-        ];
 
         if (isPlatformBrowser(this.platformId)) {
             // Trực tiếp gọi hàm fetchMovies() mà không cần setTimeout
-            this.autoplayInterval = 2000;
+            this.autoplayInterval = 4000;
         }
 
         this.fetchMovies();
@@ -102,17 +117,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         }).subscribe({
             next: (results) => {
                 this.isLoading = false; // Tắt skeleton khi dữ liệu đã tải xong
-                console.log("chay vao day");
+                let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
 
                 // Lưu các dữ liệu vào biến tương ứng
                 this.movies = results.phimMoiCapNhat.items;
-                console.log(results);
-
+                //check movie saved
+                this.isStatusLike = this.movies.map((movie) => savedMovies.some((savedMovie: any) => savedMovie._id === movie._id));
+                // console.log(results);
                 this.moviesCategories = [results.phimLe, results.phimBo, results.hoatHinh, results.tvShows];
-
                 // Lưu moviesCategories vào localStorage
                 this.storageService.setLocalStorage("moviesCategories", this.moviesCategories);
-
                 // Kiểm tra kết quả link ảnh
                 // console.log(this.moviesCategories[0].data.APP_DOMAIN_CDN_IMAGE + "/" + this.moviesCategories[0].data.items[0].poster_url);
             },
@@ -135,10 +149,12 @@ export class HomeComponent implements OnInit, OnDestroy {
             // Thêm phim vào danh sách nếu chưa tồn tại
             savedMovies.push(movie);
             this.storageService.setLocalStorage("moviesSaved", savedMovies);
+            this.showSuccess(movie);
         } else {
             // Xóa phim khỏi danh sách nếu đã tồn tại
             savedMovies = savedMovies.filter((savedMovie: any) => savedMovie._id !== movie._id);
             this.storageService.setLocalStorage("moviesSaved", savedMovies);
+            this.showWarn(movie);
         }
         // console.log(this.isStatusLike);
     }

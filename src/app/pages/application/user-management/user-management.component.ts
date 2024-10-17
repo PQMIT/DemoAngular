@@ -18,6 +18,14 @@ import { ImageModule } from "primeng/image";
 import { ReactiveFormsModule } from "@angular/forms";
 import { DialogFormUserComponent } from "../dialog-form-user/dialog-form-user.component";
 import { OnDestroy } from "@angular/core";
+import { FileUploadModule } from "primeng/fileupload";
+import { ToastModule } from "primeng/toast";
+
+interface UploadEvent {
+    originalEvent: Event;
+    files: File[];
+}
+
 @Component({
     selector: "app-user-management",
     standalone: true,
@@ -37,6 +45,8 @@ import { OnDestroy } from "@angular/core";
         FormsModule,
         ReactiveFormsModule,
         DialogFormUserComponent,
+        FileUploadModule,
+        ToastModule,
     ],
     providers: [ConfirmationService, MessageService],
 })
@@ -65,6 +75,8 @@ export class UserManagementComponent implements OnDestroy {
 
     isDataChanged = false; // Trạng thái theo dõi thay đổi dữ liệu
     isRowEdited = false; // Trạng thái chỉnh sửa dòng
+
+    imageSrc: string | ArrayBuffer | null = null; // Biến lưu chuỗi Base64 của ảnh
 
     private timeoutId: any; // Biến lưu ID của timeout để dọn dẹp
     // Hàm hiển thị dialog
@@ -310,6 +322,24 @@ export class UserManagementComponent implements OnDestroy {
         console.log("Save user changes", user);
         user.isRowEdited = false; // Sau khi lưu xong, đặt lại cờ
         // Thực hiện logic lưu dữ liệu
+    }
+
+    onFileSelected(event: any) {
+        const file = event.files[0]; // Lấy file đã chọn từ PrimeNG event
+
+        if (file) {
+            const reader = new FileReader(); // Tạo FileReader để đọc file
+
+            // Khi file đã được đọc xong (dưới dạng DataURL - Base64)
+            reader.onload = () => {
+                this.imageSrc = reader.result; // Lưu Base64 vào biến imageSrc để hiển thị ảnh
+                this.userForm.patchValue({
+                    avatar: reader.result, // Gán chuỗi Base64 vào trường avatar trong form
+                });
+            };
+
+            reader.readAsDataURL(file); // Đọc file dưới dạng Base64
+        }
     }
 
     ngOnDestroy() {

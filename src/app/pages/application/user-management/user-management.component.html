@@ -227,7 +227,7 @@
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         ></textarea>
                     </div>
-                    <div class="field col-9">
+                    <!-- <div class="field col-9">
                         <label for="avatar">Avatar</label>
                         <textarea
                             pInputText
@@ -237,10 +237,17 @@
                             rows="8"
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         ></textarea>
-                    </div>
-                    <div class="field col-3">
+                    </div> -->
+                    <!-- <div class="field col-3">
                         <label for="status">Avatar</label>
                         <p-image [src]="userForm.get('avatar')?.value" [previewImageSrc]="userForm.get('avatar')?.value" alt="Image" width="200" [preview]="true" />
+                    </div> -->
+
+                    <p-fileUpload formControlName="avatar" name="file" accept="image/*" mode="basic" (onSelect)="onFileSelected($event)" chooseLabel="Select Image"> </p-fileUpload>
+
+                    <!-- Hiển thị ảnh sau khi upload -->
+                    <div *ngIf="imageSrc">
+                        <img [src]="imageSrc" alt="Uploaded Image" class="uploaded-image" />
                     </div>
                     <!-- <div class="col-12">
                         <div class="grid">

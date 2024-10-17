@@ -45,10 +45,10 @@ export class MovieSearchComponent implements OnInit {
                     this.filteredMovies = movies; // Gán kết quả tìm kiếm vào danh sách đã lọc
                     this.isLoading = false; // Dừng tải dữ liệu
                     this.updatePagedMovies();
-                    let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
+                    /* let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
                     console.log(movies.data.items);
                     this.isStatusLike = movies.data.items.map((e: any) => savedMovies.some((savedMovie: any) => savedMovie._id === e._id));
-                    console.log(this.isStatusLike);
+                    console.log(this.isStatusLike); */
                 },
                 error: (error) => {
                     console.error("Lỗi khi tìm kiếm phim:", error);
@@ -59,17 +59,20 @@ export class MovieSearchComponent implements OnInit {
             this.isLoading = false;
         }
     }
-    paginate(event: any) {
-        this.currentPage = event.page;
-        this.rows = event.rows;
-        this.updatePagedMovies();
-    }
 
     updatePagedMovies() {
         const start = this.currentPage * this.rows;
         const end = start + this.rows;
         this.pagedMovies = this.filteredMovies?.data?.items.slice(start, end) ?? [];
-        // console.log();
+        let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
+        this.isStatusLike = this.pagedMovies.map((e: any) => savedMovies.some((s: any) => s._id === e._id));
+        console.log(this.isStatusLike);
+    }
+
+    paginate(event: any) {
+        this.currentPage = event.page;
+        this.rows = event.rows;
+        this.updatePagedMovies();
     }
 
     handleLike(event: Event, status: any, movie: any) {

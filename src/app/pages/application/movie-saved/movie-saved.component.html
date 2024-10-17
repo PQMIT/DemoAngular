@@ -2,13 +2,22 @@
     <h1>
         <span style="color: #955151">PHIM ĐÃ LƯU</span>
     </h1>
+    <div class="search-container">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Search movie..." (input)="searchMovies()" class="search-input" />
+    </div>
+    <!-- <ul class="movie-list">
+        <li *ngIf="" *ngFor="let movie of filteredMovies" class="movie-item">{{ movie.name }} ({{ movie.year }})</li>
+    </ul> -->
+
+    <!-- Optional: Display a message when no movies are found -->
+    <div *ngIf="filteredMovies.length === 0">No movies found.</div>
     <!-- Hiển thị skeleton loader nếu đang tải -->
     <div *ngIf="isLoading" class="skeleton-loader">
         <p>Đang lấy thông tin ...</p>
     </div>
 
     <!-- movie.component.html -->
-    <div *ngIf="!isLoading && listMovies.length === 0" class="no-movies-found">
+    <div *ngIf="!isLoading && filteredMovies.length === 0" class="no-movies-found">
         <i class="pi pi-search"></i>
         <!-- Thêm biểu tượng tìm kiếm -->
         <p>Không có bộ phim nào được lưu</p>
@@ -16,8 +25,8 @@
     </div>
 
     <!-- movie.component.html -->
-    <div *ngIf="!isLoading && listMovies.length > 0">
-        <div class="movie-card" *ngFor="let movie of listMovies">
+    <div *ngIf="!isLoading && filteredMovies.length > 0">
+        <div class="movie-card" *ngFor="let movie of filteredMovies">
             <img [src]="getImageSrc(movie.poster_url)" alt="Movie Poster" [routerLink]="['/moviesView', movie.slug]" />
             <div class="movie-content">
                 <h2 style="cursor: pointer" [routerLink]="['/moviesView', movie.slug]">{{ movie.name }}</h2>
@@ -37,9 +46,9 @@
                         <h4>Ngôn ngữ: {{ movie.lang || "Vietsub" }}</h4>
                     </div>
                 </div>
-                <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, listMovies.indexOf(movie), movie)">
-                    <i *ngIf="!isStatusLike[listMovies.indexOf(movie)]" class="pi pi-heart"></i>
-                    <i *ngIf="isStatusLike[listMovies.indexOf(movie)]" class="pi pi-heart-fill"></i>
+                <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, filteredMovies.indexOf(movie), movie)">
+                    <i *ngIf="!isStatusLike[filteredMovies.indexOf(movie)]" class="pi pi-heart"></i>
+                    <i *ngIf="isStatusLike[filteredMovies.indexOf(movie)]" class="pi pi-heart-fill"></i>
                 </p-button>
                 <div *ngIf="movie.category">
                     <h4>Thể loại:</h4>
@@ -53,7 +62,7 @@
         <!-- Thông báo không có kết quả -->
         <p-paginator
             [rows]="rows"
-            [totalRecords]="listMovies.length || 0"
+            [totalRecords]="isSearching ? filteredMovies.length : listMovies.length || 0"
             [rowsPerPageOptions]="[5, 10, 20, 50]"
             [first]="first"
             [showPageLinks]="true"
@@ -65,3 +74,4 @@
         ></p-paginator>
     </div>
 </div>
+<p-toast />

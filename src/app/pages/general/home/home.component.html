@@ -21,7 +21,7 @@
             </p-carousel>
         </div>
 
-        <p-carousel [value]="movies" *ngIf="!isLoading" [numVisible]="5" [numScroll]="2" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="autoplayInterval">
+        <p-carousel [value]="movies" *ngIf="!isLoading" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="autoplayInterval">
             <!-- Header for the carousel -->
             <ng-template pTemplate="header" class="justify-content-start">
                 <div class="flex" style="align-items: center; justify-content: space-between">
@@ -113,17 +113,17 @@
             <img alt="Card" class="w-full" style="height: 500px" src="{{ movies[0].poster_url }}" />
         </div> -->
         <div class="col-3">
-            <div class="card1" [routerLink]="['/moviesView', category.data.items[0]?.slug]">
+            <div class="card1">
                 <div class="card1-image">
                     <!-- <img src="{{ movies[0]?.poster_url }}" alt="{{ movies[0]?.name }}" /> -->
                     <img [src]="category.data.APP_DOMAIN_CDN_IMAGE + '/' + category.data.items[0].poster_url" alt="{{ category.data.items[0].name }}" />
                 </div>
                 <div class="card1-content">
-                    <h3>{{ category.data.items[0].name }}</h3>
-                    <h3>Tác gốc: {{ category.data.items[0]?.origin_name }}</h3>
-                    <h3>Xuất bản: {{ category.data.items[0]?.year }}</h3>
-                    <h3>SLUG: {{ category.data.items[0]?.slug }}</h3>
-                    <p>This is a romantic drama featuring intense relationships and captivating moments.</p>
+                    <h3 [routerLink]="['/moviesView', category.data.items[0]?.slug]">{{ category.data.items[0].name }}</h3>
+                    <h3 [routerLink]="['/moviesView', category.data.items[0]?.slug]">Tác gốc: {{ category.data.items[0]?.origin_name }}</h3>
+                    <h3 [routerLink]="['/moviesView', category.data.items[0]?.slug]">Xuất bản: {{ category.data.items[0]?.year }}</h3>
+                    <!-- <h3 [routerLink]="['/moviesView', category.data.items[0]?.slug]">Slug: {{ category.data.items[0]?.slug }}</h3> -->
+                    <!-- <p>This is a romantic drama featuring intense relationships and captivating moments.</p> -->
                 </div>
             </div>
         </div>
@@ -139,8 +139,8 @@
                             <p>{{ movie.name }}</p>
                             <p>Tác gốc: {{ movie.origin_name }}</p>
                             <p>Xuất bản: {{ movie.year }}</p>
-                            <p>SLUG: {{ category.data.items[0]?.slug }}</p>
-                            <p>This is a romantic drama featuring intense relationships and captivating moments.</p>
+                            <!-- <p>Slug: {{ category.data.items[0]?.slug }}</p> -->
+                            <!-- <p>This is a romantic drama featuring intense relationships and captivating moments.</p> -->
                         </div>
                     </div>
                 </div>
@@ -148,3 +148,4 @@
         </div>
     </div>
 </div>
+<p-toast />

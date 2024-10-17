@@ -96,8 +96,6 @@ export class HeaderComponent {
     }
 
     ngOnInit() {
-        console.log("Header component initialized");
-
         // Kiểm tra trạng thái đăng nhập khi component khởi tạo
         this.authService.isLoggedIn$.subscribe((status) => {
             this.isLoggedIn = status;

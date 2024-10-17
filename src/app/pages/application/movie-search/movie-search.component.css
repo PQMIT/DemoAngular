@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  color:#955151;
 }
 .movie-content{
   display: flex;
