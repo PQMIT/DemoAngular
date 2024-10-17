@@ -5,13 +5,14 @@ import { CommonModule } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { PaginatorModule } from "primeng/paginator";
 import { ButtonModule } from "primeng/button";
+import { StorageService } from "../../../services/storage.service";
 @Component({
     selector: "app-movie-search",
     standalone: true,
     imports: [CommonModule, RouterLink, PaginatorModule, ButtonModule],
     templateUrl: "./movie-search.component.html",
     styleUrl: "./movie-search.component.css",
-    providers: [MoviesService],
+    providers: [MoviesService, StorageService],
 })
 export class MovieSearchComponent implements OnInit {
     searchTerm: string | null = null; // Từ khóa tìm kiếm
@@ -20,8 +21,9 @@ export class MovieSearchComponent implements OnInit {
     pagedMovies: any[] = [];
     rows = 10; // Số phim hiển thị trên mỗi trang
     currentPage = 0; // Trang hiện tại
+    isStatusLike: any[] = [];
 
-    constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
+    constructor(private route: ActivatedRoute, private moviesService: MoviesService, private storageService: StorageService) {}
 
     ngOnInit(): void {
         // Lấy query parameter khi component được khởi tạo
@@ -43,6 +45,10 @@ export class MovieSearchComponent implements OnInit {
                     this.filteredMovies = movies; // Gán kết quả tìm kiếm vào danh sách đã lọc
                     this.isLoading = false; // Dừng tải dữ liệu
                     this.updatePagedMovies();
+                    let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
+                    console.log(movies.data.items);
+                    this.isStatusLike = movies.data.items.map((e: any) => savedMovies.some((savedMovie: any) => savedMovie._id === e._id));
+                    console.log(this.isStatusLike);
                 },
                 error: (error) => {
                     console.error("Lỗi khi tìm kiếm phim:", error);
@@ -64,5 +70,27 @@ export class MovieSearchComponent implements OnInit {
         const end = start + this.rows;
         this.pagedMovies = this.filteredMovies?.data?.items.slice(start, end) ?? [];
         // console.log();
+    }
+
+    handleLike(event: Event, status: any, movie: any) {
+        console.log("handleLike", status, movie);
+
+        // console.log(movie);
+        // Lấy danh sách phim đã lưu từ localStorage hoặc khởi tạo rỗng nếu chưa có
+        let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
+        // Toggle trạng thái like
+        this.isStatusLike[status] = !this.isStatusLike[status];
+        // Kiểm tra xem bộ phim đã có trong danh sách chưa
+        const isMovieSaved = savedMovies.some((savedMovie: any) => savedMovie._id === movie._id);
+        if (!isMovieSaved && this.isStatusLike[status]) {
+            // Thêm phim vào danh sách nếu chưa tồn tại
+            savedMovies.push(movie);
+            this.storageService.setLocalStorage("moviesSaved", savedMovies);
+        } else {
+            // Xóa phim khỏi danh sách nếu đã tồn tại
+            savedMovies = savedMovies.filter((savedMovie: any) => savedMovie._id !== movie._id);
+            this.storageService.setLocalStorage("moviesSaved", savedMovies);
+        }
+        // console.log(this.isStatusLike);
     }
 }

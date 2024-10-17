@@ -74,6 +74,10 @@ export class LoginComponent implements OnDestroy {
     showSecondary() {
         this.messageService.add({ severity: "secondary", summary: "Secondary", detail: "Message Content" });
     }
+
+    // ngOnInit() {
+    //     localStorage.getItem("isLoggedIn") === "true" ? this.router.navigate(["/user"]) : "";
+    // }
     onLogin() {
         if (this.authService.login(this.username, this.password)) {
             this.loading = true; // Hiển thị thanh progressbar

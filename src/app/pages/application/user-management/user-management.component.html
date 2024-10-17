@@ -12,12 +12,17 @@
             styleClass="p-datatable-striped"
             [tableStyle]="{ 'min-width': '20rem' }"
             [paginator]="true"
-            [rows]="5"
+            [rows]="10"
             stripedRows
-            [rowsPerPageOptions]="[5, 10, 20]"
+            [rowsPerPageOptions]="[10, 20, 30]"
             [globalFilterFields]="['first_name', 'last_name', 'email', 'role']"
             (onEditComplete)="onEditComplete($event)"
             [scrollable]="true"
+            currentPageReportTemplate="Trang {currentPage} / {totalPages}"
+            pageLinkSize="10"
+            [showPageLinks]="true"
+            [showFirstLastIcon]="true"
+            [showCurrentPageReport]="true"
         >
             <ng-template pTemplate="header">
                 <tr>
@@ -118,7 +123,7 @@
                     <td style="position: sticky; right: 0; z-index: 1000; background: #ffffff82">
                         <p-button *ngIf="product.isRowEdited" label="" severity="info" (click)="onChangeDataUser(product)" size="small"><i class="pi pi-save"></i></p-button>
                         <p-button label="" severity="secondary" (click)="viewDetailInPage(product)" size="small"><i class="pi pi-eye"></i></p-button>
-                        <p-button label="" (click)="viewDetail(product)" size="small"><i class="pi pi-external-link"></i></p-button>
+                        <p-button label="" (click)="viewDetail(product)" size="small"><i class="pi pi-pen-to-square"></i></p-button>
                         <p-button size="small" label="" severity="danger" (click)="deleteUser($event, product)"><i class="pi pi-trash"></i></p-button>
                     </td>
                 </tr>

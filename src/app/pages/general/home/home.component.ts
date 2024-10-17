@@ -18,7 +18,7 @@ import { forkJoin } from "rxjs";
 import { isPlatformBrowser } from "@angular/common";
 import e from "express";
 import { Title } from "@angular/platform-browser";
-
+import { combineLatest } from "rxjs";
 registerLocaleData(localeVi);
 @Component({
     selector: "app-home",
@@ -85,6 +85,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
 
         this.fetchMovies();
+        // console.log(this.movies);
     }
     // Hàm gọi service để lấy dữ liệu từ API
 
@@ -101,9 +102,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         }).subscribe({
             next: (results) => {
                 this.isLoading = false; // Tắt skeleton khi dữ liệu đã tải xong
+                console.log("chay vao day");
 
                 // Lưu các dữ liệu vào biến tương ứng
                 this.movies = results.phimMoiCapNhat.items;
+                console.log(results);
+
                 this.moviesCategories = [results.phimLe, results.phimBo, results.hoatHinh, results.tvShows];
 
                 // Lưu moviesCategories vào localStorage
@@ -118,6 +122,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             },
         });
     }
+
     handleLike(event: Event, status: any, movie: any) {
         // console.log(movie);
         // Lấy danh sách phim đã lưu từ localStorage hoặc khởi tạo rỗng nếu chưa có

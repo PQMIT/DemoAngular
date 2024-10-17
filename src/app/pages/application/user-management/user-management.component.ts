@@ -111,6 +111,8 @@ export class UserManagementComponent implements OnDestroy {
     }
 
     ngOnInit() {
+        // window.location.reload();
+
         this.loadUsersLocal();
         this.genders = [
             { label: "Male", value: "Male" },

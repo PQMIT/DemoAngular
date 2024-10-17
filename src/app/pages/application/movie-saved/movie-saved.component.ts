@@ -6,10 +6,11 @@ import { RouterLink, Router } from "@angular/router";
 import { PaginatorModule } from "primeng/paginator";
 import { StorageService } from "../../../services/storage.service";
 import { Toast } from "primeng/toast";
+import { ButtonModule } from "primeng/button";
 @Component({
     selector: "app-movie-saved",
     standalone: true,
-    imports: [CommonModule, RouterLink, PaginatorModule],
+    imports: [CommonModule, RouterLink, PaginatorModule, ButtonModule],
     templateUrl: "./movie-saved.component.html",
     styleUrl: "./movie-saved.component.css",
     providers: [MoviesService, StorageService],
@@ -24,6 +25,8 @@ export class MovieSavedComponent {
     categoryType: string = "";
     currentPage: number = 1;
     queryParam: string = "";
+    isStatusLike: any[] = [];
+
     constructor(private route: ActivatedRoute, private moviesService: MoviesService, private router: Router, private storageService: StorageService) {}
     ngOnInit(): void {
         this.route.paramMap.subscribe((params) => {
@@ -46,44 +49,9 @@ export class MovieSavedComponent {
         // if (!this.categoryType) return; // Không thực hiện gì nếu không có categoryType
         this.isLoading = true; // Bắt đầu tải dữ liệu
         this.listMovies = this.storageService.getLocalStorage("moviesSaved") || [];
+        this.isStatusLike = this.listMovies.map((movie) => true);
         console.log(this.storageService.getLocalStorage("moviesSaved"));
         this.isLoading = false;
-
-        // const queryParam = `${this.categoryType}?page=${currentPage}&limit=${rows}`;
-        // console.log(queryParam);
-        //call api
-        /* switch (this.categoryType) {
-            case "phim-moi-cap-nhat":
-                this.moviesService.getPhimMoiCapNhat(queryParam).subscribe({
-                    next: (movies) => {
-                        // console.log(movies?.items);
-                        this.ogDataMovie = movies; // Gán kết quả vào danh sách
-                        this.listMovies = movies?.items;
-                    },
-                    error: (error) => {
-                        console.error("Lỗi khi tìm kiếm phim:", error);
-                    },
-                    complete: () => {
-                        this.isLoading = false; // Dừng tải dữ liệu sau khi hoàn tất (thành công hoặc thất bại)
-                    },
-                });
-                break;
-
-            default:
-                this.moviesService.getPhimFromCategory(queryParam).subscribe({
-                    next: (movies) => {
-                        this.ogDataMovie = movies; // Gán kết quả vào danh sách
-                        this.listMovies = movies.data.items;
-                    },
-                    error: (error) => {
-                        console.error("Lỗi khi tìm kiếm phim:", error);
-                    },
-                    complete: () => {
-                        this.isLoading = false; // Dừng tải dữ liệu sau khi hoàn tất (thành công hoặc thất bại)
-                    },
-                });
-                break;
-        } */
     }
 
     paginate(event: any) {
@@ -97,4 +65,32 @@ export class MovieSavedComponent {
         this.getMovie(this.currentPage, this.rows);
     }
     // this.updatePagedMovies();
+    getImageSrc(url: string): string {
+        const baseUrl = "https://phimimg.com/";
+        if (url.startsWith("upload")) {
+            return `${baseUrl}${url}`;
+        } else {
+            return url;
+        }
+    }
+
+    handleLike(event: Event, status: any, movie: any) {
+        // console.log(movie);
+        // Lấy danh sách phim đã lưu từ localStorage hoặc khởi tạo rỗng nếu chưa có
+        let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
+        // Toggle trạng thái like
+        this.isStatusLike[status] = !this.isStatusLike[status];
+        // Kiểm tra xem bộ phim đã có trong danh sách chưa
+        const isMovieSaved = savedMovies.some((savedMovie: any) => savedMovie._id === movie._id);
+        if (!isMovieSaved && this.isStatusLike[status]) {
+            // Thêm phim vào danh sách nếu chưa tồn tại
+            savedMovies.push(movie);
+            this.storageService.setLocalStorage("moviesSaved", savedMovies);
+        } else {
+            // Xóa phim khỏi danh sách nếu đã tồn tại
+            savedMovies = savedMovies.filter((savedMovie: any) => savedMovie._id !== movie._id);
+            this.storageService.setLocalStorage("moviesSaved", savedMovies);
+        }
+        // console.log(this.isStatusLike);
+    }
 }

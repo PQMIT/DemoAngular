@@ -52,12 +52,14 @@
   opacity: 0.8;
   text-align: center;
 }
+
 .brand_episode{
-  background-color: bisque; 
+  /* background-color: bisque;  */
   font-style: italic;
   color: rgb(23, 151, 87);
   padding: 5px 0;
 }
+
 .quality_episode{
     color: #fff;
     /* position: absolute; */

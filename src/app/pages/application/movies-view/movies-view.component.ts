@@ -99,6 +99,7 @@ export class MoviesViewComponent implements OnInit {
         message: "",
         timestamp: "",
     };
+    isStatusLike: boolean = false;
 
     movieUrl: string = "https://your-website-url.com/movie-details"; // URL phim chi tiết
 
@@ -126,6 +127,8 @@ export class MoviesViewComponent implements OnInit {
                     this.movie = movies.movie;
                     this.episodes = movies.episodes;
                     console.log(this.episodes);
+                    let moviesSaved = this.storageService.getLocalStorage("moviesSaved");
+                    this.isStatusLike = moviesSaved.some((movie: any) => movie._id === this.movie._id);
                 },
                 (error) => {
                     console.error("Lỗi khi lấy danh sách phim:", error);
@@ -175,5 +178,24 @@ export class MoviesViewComponent implements OnInit {
     shareOnLinkedIn() {
         const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(this.movieUrl)}`;
         window.open(linkedInUrl, "_blank");
+    }
+    handleLike(event: Event, movie: any) {
+        // console.log(movie);
+        // Lấy danh sách phim đã lưu từ localStorage hoặc khởi tạo rỗng nếu chưa có
+        let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
+        // Toggle trạng thái like
+        this.isStatusLike = !this.isStatusLike;
+        // Kiểm tra xem bộ phim đã có trong danh sách chưa
+        const isMovieSaved = savedMovies.some((savedMovie: any) => savedMovie._id === movie._id);
+        if (!isMovieSaved && this.isStatusLike) {
+            // Thêm phim vào danh sách nếu chưa tồn tại
+            savedMovies.push(movie);
+            this.storageService.setLocalStorage("moviesSaved", savedMovies);
+        } else {
+            // Xóa phim khỏi danh sách nếu đã tồn tại
+            savedMovies = savedMovies.filter((savedMovie: any) => savedMovie._id !== movie._id);
+            this.storageService.setLocalStorage("moviesSaved", savedMovies);
+        }
+        // console.log(this.isStatusLike);
     }
 }

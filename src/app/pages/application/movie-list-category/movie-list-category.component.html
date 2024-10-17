@@ -34,10 +34,10 @@
                         <h4>Năm phát hành: {{ movie.year }}</h4>
                         <h4>
                             Thời lượng:
-                            <span style="color: rgb(23, 151, 87); background-color: bisque; padding: 5px; font-style: italic">{{ movie.time || "Đang cập nhật" }}</span>
+                            <span style="color: rgb(23, 151, 87); padding: 5px; font-style: italic">{{ movie.time || "Đang cập nhật" }}</span>
                         </h4>
                         <h4>
-                            Tập hiện tại: <span style="color: rgb(23, 151, 87); background-color: bisque; padding: 5px; font-style: italic">{{ movie.episode_current || "Đang cập nhật" }}</span>
+                            Tập hiện tại: <span style="color: rgb(23, 151, 87); padding: 5px; font-style: italic">{{ movie.episode_current || "Đang cập nhật" }}</span>
                         </h4>
                     </div>
                     <div class="right-subcontent">
@@ -61,10 +61,11 @@
             [rowsPerPageOptions]="[10, 20, 30]"
             [first]="first"
             [showPageLinks]="true"
-            [showFirstLastIcon]="false"
+            [showFirstLastIcon]="true"
             [showCurrentPageReport]="true"
             (onPageChange)="paginate($event)"
-            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+            currentPageReportTemplate="Trang {currentPage} / {totalPages}"
+            pageLinkSize="10"
         ></p-paginator>
     </div>
 </div>

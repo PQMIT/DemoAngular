@@ -50,7 +50,7 @@
 }
 
 .category-badge {
-    background-color: blue;
+    background-color: cornflowerblue;
     color: white;
     padding: 4px 6px;
     text-transform: uppercase;
@@ -61,7 +61,7 @@
 }
 
 .category-badge:hover {
-    background-color: #ff4a3b; /* Màu nền khi hover */
+    background-color: #255cbd; /* Màu nền khi hover */
 }
 
 /* movie.component.css */

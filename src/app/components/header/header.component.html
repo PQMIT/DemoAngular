@@ -1,5 +1,5 @@
 <div class="container">
-    <p-menubar [model]="items">
+    <p-menubar [model]="isLoggedIn ? items2 : items">
         <ng-template pTemplate="item" let-item let-root="root">
             <a [routerLink]="item.routerLink" pRipple class="flex items-center p-menubar-item-link">
                 <span [class]="item.icon"></span>
@@ -13,10 +13,9 @@
         <div class="flex items-center gap-2">
             <p-button (onClick)="toggleDarkMode()"><i class="pi pi-sun" style="color: 'var(--primary-color)'"></i></p-button>
             <input type="text" pInputText placeholder="Tìm kiếm tên phim" (keyup.enter)="onSearch($event)" class="w-32 sm:w-auto" />
-            <p-button label="Logout" (click)="onLogout()" *ngIf="isLoggedIn"></p-button>
-            <p-button label="Login" [routerLink]="['/login']" *ngIf="!isLoggedIn"></p-button>
+            <!-- <p-button label="Login" [routerLink]="['/login']" *ngIf="!isLoggedIn"></p-button> -->
 
-            <i class="pi pi-bell ringing" *ngIf="isRinging; else notRinging" style="font-size: x-large; align-content: center" (click)="op.toggle($event)"></i>
+            <!-- <i class="pi pi-bell ringing" *ngIf="isRinging; else notRinging" style="font-size: x-large; align-content: center" (click)="op.toggle($event)"></i>
             <ng-template #notRinging>
                 <i class="pi pi-bell" style="font-size: x-large; align-content: center" (click)="op.toggle($event)"></i>
             </ng-template>
@@ -41,7 +40,8 @@
                 <div style="text-align: right; padding-top: 5px; cursor: pointer">
                     <a (click)="viewAllNotifications()">Xem tất cả</a>
                 </div>
-            </p-popover>
+            </p-popover> -->
+            <p-button label="Logout" (click)="onLogout()" *ngIf="isLoggedIn"></p-button>
             <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
         </div>
         <!-- </ng-template> -->

@@ -17,19 +17,19 @@
 
     <!-- movie.component.html -->
     <div *ngIf="!isLoading && listMovies.length > 0">
-        <div class="movie-card" *ngFor="let movie of listMovies" [routerLink]="['/moviesView', movie.slug]">
-            <img [src]="movie.poster_url" [alt]="movie.name" />
+        <div class="movie-card" *ngFor="let movie of listMovies">
+            <img [src]="getImageSrc(movie.poster_url)" alt="Movie Poster" [routerLink]="['/moviesView', movie.slug]" />
             <div class="movie-content">
-                <h2 style="cursor: pointer">{{ movie.name }}</h2>
+                <h2 style="cursor: pointer" [routerLink]="['/moviesView', movie.slug]">{{ movie.name }}</h2>
                 <div class="subcontent">
                     <div class="left-subcontent">
                         <h4>Năm phát hành: {{ movie.year }}</h4>
                         <h4>
                             Thời lượng:
-                            <span style="color: rgb(23, 151, 87); background-color: bisque; padding: 5px; font-style: italic">{{ movie.time || "Đang cập nhật" }}</span>
+                            <span style="color: rgb(23, 151, 87); padding: 5px; font-style: italic">{{ movie.time || "Đang cập nhật" }}</span>
                         </h4>
                         <h4>
-                            Tập hiện tại: <span style="color: rgb(23, 151, 87); background-color: bisque; padding: 5px; font-style: italic">{{ movie.episode_current || "Đang cập nhật" }}</span>
+                            Tập hiện tại: <span style="color: rgb(23, 151, 87); padding: 5px; font-style: italic">{{ movie.episode_current || "Đang cập nhật" }}</span>
                         </h4>
                     </div>
                     <div class="right-subcontent">
@@ -37,6 +37,10 @@
                         <h4>Ngôn ngữ: {{ movie.lang || "Vietsub" }}</h4>
                     </div>
                 </div>
+                <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, listMovies.indexOf(movie), movie)">
+                    <i *ngIf="!isStatusLike[listMovies.indexOf(movie)]" class="pi pi-heart"></i>
+                    <i *ngIf="isStatusLike[listMovies.indexOf(movie)]" class="pi pi-heart-fill"></i>
+                </p-button>
                 <div *ngIf="movie.category">
                     <h4>Thể loại:</h4>
                     <div class="category-container">
@@ -56,7 +60,8 @@
             [showFirstLastIcon]="false"
             [showCurrentPageReport]="true"
             (onPageChange)="paginate($event)"
-            currentPageReportTemplate="{first} - {last} of {totalRecords}"
+            currentPageReportTemplate="Trang {currentPage} / {totalPages}"
+            pageLinkSize="10"
         ></p-paginator>
     </div>
 </div>

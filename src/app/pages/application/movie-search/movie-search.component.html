@@ -39,8 +39,12 @@
                         <h4>Lang: {{ movie.lang }}</h4>
                         <span>
                             <!-- <p-skeleton shape="circle" size="2rem" *ngIf="!movie"></p-skeleton> -->
-                            <p-button *ngIf="movie" icon="pi pi-heart" severity="secondary" [outlined]="true"></p-button>
-                            <p-button *ngIf="movie" icon="pi pi-shopping-cart" styleClass="ml-2"></p-button>
+                            <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, pagedMovies.indexOf(movie), movie)">
+                                <i *ngIf="!isStatusLike[pagedMovies.indexOf(movie)]" class="pi pi-heart"></i>
+                                <i *ngIf="isStatusLike[pagedMovies.indexOf(movie)]" class="pi pi-heart-fill"></i>
+                            </p-button>
+
+                            <!-- <p-button *ngIf="movie" icon="pi pi-shopping-cart" styleClass="ml-2"></p-button> -->
                         </span>
                     </div>
                 </div>
@@ -53,7 +57,17 @@
             </div>
         </div>
 
-        <p-paginator [rows]="rows" [totalRecords]="filteredMovies.data.items.length || 0" [rowsPerPageOptions]="[5, 10, 20]" (onPageChange)="paginate($event)"></p-paginator>
+        <p-paginator
+            [rows]="rows"
+            [totalRecords]="filteredMovies.data.items.length || 0"
+            [rowsPerPageOptions]="[5, 10, 20]"
+            (onPageChange)="paginate($event)"
+            currentPageReportTemplate="Trang {currentPage} / {totalPages}"
+            pageLinkSize="10"
+            [showPageLinks]="true"
+            [showFirstLastIcon]="true"
+            [showCurrentPageReport]="true"
+        ></p-paginator>
 
         <!-- Thông báo không có kết quả -->
     </div>

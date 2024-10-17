@@ -43,18 +43,35 @@ export class HeaderComponent {
         },
         {
             label: "Movie Saved",
-            icon: "pi pi-bookmark",
+            icon: "pi pi-video",
+            routerLink: ["/movieSaved"],
+        },
+        {
+            label: "About",
+            icon: "pi pi-info-circle",
+            // badge: "3",
+            routerLink: ["/about"],
+        },
+    ];
+    items2: MenuItem[] = [
+        {
+            label: "Home",
+            icon: "pi pi-home",
+            routerLink: ["/home"],
+        },
+        {
+            label: "Movie Saved",
+            icon: "pi pi-video",
             routerLink: ["/movieSaved"],
         },
         {
             label: "User",
-            icon: "pi pi-star",
+            icon: "pi pi-users",
             routerLink: ["/user"],
         },
         {
             label: "About",
-            icon: "pi pi-envelope",
-            // badge: "3",
+            icon: "pi pi-info-circle",
             routerLink: ["/about"],
         },
     ];
@@ -78,15 +95,14 @@ export class HeaderComponent {
         });
     }
 
-    // ngOnInit() {
+    ngOnInit() {
+        console.log("Header component initialized");
 
-    //     console.log("Header component initialized");
-
-    //     // Kiểm tra trạng thái đăng nhập khi component khởi tạo
-    //     this.authService.isLoggedIn$.subscribe((status) => {
-    //         this.isLoggedIn = status;
-    //     });
-    // }
+        // Kiểm tra trạng thái đăng nhập khi component khởi tạo
+        this.authService.isLoggedIn$.subscribe((status) => {
+            this.isLoggedIn = status;
+        });
+    }
     // Phương thức chuyển đổi chế độ sáng/tối
     toggleDarkMode() {
         const element = document.querySelector("html");
@@ -107,6 +123,7 @@ export class HeaderComponent {
     }
     onLogout() {
         this.authService.logout();
+        // window.location.reload();
     }
     viewAllNotifications() {
         // Điều hướng hoặc mở modal hiển thị danh sách đầy đủ các thông báo

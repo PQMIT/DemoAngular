@@ -22,6 +22,7 @@ export interface Movie {
     };
     quality?: string;
     lang?: string;
+    _id?: number;
 }
 
 export interface Episode {

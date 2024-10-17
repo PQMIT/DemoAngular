@@ -15,12 +15,15 @@
                 {{ movie.episode_current }}
             </div>
             <p>
-                <strong>Quality: </strong><span class="quality_episode">{{ movie.quality }}</span>
+                <strong>Quality: {{ movie.quality }}</strong>
             </p>
             <p><strong>Lang:</strong> {{ movie.lang }}</p>
 
             <p-button label="Watch Trailer" icon="pi pi-play" (click)="showTrailer()"></p-button>
-
+            <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, movie)">
+                <i *ngIf="!isStatusLike" class="pi pi-heart"></i>
+                <i *ngIf="isStatusLike" class="pi pi-heart-fill"></i>
+            </p-button>
             <div class="share-buttons">
                 <button (click)="shareOnFacebook()"><i class="pi pi-facebook"></i> Share</button>
                 <button (click)="shareOnTwitter()"><i class="pi pi-twitter"> Share</i></button>
@@ -32,27 +35,27 @@
     <!-- Phần danh sách các tập phim -->
     <div class="episode-list">
         <p-tabView>
-            <p-tabPanel header="Episodes">
-                <div class="flex" *ngFor="let episode of episodes">
-                    <p-carousel [value]="episode.server_data" [numVisible]="5" [numScroll]="1" [circular]="true" autoplayInterval="2000">
-                        <ng-template let-episode pTemplate="item">
-                            <div
-                                class="episode-card"
-                                class="card_episode"
-                                style="background-image: url('{{ movie.poster_url }}'); background-size: cover; background-position: center; width: 200px;"
-                                [routerLink]="episode.link_embed"
-                            >
-                                <!-- <img [src]="movie.poster_url" alt="{{ episode.name }}" class="episode-thumbnail" /> -->
-                                <div class="episode-details">
-                                    <h2>{{ episode.name }}</h2>
-                                    <h4>{{ episode.filename }}</h4>
-                                    <p>{{ episode.duration }}</p>
-                                    <p-button label="Watch" icon="pi pi-play" (click)="playEpisode(episode)"></p-button>
-                                </div>
+            <p-tabPanel header="Episodes {{ episode.server_name }}" *ngFor="let episode of episodes">
+                <!-- <div class="flex" *ngFor="let episode of episodes"> -->
+                <p-carousel [value]="episode.server_data" [numVisible]="5" [numScroll]="1" [circular]="true" autoplayInterval="2000">
+                    <ng-template let-episode pTemplate="item">
+                        <div
+                            class="episode-card"
+                            class="card_episode"
+                            style="background-image: url('{{ movie.poster_url }}'); background-size: cover; background-position: center; width: 200px;"
+                            [routerLink]="episode.link_embed"
+                        >
+                            <!-- <img [src]="movie.poster_url" alt="{{ episode.name }}" class="episode-thumbnail" /> -->
+                            <div class="episode-details">
+                                <h2>{{ episode.name }}</h2>
+                                <h4>{{ episode.filename }}</h4>
+                                <p>{{ episode.duration }}</p>
+                                <p-button label="Watch" icon="pi pi-play" (click)="playEpisode(episode)"></p-button>
                             </div>
-                        </ng-template>
-                    </p-carousel>
-                </div>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+                <!-- </div> -->
             </p-tabPanel>
 
             <p-tabPanel header="Description">
