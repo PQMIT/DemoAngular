@@ -107,15 +107,15 @@ export class DialogFormUserComponent {
     //Khởi tạo form
     initForm() {
         this.userForm = this.fb.group({
-            id: ["", Validators.required], // Field ID disabled for editing
-            first_name: ["", Validators.required],
-            last_name: ["", Validators.required],
-            email: ["", [Validators.required, Validators.email]],
-            gender: ["", Validators.required],
-            ip_address: ["", Validators.required],
-            role: ["", Validators.required],
-            address: ["", Validators.required],
-            avatar: ["", Validators.required],
+            id: [{ value: "", disabled: true }, Validators.required],
+            first_name: [{ value: "", disabled: true }, Validators.required],
+            last_name: [{ value: "", disabled: true }, Validators.required],
+            email: [{ value: "", disabled: true }, [Validators.required, Validators.email]],
+            gender: [{ value: "", disabled: true }, Validators.required],
+            ip_address: [{ value: "", disabled: true }, Validators.required],
+            role: [{ value: "", disabled: true }, Validators.required],
+            address: [{ value: "", disabled: true }, Validators.required],
+            avatar: [{ value: "", disabled: true }, Validators.required],
         });
     }
     closeDialog() {

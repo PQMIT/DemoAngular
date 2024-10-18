@@ -12,9 +12,9 @@
             styleClass="p-datatable-striped"
             [tableStyle]="{ 'min-width': '20rem' }"
             [paginator]="true"
-            [rows]="10"
+            [rows]="5"
             stripedRows
-            [rowsPerPageOptions]="[10, 20, 30]"
+            [rowsPerPageOptions]="[5, 10, 20]"
             [globalFilterFields]="['first_name', 'last_name', 'email', 'role']"
             (onEditComplete)="onEditComplete($event)"
             [scrollable]="true"
@@ -147,7 +147,7 @@
                             pInputText
                             formControlName="id"
                             id="id"
-                            type="text"
+                            type="number"
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         />
                     </div>
@@ -196,7 +196,7 @@
                             <option>Female</option>
                         </select>
                     </div>
-                    <div class="field col-6">
+                    <!-- <div class="field col-6">
                         <label for="ip_address">Ip address</label>
                         <input
                             pInputText
@@ -205,7 +205,7 @@
                             type="text"
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         />
-                    </div>
+                    </div> -->
                     <div class="field col-6">
                         <label for="role">Role</label>
                         <input
@@ -216,16 +216,15 @@
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         />
                     </div>
-                    <div class="field col-12">
+                    <div class="field col-6">
                         <label for="address">Address</label>
-                        <textarea
+                        <input
                             pInputText
                             formControlName="address"
                             id="address"
                             type="text"
-                            rows="4"
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                        ></textarea>
+                        />
                     </div>
                     <!-- <div class="field col-9">
                         <label for="avatar">Avatar</label>
@@ -243,12 +242,17 @@
                         <p-image [src]="userForm.get('avatar')?.value" [previewImageSrc]="userForm.get('avatar')?.value" alt="Image" width="200" [preview]="true" />
                     </div> -->
 
-                    <p-fileUpload formControlName="avatar" name="file" accept="image/*" mode="basic" (onSelect)="onFileSelected($event)" chooseLabel="Select Image"> </p-fileUpload>
-
-                    <!-- Hiển thị ảnh sau khi upload -->
-                    <div *ngIf="imageSrc">
-                        <img [src]="imageSrc" alt="Uploaded Image" class="uploaded-image" />
+                    <!-- <i class="pi pi-upload"></i> -->
+                    <div class="field col-12">
+                        <p-fileUpload formControlName="avatar" chooseIcon="pi pi-upload" name="file" accept="image/*" mode="basic" (onSelect)="onFileSelected($event)" chooseLabel="Choose">
+                            ></p-fileUpload
+                        >
+                        <!-- Hiển thị ảnh sau khi upload -->
+                        <div *ngIf="imageSrc">
+                            <img [src]="imageSrc" alt="Uploaded Image" class="uploaded-image" />
+                        </div>
                     </div>
+
                     <!-- <div class="col-12">
                         <div class="grid">
                             <div class="col-12">

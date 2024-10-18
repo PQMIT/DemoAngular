@@ -14,7 +14,7 @@
         <div class="col-12">
             <form [formGroup]="userForm">
                 <div class="formgrid grid">
-                    <div class="field col-4">
+                    <!-- <div class="field col-4">
                         <label for="id">ID</label>
                         <input
                             pInputText
@@ -23,7 +23,7 @@
                             type="text"
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         />
-                    </div>
+                    </div> -->
                     <div class="field col-4">
                         <label for="firstname">Firstname</label>
                         <input
@@ -43,6 +43,12 @@
                             type="text"
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         />
+                    </div>
+                    <div class="field col-4">
+                        <div class="flex">
+                            <label style="flex-grow: 1" for="status">Avatar</label>
+                            <p-image [src]="userForm.get('avatar')?.value" [previewImageSrc]="userForm.get('avatar')?.value" alt="Image" width="150" [preview]="true" />
+                        </div>
                     </div>
 
                     <div class="field col-9">
@@ -100,7 +106,7 @@
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         ></textarea>
                     </div>
-                    <div class="field col-9">
+                    <!--  <div class="field col-9">
                         <label for="avatar">Link Avatar</label>
                         <textarea
                             pInputText
@@ -110,11 +116,8 @@
                             rows="8"
                             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
                         ></textarea>
-                    </div>
-                    <div class="field col-3">
-                        <label for="status">Preview</label>
-                        <p-image [src]="userForm.get('avatar')?.value" [previewImageSrc]="userForm.get('avatar')?.value" alt="Image" width="150" [preview]="true" />
-                    </div>
+                    </div> -->
+
                     <!-- <div class="col-12">
                         <div class="grid">
                             <div class="col-12">

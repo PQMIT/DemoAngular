@@ -138,7 +138,7 @@ export class UserManagementComponent implements OnDestroy {
             last_name: ["", Validators.required],
             email: ["", [Validators.required, Validators.email]],
             gender: ["", Validators.required],
-            ip_address: ["", Validators.required],
+            // ip_address: ["", Validators.required],
             role: ["", Validators.required],
             address: ["", Validators.required],
             avatar: ["", Validators.required],

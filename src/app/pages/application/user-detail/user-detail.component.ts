@@ -17,10 +17,30 @@ import { AvatarModule } from "primeng/avatar";
 import { ImageModule } from "primeng/image";
 import { DialogModule } from "primeng/dialog";
 import { timeout } from "rxjs";
+import { FileUploadModule } from "primeng/fileupload";
+
+interface UploadEvent {
+    originalEvent: Event;
+    files: File[];
+}
 @Component({
     selector: "app-user-detail",
     standalone: true,
-    imports: [DropdownModule, CommonModule, FormsModule, ReactiveFormsModule, CardModule, InputGroupModule, InputGroupAddonModule, ToastModule, ButtonModule, AvatarModule, ImageModule, DialogModule],
+    imports: [
+        DropdownModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CardModule,
+        InputGroupModule,
+        InputGroupAddonModule,
+        ToastModule,
+        ButtonModule,
+        AvatarModule,
+        ImageModule,
+        DialogModule,
+        FileUploadModule,
+    ],
     templateUrl: "./user-detail.component.html",
     styleUrl: "./user-detail.component.css",
     providers: [ConfirmationService, MessageService],
@@ -30,6 +50,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     genders?: any[];
     visible: boolean = false;
     private timeoutId: any; // Biến lưu ID của timeout để dọn dẹp
+    imageSrc: string | ArrayBuffer | null = null; // Biến lưu chuỗi Base64 của ảnh
 
     constructor(private fb: FormBuilder, @Inject(PLATFORM_ID) private platformId: Object, private messageService: MessageService) {}
     showSuccess() {
@@ -72,7 +93,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
             last_name: ["", Validators.required],
             email: ["", [Validators.required, Validators.email]],
             gender: ["", Validators.required],
-            ip_address: ["", Validators.required],
+            // ip_address: ["", Validators.required],
             role: ["", Validators.required],
             address: ["", Validators.required],
             avatar: ["", Validators.required],
@@ -136,6 +157,23 @@ export class UserDetailComponent implements OnInit, OnDestroy {
             }
         } else {
             console.log("No user data found in localStorage");
+        }
+    }
+    onFileSelected(event: any) {
+        const file = event.files[0]; // Lấy file đã chọn từ PrimeNG event
+
+        if (file) {
+            const reader = new FileReader(); // Tạo FileReader để đọc file
+
+            // Khi file đã được đọc xong (dưới dạng DataURL - Base64)
+            reader.onload = () => {
+                this.imageSrc = reader.result; // Lưu Base64 vào biến imageSrc để hiển thị ảnh
+                this.userForm.patchValue({
+                    avatar: reader.result, // Gán chuỗi Base64 vào trường avatar trong form
+                });
+            };
+
+            reader.readAsDataURL(file); // Đọc file dưới dạng Base64
         }
     }
     ngOnDestroy() {

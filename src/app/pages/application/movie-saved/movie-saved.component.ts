@@ -50,7 +50,7 @@ export class MovieSavedComponent {
     ngOnInit(): void {
         this.route.paramMap.subscribe((params) => {
             this.categoryType = params.get("slug") || ""; // Lấy path variable "type_list"
-            console.log(params);
+            // console.log(params);
         });
 
         // Lấy query params
@@ -87,7 +87,7 @@ export class MovieSavedComponent {
 
         this.isStatusLike = this.filteredMovies.map((movie) => true);
 
-        console.log(this.filteredMovies); // In ra các phim đang được hiển thị cho trang hiện tại
+        // console.log(this.filteredMovies); // In ra các phim đang được hiển thị cho trang hiện tại
 
         this.isLoading = false; // Dừng trạng thái loading
     }

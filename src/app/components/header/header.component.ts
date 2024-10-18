@@ -65,14 +65,14 @@ export class HeaderComponent {
             routerLink: ["/movieSaved"],
         },
         {
-            label: "User",
-            icon: "pi pi-users",
-            routerLink: ["/user"],
-        },
-        {
             label: "About",
             icon: "pi pi-info-circle",
             routerLink: ["/about"],
+        },
+        {
+            label: "User",
+            icon: "pi pi-user",
+            routerLink: ["/user"],
         },
     ];
     notifications = [
