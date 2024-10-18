@@ -40,7 +40,7 @@ export class MovieSearchComponent implements OnInit {
     search(): void {
         if (this.searchTerm) {
             this.isLoading = true; // Bắt đầu tải dữ liệu
-            this.moviesService.searchMovies(this.searchTerm).subscribe({
+            this.moviesService.getPhimFromSearch(this.searchTerm).subscribe({
                 next: (movies) => {
                     this.filteredMovies = movies; // Gán kết quả tìm kiếm vào danh sách đã lọc
                     this.isLoading = false; // Dừng tải dữ liệu

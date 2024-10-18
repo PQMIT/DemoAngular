@@ -24,11 +24,11 @@
 
     <!-- movie.component.html -->
     <div *ngIf="!isLoading && listMovies.length > 0">
-        <div class="movie-card" *ngFor="let movie of listMovies" [routerLink]="['/moviesView', movie.slug]">
-            <img *ngIf="ogDataMovie.data" [src]="ogDataMovie?.data?.APP_DOMAIN_CDN_IMAGE + '/' + movie.poster_url" [alt]="movie.name" />
-            <img *ngIf="!ogDataMovie.data" [src]="movie.poster_url" [alt]="movie.name" />
+        <div class="movie-card" *ngFor="let movie of listMovies">
+            <img *ngIf="ogDataMovie.data" [src]="ogDataMovie?.data?.APP_DOMAIN_CDN_IMAGE + '/' + movie.poster_url" [alt]="movie.name" [routerLink]="['/moviesView', movie.slug]" />
+            <img *ngIf="!ogDataMovie.data" [src]="movie.poster_url" [alt]="movie.name" [routerLink]="['/moviesView', movie.slug]" />
             <div class="movie-content">
-                <h2 style="cursor: pointer">{{ movie.name }}</h2>
+                <h2 style="cursor: pointer" [routerLink]="['/moviesView', movie.slug]">{{ movie.name }}</h2>
                 <div class="subcontent">
                     <div class="left-subcontent">
                         <h4>Năm phát hành: {{ movie.year }}</h4>
@@ -43,6 +43,12 @@
                     <div class="right-subcontent">
                         <h4>Chất lượng phim: {{ movie.quality || "FHD" }}</h4>
                         <h4>Ngôn ngữ: {{ movie.lang || "Vietsub" }}</h4>
+                        <span>
+                            <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, listMovies.indexOf(movie), movie)">
+                                <i *ngIf="!isStatusLike[listMovies.indexOf(movie)]" class="pi pi-heart"></i>
+                                <i *ngIf="isStatusLike[listMovies.indexOf(movie)]" class="pi pi-heart-fill"></i>
+                            </p-button>
+                        </span>
                     </div>
                 </div>
                 <div *ngIf="movie.category">
@@ -69,3 +75,4 @@
         ></p-paginator>
     </div>
 </div>
+<p-toast />

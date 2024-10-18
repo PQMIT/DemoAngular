@@ -112,15 +112,15 @@ export class MovieSavedComponent {
         }
     }
 
-    handleLike(event: Event, status: any, movie: any) {
+    handleLike(event: Event, index: any, movie: any) {
         // console.log(movie);
         // Lấy danh sách phim đã lưu từ localStorage hoặc khởi tạo rỗng nếu chưa có
         let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
         // Toggle trạng thái like
-        this.isStatusLike[status] = !this.isStatusLike[status];
+        this.isStatusLike[index] = !this.isStatusLike[index];
         // Kiểm tra xem bộ phim đã có trong danh sách chưa
         const isMovieSaved = savedMovies.some((savedMovie: any) => savedMovie._id === movie._id);
-        if (!isMovieSaved && this.isStatusLike[status]) {
+        if (!isMovieSaved && this.isStatusLike[index]) {
             // Thêm phim vào danh sách nếu chưa tồn tại
             savedMovies.push(movie);
             this.storageService.setLocalStorage("moviesSaved", savedMovies);

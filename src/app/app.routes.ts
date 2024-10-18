@@ -13,6 +13,7 @@ import { MovieSavedComponent } from "./pages/application/movie-saved/movie-saved
 export const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: "home", loadComponent: () => import("./pages/general/home/home.component").then((m) => m.HomeComponent) },
+    // { path: "home", component: HomeComponent },
     { path: "moviesView/:slug", loadComponent: () => import("./pages/application/movies-view/movies-view.component").then((m) => m.MoviesViewComponent) },
     { path: "search", component: MovieSearchComponent },
     { path: "movieSaved", component: MovieSavedComponent },

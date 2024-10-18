@@ -98,8 +98,8 @@ export class HomeComponent implements OnInit, OnDestroy {
             // Trực tiếp gọi hàm fetchMovies() mà không cần setTimeout
             this.autoplayInterval = 4000;
         }
-
         this.fetchMovies();
+
         // console.log(this.movies);
     }
     // Hàm gọi service để lấy dữ liệu từ API

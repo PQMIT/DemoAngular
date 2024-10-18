@@ -25,7 +25,4 @@ export class MoviesService {
     getPhimFromCategory(category: string): Observable<any> {
         return this.http.get<any>(this.apiUrlCategory + category);
     }
-    searchMovies(searchTerm: string): Observable<any> {
-        return this.http.get<any>(this.apiUrlSearch + searchTerm);
-    }
 }
