@@ -35,7 +35,7 @@
     <!-- Phần danh sách các tập phim -->
     <div class="episode-list">
         <p-tabView>
-            <p-tabPanel header="Episodes {{ episode.server_name }}" *ngFor="let episode of episodes">
+            <p-tabPanel header="Tập phim {{ episode.server_name }}" *ngFor="let episode of episodes">
                 <!-- <div class="flex" *ngFor="let episode of episodes"> -->
                 <p-carousel [value]="episode.server_data" [numVisible]="5" [numScroll]="1" [circular]="true" autoplayInterval="2000">
                     <ng-template let-episode pTemplate="item">
@@ -58,27 +58,27 @@
                 <!-- </div> -->
             </p-tabPanel>
 
-            <p-tabPanel header="Description">
+            <p-tabPanel header="Mô tả">
                 <p class="">{{ movie.content }}</p>
             </p-tabPanel>
-            <p-tabPanel header="Actor">
+            <p-tabPanel header="Diễn viên">
                 <span>{{ movie.actor }}</span>
             </p-tabPanel>
             <p-tabPanel header="TMDB">
-                <p>Type: {{ movie.tmdb?.type || "" }}</p>
+                <p>Loai: {{ movie.tmdb?.type || "" }}</p>
                 <p>Id: {{ movie.tmdb?.id || "" }}</p>
-                <p>Season: {{ movie.tmdb?.season || "" }}</p>
-                <p>Vote Average: {{ movie.tmdb?.vote_average || "" }}</p>
-                <p>Vote Count: {{ movie.tmdb?.vote_count || "" }}</p>
+                <p>Phần: {{ movie.tmdb?.season || "" }}</p>
+                <p>Đánh giá trung bình: {{ movie.tmdb?.vote_average || "" }}</p>
+                <p>Sô lượng đánh giá: {{ movie.tmdb?.vote_count || "" }}</p>
             </p-tabPanel>
-            <p-tabPanel header="Rate">
+            <p-tabPanel header="Đánh giá sao">
                 <div class="card flex justify-center">
                     <form [formGroup]="formGroup">
                         <p-rating formControlName="value" />
                     </form>
                 </div>
             </p-tabPanel>
-            <p-tabPanel header="Comment">
+            <p-tabPanel header="Bình luận">
                 <!-- Danh sách comment -->
                 <div *ngFor="let comment of comments" class="comment">
                     <div class="comment-header">

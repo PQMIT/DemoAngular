@@ -98,9 +98,12 @@ export class UserManagementComponent implements OnDestroy {
     showSuccess() {
         this.messageService.add({ severity: "success", summary: "Success", detail: "Message Content" });
     }
+    // showNotifiacation(severity: string, detail: string) {
+    //     this.messageService.add({ severity: "success", summary: "Success", detail: `${detail}` });
+    // }
 
-    showInfo() {
-        this.messageService.add({ severity: "info", summary: "Info", detail: "Message Content" });
+    showInfo(detail: string) {
+        this.messageService.add({ severity: "info", summary: "Info", detail: detail });
     }
 
     showWarn() {
@@ -256,16 +259,19 @@ export class UserManagementComponent implements OnDestroy {
             },
 
             accept: () => {
-                this.messageService.add({ severity: "info", summary: "Confirmed", detail: "Record deleted" });
+                // this.messageService.add({ severity: "info", summary: "Confirmed", detail: "Record deleted" });
                 console.log("Delete user", user?.id);
                 const data = localStorage.getItem("users");
                 if (data) {
                     try {
                         const users = JSON.parse(data);
                         if (Array.isArray(users)) {
-                            const index = users.findIndex((user: any) => user.id === user.id);
+                            const index = users.findIndex((e: any) => e.id === user.id);
                             if (index !== -1) {
                                 users.splice(index, 1);
+                                // this.showInfo();
+                                // this.messageService.add({ severity: "info", summary: "Confirmed", detail: "Record deleted" });
+                                this.showInfo("Record deleted");
                             } else {
                                 console.error("User not found in the array.");
                             }
