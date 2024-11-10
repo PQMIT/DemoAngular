@@ -23,7 +23,7 @@
 .movie-details {
   flex: 0 0 65%;
   padding-left: 20px;
-  color:#955151 !important ;
+  color: #10b981 !important;
 }
 
 .episode-list {
@@ -47,31 +47,32 @@
 .episode-details {
   margin-top: 10px;
   padding: 10px;
-  color: #955151;
+  color: #10b981;
   background-color: #ccc;
   opacity: 0.8;
   text-align: center;
 }
 
-.brand_episode{
+.brand_episode {
   /* background-color: bisque;  */
   font-style: italic;
   color: rgb(23, 151, 87);
   padding: 5px 0;
 }
 
-.quality_episode{
-    color: #fff;
-    /* position: absolute; */
-    /* bottom: 0; */
-    /* right: 0; */
-    text-transform: uppercase;
-    font-size: 12px;
-    padding: 5px 10px;
-    margin: 0;
-    background: #408BEA;
-        font-style: italic;
+.quality_episode {
+  color: #fff;
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* right: 0; */
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 5px 10px;
+  margin: 0;
+  background: #408BEA;
+  font-style: italic;
 }
+
 .comment {
   margin-bottom: 15px;
   padding: 10px;
@@ -115,6 +116,7 @@
 .comment-form button:hover {
   background-color: #0056b3;
 }
+
 .share-buttons button {
   margin: 5px;
   padding: 10px 15px;
@@ -128,5 +130,3 @@
 .share-buttons button:hover {
   background-color: #0056b3;
 }
-
-

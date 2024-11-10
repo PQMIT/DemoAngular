@@ -78,6 +78,23 @@ export class HomeComponent implements OnInit, OnDestroy {
             dateFormat: "dd/mm/yy",
             weekHeader: "Tuần",
         };
+        this.responsiveOptions = [
+        {
+            breakpoint: '1024px',
+            numVisible: 3,
+            numScroll: 3
+        },
+        {
+            breakpoint: '768px',
+            numVisible: 2,
+            numScroll: 2
+        },
+        {
+            breakpoint: '560px',
+            numVisible: 1,
+            numScroll: 1
+        }
+        ];
     }
     showSuccess(movie: any) {
         this.messageService.add({ severity: "success", summary: "Success", detail: `${movie.name} - Saved` });
@@ -122,7 +139,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 // Lưu các dữ liệu vào biến tương ứng
                 this.movies = results.phimMoiCapNhat.items;
                 //check movie saved
-                this.isStatusLike = this.movies.map((movie) => savedMovies.some((savedMovie: any) => savedMovie._id === movie._id));
+                this.isStatusLike = this.movies.map((movie) => savedMovies?.some((savedMovie: any) => savedMovie._id === movie._id));
                 // console.log(results);
                 this.moviesCategories = [results.phimLe, results.phimBo, results.hoatHinh, results.tvShows];
                 // Lưu moviesCategories vào localStorage
@@ -144,7 +161,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         // Toggle trạng thái like
         this.isStatusLike[status] = !this.isStatusLike[status];
         // Kiểm tra xem bộ phim đã có trong danh sách chưa
-        const isMovieSaved = savedMovies.some((savedMovie: any) => savedMovie._id === movie._id);
+        const isMovieSaved = savedMovies?.some((savedMovie: any) => savedMovie._id === movie._id);
         if (!isMovieSaved && this.isStatusLike[status]) {
             // Thêm phim vào danh sách nếu chưa tồn tại
             savedMovies.push(movie);

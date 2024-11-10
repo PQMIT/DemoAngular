@@ -1,21 +1,12 @@
-<div class="container">
-    <p-menubar [model]="isLoggedIn ? items2 : items">
-        <ng-template pTemplate="item" let-item let-root="root">
-            <a [routerLink]="item.routerLink" pRipple class="flex items-center align-content-center p-menubar-item-link">
-                <span [class]="item.icon"></span>
-                <span class="ml-2">{{ item.label }}</span>
-                <!-- <p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root, 'ml-2': root }" [value]="item.badge" /> -->
-                <span *ngIf="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
-                <i *ngIf="item.items" [ngClass]="['pi', root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto']"></i>
-            </a>
-        </ng-template>
+<div class="container overflow-hidden">
+    <p-menubar [model]="!isMobileMenuActive ? items : items3">
         <!-- <ng-template pTemplate="end"> -->
         <div class="flex items-center gap-2">
             <p-button (onClick)="toggleDarkMode()"><i class="pi pi-sun" style="color: 'var(--primary-color)'"></i></p-button>
-            <input type="text" pInputText placeholder="Tìm kiếm tên phim" (keyup.enter)="onSearch($event)" class="w-32 sm:w-auto" />
+            <input type="text" pInputText placeholder="Tìm kiếm phim" size="small" (keyup.enter)="onSearch($event)" class="" />
             <!-- <p-button label="Login" [routerLink]="['/login']" *ngIf="!isLoggedIn"></p-button> -->
 
-            <!-- <i class="pi pi-bell ringing" *ngIf="isRinging; else notRinging" style="font-size: x-large; align-content: center" (click)="op.toggle($event)"></i>
+            <i class="pi pi-bell ringing" *ngIf="isRinging; else notRinging" style="font-size: x-large; align-content: center" (click)="op.toggle($event)"></i>
             <ng-template #notRinging>
                 <i class="pi pi-bell" style="font-size: x-large; align-content: center" (click)="op.toggle($event)"></i>
             </ng-template>
@@ -37,11 +28,11 @@
                         <i class="pi pi-info-circle"></i> {{ notification.message }}
                     </div>
                 </div>
-                <div style="text-align: right; padding-top: 5px; cursor: pointer">
+                <div class="cursor-pointer" style="text-align: right; padding-top: 5px">
                     <a (click)="viewAllNotifications()">Xem tất cả</a>
                 </div>
-            </p-popover> -->
-            <p-button label="Logout" (click)="onLogout()" *ngIf="isLoggedIn"></p-button>
+            </p-popover>
+            <!-- <p-button label="Logout" (click)="onLogout()" *ngIf="isLoggedIn"></p-button> -->
             <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
         </div>
         <!-- </ng-template> -->

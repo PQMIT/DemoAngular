@@ -1,7 +1,8 @@
 <div class="container">
-    <h1>
-        Tìm kiếm phim: <span style="font-style: italic; color: #ff6f61">{{ searchTerm }}</span>
-    </h1>
+    <h3>
+        Tìm kiếm phim:
+        <span style="font-style: italic; color: #ff6f61">{{ searchTerm }}</span>
+    </h3>
 
     <!-- Ô nhập tìm kiếm -->
     <!-- <input type="text" pInputText placeholder="Tìm kiếm tên phim" (keyup.enter)="onSearch($event)" [(ngModel)]="searchTerm" class="w-32 sm:w-auto mb-3" /> -->
@@ -18,40 +19,42 @@
         <i class="pi pi-search"></i>
         <!-- Thêm biểu tượng tìm kiếm -->
         <p>Không tìm thấy phim nào với từ khóa:</p>
-        <p class="search-term">"{{ searchTerm }}"</p>
+        <span class="search-term">"{{ searchTerm }}"</span>
         <!-- Hiển thị từ khóa tìm kiếm -->
     </div>
 
     <!-- movie.component.html -->
     <div *ngIf="!isLoading && pagedMovies.length > 0">
-        <div class="movie-card" *ngFor="let movie of pagedMovies">
-            <img [src]="filteredMovies.data.APP_DOMAIN_CDN_IMAGE + '/' + movie.poster_url" [alt]="movie.name" />
-            <div class="movie-content">
-                <h2 [routerLink]="['/moviesView', movie.slug]" style="cursor: pointer">{{ movie.name }}</h2>
-                <div class="subcontent">
-                    <div class="left-subcontent">
-                        <h4>Năm phát hành: {{ movie.year }}</h4>
-                        <h4>Thời lượng: {{ movie.time }}</h4>
-                        <h4>Episode_current: {{ movie.episode_current }}</h4>
-                    </div>
-                    <div class="right-subcontent">
-                        <h4>Quality: {{ movie.quality }}</h4>
-                        <h4>Lang: {{ movie.lang }}</h4>
-                        <span>
-                            <!-- <p-skeleton shape="circle" size="2rem" *ngIf="!movie"></p-skeleton> -->
-                            <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, pagedMovies.indexOf(movie), movie)">
-                                <i *ngIf="!isStatusLike[pagedMovies.indexOf(movie)]" class="pi pi-heart"></i>
-                                <i *ngIf="isStatusLike[pagedMovies.indexOf(movie)]" class="pi pi-heart-fill"></i>
-                            </p-button>
+        <div class="movie-grid">
+            <div class="movie-card" *ngFor="let movie of pagedMovies">
+                <img [src]="filteredMovies.data.APP_DOMAIN_CDN_IMAGE + '/' + movie.poster_url" [alt]="movie.name" />
+                <div class="movie-content">
+                    <p [routerLink]="['/moviesView', movie.slug]" style="cursor: pointer">{{ movie.name }}</p>
+                    <div class="subcontent">
+                        <div class="left-subcontent">
+                            <p>Năm phát hành: {{ movie.year }}</p>
+                            <p>Thời lượng: {{ movie.time }}</p>
+                            <p>Episode_current: {{ movie.episode_current }}</p>
+                        </div>
+                        <div class="right-subcontent">
+                            <p>Quality: {{ movie.quality }}</p>
+                            <p>Lang: {{ movie.lang }}</p>
+                            <p>
+                                <!-- <p-skeleton shape="circle" size="2rem" *ngIf="!movie"></p-skeleton> -->
+                                <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, pagedMovies.indexOf(movie), movie)">
+                                    <i *ngIf="!isStatusLike[pagedMovies.indexOf(movie)]" class="pi pi-heart"></i>
+                                    <i *ngIf="isStatusLike[pagedMovies.indexOf(movie)]" class="pi pi-heart-fill"></i>
+                                </p-button>
 
-                            <!-- <p-button *ngIf="movie" icon="pi pi-shopping-cart" styleClass="ml-2"></p-button> -->
-                        </span>
+                                <!-- <p-button *ngIf="movie" icon="pi pi-shopping-cart" styleClass="ml-2"></p-button> -->
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <h4>Category:</h4>
-                    <div class="category-container">
-                        <span *ngFor="let cat of movie.category" class="category-badge">{{ cat.name }}</span>
+                    <div>
+                        <p>Category:</p>
+                        <div class="category-container">
+                            <p *ngFor="let cat of movie.category" class="category-badge">{{ cat.name }}</p>
+                        </div>
                     </div>
                 </div>
             </div>

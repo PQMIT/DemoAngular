@@ -2,7 +2,7 @@
   padding: 20px;
   max-width: 60vw;
   margin: auto;
-  color: #955151;
+  color: #10b981;
 }
 
 .movie-card {
@@ -14,16 +14,18 @@
   flex-direction: row;
   align-items: center;
 }
-.movie-content{
+
+.movie-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-grow: 1; 
+  flex-grow: 1;
   padding-left: 4rem;
 }
 
 .movie-card img {
-  width: 250px; /* Kích thước ảnh */
+  width: 250px;
+  /* Kích thước ảnh */
   height: auto;
   border-radius: 4px;
   margin-right: 10px;
@@ -36,57 +38,64 @@
   background: #f0f0f0;
   animation: pulse 1.5s infinite;
 }
-.subcontent{
+
+.subcontent {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
-.left-subcontent{
+
+.left-subcontent {
   margin-right: 2rem;
 }
+
 .category-container {
-    display: flex; /* Sử dụng flexbox để căn chỉnh nhãn */
-    flex-wrap: wrap; /* Cho phép nhãn xuống dòng nếu không đủ chỗ */
-    gap: 5px; /* Khoảng cách giữa các nhãn */
+  display: flex;
+  /* Sử dụng flexbox để căn chỉnh nhãn */
+  flex-wrap: wrap;
+  /* Cho phép nhãn xuống dòng nếu không đủ chỗ */
+  gap: 5px;
+  /* Khoảng cách giữa các nhãn */
 }
 
 .category-badge {
-    background-color: cornflowerblue;
-    color: white;
-    padding: 4px 6px;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
-    cursor: pointer;
-    font-size: smaller;
+  background-color: cornflowerblue;
+  color: white;
+  padding: 4px 6px;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  font-size: smaller;
 
 }
 
 .category-badge:hover {
-    background-color: #255cbd; /* Màu nền khi hover */
+  background-color: #255cbd;
+  /* Màu nền khi hover */
 }
 
 /* movie.component.css */
 .no-movies-found {
-    text-align: center;
-    padding: 40px;
-    color: #666;
+  text-align: center;
+  padding: 40px;
+  color: #666;
 }
 
 .no-movies-found i {
-    font-size: 50px;
-    color: #ff6f61;
-    margin-bottom: 20px;
+  font-size: 50px;
+  color: #ff6f61;
+  margin-bottom: 20px;
 }
 
 .no-movies-found p {
-    font-size: 18px;
-    color: #333;
+  font-size: 18px;
+  color: #333;
 }
 
 .no-movies-found .search-term {
-    font-weight: bold;
-    font-size: 20px;
-    color: #ff6f61;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ff6f61;
 }
 
 
@@ -94,9 +103,11 @@
   0% {
     background-color: #f0f0f0;
   }
+
   50% {
     background-color: #e0e0e0;
   }
+
   100% {
     background-color: #f0f0f0;
   }

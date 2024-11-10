@@ -2,15 +2,17 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
-    color:#955151 !important;
+    color: #10b981 !important;
 
     h1 {
         font-size: 2.5rem;
         margin-bottom: 20px;
     }
 
-    .features-list, .tech-list {
+    .features-list,
+    .tech-list {
         padding-left: 20px;
+
         li {
             margin-bottom: 10px;
         }

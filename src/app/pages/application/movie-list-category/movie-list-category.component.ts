@@ -71,7 +71,7 @@ export class MovieListCategoryComponent {
                         this.ogDataMovie = movies; // Gán kết quả vào danh sách
                         this.listMovies = movies?.items;
                         let moviesSaved = this.storageService.getLocalStorage("moviesSaved") || [];
-                        this.isStatusLike = this.listMovies.map((m: any) => moviesSaved.some((e: any) => e._id === m._id));
+                        this.isStatusLike = this.listMovies.map((m: any) => moviesSaved?.some((e: any) => e._id === m._id));
                         // console.log(this.isStatusLike, "getMovie");
                     },
                     error: (error) => {
@@ -89,7 +89,7 @@ export class MovieListCategoryComponent {
                         this.ogDataMovie = movies; // Gán kết quả vào danh sách
                         this.listMovies = movies.data.items;
                         let moviesSaved = this.storageService.getLocalStorage("moviesSaved") || [];
-                        this.isStatusLike = this.listMovies.map((m: any) => moviesSaved.some((e: any) => e._id === m._id));
+                        this.isStatusLike = this.listMovies.map((m: any) => moviesSaved?.some((e: any) => e._id === m._id));
                         // console.log(this.isStatusLike, "getMovie");
                     },
                     error: (error) => {
@@ -125,7 +125,7 @@ export class MovieListCategoryComponent {
         console.log(this.isStatusLike[index]);
 
         // Kiểm tra xem bộ phim đã có trong danh sách chưa
-        const isMovieSaved = savedMovies.some((savedMovie: any) => savedMovie._id === movie._id);
+        const isMovieSaved = savedMovies?.some((savedMovie: any) => savedMovie._id === movie._id);
         if (!isMovieSaved && this.isStatusLike[index]) {
             // Thêm phim vào danh sách nếu chưa tồn tại
             savedMovies.push(movie);

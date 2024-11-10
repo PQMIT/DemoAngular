@@ -140,7 +140,7 @@ export class MoviesViewComponent implements OnInit {
                     this.episodes = movies.episodes;
                     console.log(this.episodes);
                     let moviesSaved = this.storageService.getLocalStorage("moviesSaved");
-                    this.isStatusLike = moviesSaved.some((movie: any) => movie._id === this.movie._id);
+                    this.isStatusLike = moviesSaved?.some((movie: any) => movie._id === this.movie._id);
                 },
                 (error) => {
                     console.error("Lỗi khi lấy danh sách phim:", error);
@@ -201,7 +201,7 @@ export class MoviesViewComponent implements OnInit {
         // Toggle trạng thái like
         this.isStatusLike = !this.isStatusLike;
         // Kiểm tra xem bộ phim đã có trong danh sách chưa
-        const isMovieSaved = savedMovies.some((savedMovie: any) => savedMovie._id === movie._id);
+        const isMovieSaved = savedMovies?.some((savedMovie: any) => savedMovie._id === movie._id);
         if (!isMovieSaved && this.isStatusLike) {
             // Thêm phim vào danh sách nếu chưa tồn tại
             savedMovies.push(movie);

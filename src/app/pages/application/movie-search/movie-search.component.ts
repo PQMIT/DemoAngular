@@ -65,7 +65,7 @@ export class MovieSearchComponent implements OnInit {
         const end = start + this.rows;
         this.pagedMovies = this.filteredMovies?.data?.items.slice(start, end) ?? [];
         let savedMovies = this.storageService.getLocalStorage("moviesSaved") || [];
-        this.isStatusLike = this.pagedMovies.map((e: any) => savedMovies.some((s: any) => s._id === e._id));
+        this.isStatusLike = this.pagedMovies.map((e: any) => savedMovies?.some((s: any) => s._id === e._id));
         console.log(this.isStatusLike);
     }
 
@@ -84,7 +84,7 @@ export class MovieSearchComponent implements OnInit {
         // Toggle trạng thái like
         this.isStatusLike[status] = !this.isStatusLike[status];
         // Kiểm tra xem bộ phim đã có trong danh sách chưa
-        const isMovieSaved = savedMovies.some((savedMovie: any) => savedMovie._id === movie._id);
+        const isMovieSaved = savedMovies?.some((savedMovie: any) => savedMovie._id === movie._id);
         if (!isMovieSaved && this.isStatusLike[status]) {
             // Thêm phim vào danh sách nếu chưa tồn tại
             savedMovies.push(movie);

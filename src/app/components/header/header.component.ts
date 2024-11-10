@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, ViewChild } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { MenubarModule } from "primeng/menubar";
 import { BadgeModule } from "primeng/badge";
@@ -14,10 +14,13 @@ import { Router } from "@angular/router";
 import { PrimeNGConfig } from "primeng/api";
 import { Aura } from "primeng/themes/aura";
 import { OverlayPanelModule } from "primeng/overlaypanel";
-import { PopoverModule } from "primeng/popover";
+import { Popover, PopoverModule } from "primeng/popover";
+import { DeviceDetectorService } from "ngx-device-detector";
+import { log } from "console";
 @Component({
     selector: "app-header",
     templateUrl: "./header.component.html",
+    styleUrls: ["./header.component.css"],
     standalone: true,
     imports: [
         MenubarModule,
@@ -35,6 +38,7 @@ import { PopoverModule } from "primeng/popover";
     ],
 })
 export class HeaderComponent {
+    @ViewChild("popoverMenu") popoverMenu!: Popover;
     items: MenuItem[] = [
         {
             label: "Home",
@@ -75,18 +79,24 @@ export class HeaderComponent {
             routerLink: ["/user"],
         },
     ];
+    items3: MenuItem[] = [
+        {
+            label: "",
+            icon: "pi pi-bars",
+        },
+    ];
     notifications = [
         { message: "You have a new message from John. You have a new message from John." },
         { message: "Your order has been shipped.You have a new message from John." },
         { message: "Don't forget the meeting at 2 PM. You have a new message from John." },
     ];
+    isMobileMenuActive: boolean = true; // Biến theo dõi trạng thái hiển thị menu trên thiết bị di động
     isRinging = false; // Biến theo dõi trạng thái rung
-
     isLoggedIn: boolean = false;
     filteredMovies: any[] = []; // Mảng chứa danh sách phim đã lọc
     config: PrimeNGConfig = inject(PrimeNGConfig);
 
-    constructor(private authService: AuthService, private router: Router, private primengConfig: PrimeNGConfig) {
+    constructor(private authService: AuthService, private router: Router, private primengConfig: PrimeNGConfig, private deviceService: DeviceDetectorService) {
         this.config.theme.set({
             preset: Aura,
             options: {
@@ -100,11 +110,23 @@ export class HeaderComponent {
         this.authService.isLoggedIn$.subscribe((status) => {
             this.isLoggedIn = status;
         });
+        // Dùng DeviceDetector để xác định thiết bị
+        const isMobile = this.deviceService.isMobile(); // Trả về true nếu thiết bị là di động
+        console.log("Is mobile:", isMobile);
+        if (isMobile) {
+            this.isMobileMenuActive = true; // hiện menu trên thiết bị di động
+        } else {
+            this.isMobileMenuActive = false; // Ẩn menu trên thiết bị di động
+        }
     }
     // Phương thức chuyển đổi chế độ sáng/tối
     toggleDarkMode() {
         const element = document.querySelector("html");
         element?.classList.toggle("my-app-dark");
+    }
+    // Hàm toggle để mở/đóng menu
+    toggleMenu() {
+        this.isMobileMenuActive = !this.isMobileMenuActive;
     }
     // Phương thức gọi khi người dùng tìm kiếm
     onSearch(event: Event) {
