@@ -1,12 +1,31 @@
 <div class="container overflow-hidden">
-    <p-menubar [model]="!isMobileMenuActive ? items : items3">
+    <p-menubar [model]="!isMobile ? items : []">
         <!-- <ng-template pTemplate="end"> -->
         <div class="flex items-center gap-2">
+            <i class="pi pi-bars" style="font-size: x-large; align-content: center" (click)="toggle($event)"></i>
+            <p-popover #popoverMenu>
+                <div class="flex flex-col gap-4">
+                    <div>
+                        <ul class="list-none p-0 m-0 flex flex-col">
+                            <li *ngFor="let item of items" class="flex items-center gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border">
+                                <a *ngIf="isEnable" [routerLink]="item.routerLink" pRipple class="flex items-center align-content-center p-menubar-item-link">
+                                    <span [class]="item.icon"></span>
+                                    <span class="ml-2">{{ item.label }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </p-popover>
             <p-button (onClick)="toggleDarkMode()"><i class="pi pi-sun" style="color: 'var(--primary-color)'"></i></p-button>
-            <input type="text" pInputText placeholder="Tìm kiếm phim" size="small" (keyup.enter)="onSearch($event)" class="" />
+            <input *ngIf="!isMobile" type="text" pInputText placeholder="Tìm kiếm phim" size="small" (keyup.enter)="onSearch($event)" class="" />
+            <p-inputgroup *ngIf="isMobile">
+                <input id="searchTerm" #searchTermInput type="text" pInputText placeholder="Keyword" size="small" />
+                <p-button type="button" icon="pi pi-search" severity="warn" (click)="onSearch2($event)" />
+            </p-inputgroup>
             <!-- <p-button label="Login" [routerLink]="['/login']" *ngIf="!isLoggedIn"></p-button> -->
 
-            <i class="pi pi-bell ringing" *ngIf="isRinging; else notRinging" style="font-size: x-large; align-content: center" (click)="op.toggle($event)"></i>
+            <!-- <i class="pi pi-bell ringing" *ngIf="isRinging; else notRinging" style="font-size: x-large; align-content: center" (click)="op.toggle($event)"></i>
             <ng-template #notRinging>
                 <i class="pi pi-bell" style="font-size: x-large; align-content: center" (click)="op.toggle($event)"></i>
             </ng-template>
@@ -31,7 +50,7 @@
                 <div class="cursor-pointer" style="text-align: right; padding-top: 5px">
                     <a (click)="viewAllNotifications()">Xem tất cả</a>
                 </div>
-            </p-popover>
+            </p-popover> -->
             <!-- <p-button label="Logout" (click)="onLogout()" *ngIf="isLoggedIn"></p-button> -->
             <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
         </div>

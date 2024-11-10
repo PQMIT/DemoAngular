@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, inject, NgZone, OnInit, ViewChild } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { MenubarModule } from "primeng/menubar";
 import { BadgeModule } from "primeng/badge";
@@ -16,7 +16,7 @@ import { Aura } from "primeng/themes/aura";
 import { OverlayPanelModule } from "primeng/overlaypanel";
 import { Popover, PopoverModule } from "primeng/popover";
 import { DeviceDetectorService } from "ngx-device-detector";
-import { log } from "console";
+import { ChangeDetectorRef } from "@angular/core";
 @Component({
     selector: "app-header",
     templateUrl: "./header.component.html",
@@ -37,8 +37,9 @@ import { log } from "console";
         PopoverModule,
     ],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
     @ViewChild("popoverMenu") popoverMenu!: Popover;
+    @ViewChild("searchTermInput") searchTermInput!: ElementRef<any>;
     items: MenuItem[] = [
         {
             label: "Home",
@@ -90,13 +91,21 @@ export class HeaderComponent {
         { message: "Your order has been shipped.You have a new message from John." },
         { message: "Don't forget the meeting at 2 PM. You have a new message from John." },
     ];
-    isMobileMenuActive: boolean = true; // Biến theo dõi trạng thái hiển thị menu trên thiết bị di động
+    isMobile: boolean = true; // Biến theo dõi trạng thái hiển thị menu trên thiết bị di động
     isRinging = false; // Biến theo dõi trạng thái rung
     isLoggedIn: boolean = false;
     filteredMovies: any[] = []; // Mảng chứa danh sách phim đã lọc
     config: PrimeNGConfig = inject(PrimeNGConfig);
+    isEnable: boolean = true; // Trạng thái hiển thị menu
 
-    constructor(private authService: AuthService, private router: Router, private primengConfig: PrimeNGConfig, private deviceService: DeviceDetectorService) {
+    constructor(
+        private authService: AuthService,
+        private router: Router,
+        private primengConfig: PrimeNGConfig,
+        private deviceService: DeviceDetectorService,
+        private cdr: ChangeDetectorRef,
+        private ngZone: NgZone
+    ) {
         this.config.theme.set({
             preset: Aura,
             options: {
@@ -110,26 +119,31 @@ export class HeaderComponent {
         this.authService.isLoggedIn$.subscribe((status) => {
             this.isLoggedIn = status;
         });
-        // Dùng DeviceDetector để xác định thiết bị
-        const isMobile = this.deviceService.isMobile(); // Trả về true nếu thiết bị là di động
+        // Xác định thiết bị và cập nhật trong ngZone để đảm bảo Angular phát hiện thay đổi
+        const isMobile = this.deviceService.isMobile();
         console.log("Is mobile:", isMobile);
-        if (isMobile) {
-            this.isMobileMenuActive = true; // hiện menu trên thiết bị di động
-        } else {
-            this.isMobileMenuActive = false; // Ẩn menu trên thiết bị di động
-        }
+
+        this.ngZone.run(() => {
+            this.isMobile = isMobile;
+        });
     }
+
     // Phương thức chuyển đổi chế độ sáng/tối
     toggleDarkMode() {
         const element = document.querySelector("html");
         element?.classList.toggle("my-app-dark");
     }
-    // Hàm toggle để mở/đóng menu
-    toggleMenu() {
-        this.isMobileMenuActive = !this.isMobileMenuActive;
+    // Toggle menu khi người dùng tương tác
+    toggleMenu(): void {
+        this.isEnable = !this.isEnable;
+    }
+    toggle(event: Event) {
+        this.popoverMenu.toggle(event);
     }
     // Phương thức gọi khi người dùng tìm kiếm
     onSearch(event: Event) {
+        console.log(event.target);
+
         const inputElement = event.target as HTMLInputElement; // Ép kiểu event.target thành HTMLInputElement
         const searchTerm = inputElement.value; // Lấy giá trị từ input
         if (searchTerm) {
@@ -139,6 +153,14 @@ export class HeaderComponent {
         } else {
             // Nếu không có từ khóa tìm kiếm, hiển thị toàn bộ danh sách
             // this.filteredMovies = [...this.movies];
+        }
+    }
+    onSearch2(event: Event) {
+        const searchTerm = this.searchTermInput.nativeElement.value; // Lấy giá trị từ input
+        console.log(searchTerm); // Hoặc làm gì đó với searchTerm
+
+        if (searchTerm) {
+            this.router.navigate(["/search"], { queryParams: { search: searchTerm } });
         }
     }
     onLogout() {

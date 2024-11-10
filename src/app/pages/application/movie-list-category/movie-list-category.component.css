@@ -59,8 +59,8 @@
 }
 
 .category-badge {
-  background-color: cornflowerblue;
-  color: white;
+  background-color: #6f1515;
+    color: rgb(184 212 104);
   padding: 4px 6px;
   text-transform: uppercase;
   transition: background-color 0.3s;
