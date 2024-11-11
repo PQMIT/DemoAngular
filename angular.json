@@ -21,8 +21,17 @@
                         "assets": [
                             {
                                 "glob": "**/*",
-                                "input": "public",
-                                "webconfig": "./web.config"
+                                "input": "public"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets",
+                                "output": "/assets"
+                            },
+                            {
+                                "glob": "web.config",
+                                "input": "src",
+                                "output": "/"
                             }
                         ],
                         "styles": ["src/styles.scss", "node_modules/primeicons/primeicons.css", "node_modules/primeflex/primeflex.css"],
