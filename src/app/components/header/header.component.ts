@@ -57,23 +57,6 @@ export class HeaderComponent implements OnInit {
             // badge: "3",
             routerLink: ["/about"],
         },
-    ];
-    items2: MenuItem[] = [
-        {
-            label: "Home",
-            icon: "pi pi-home",
-            routerLink: ["/home"],
-        },
-        {
-            label: "Movie Saved",
-            icon: "pi pi-video",
-            routerLink: ["/movieSaved"],
-        },
-        {
-            label: "About",
-            icon: "pi pi-info-circle",
-            routerLink: ["/about"],
-        },
         {
             label: "User",
             icon: "pi pi-user",
@@ -84,6 +67,9 @@ export class HeaderComponent implements OnInit {
         {
             label: "",
             icon: "pi pi-bars",
+            command: () => {
+                this.toggle();
+            },
         },
     ];
     notifications = [
@@ -137,7 +123,7 @@ export class HeaderComponent implements OnInit {
     toggleMenu(): void {
         this.isEnable = !this.isEnable;
     }
-    toggle(event: Event) {
+    toggle(): void {
         this.popoverMenu.toggle(event);
     }
     // Phương thức gọi khi người dùng tìm kiếm
