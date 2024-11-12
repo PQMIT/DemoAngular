@@ -23,6 +23,7 @@ import { Lara } from "primeng/themes/lara";
 import { Inject } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import { SafeUrlPipe } from "./pipe/SafeUrlPipe";
+import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 @Component({
     selector: "app-root",
     standalone: true,
@@ -54,6 +55,7 @@ import { SafeUrlPipe } from "./pipe/SafeUrlPipe";
     ],
     templateUrl: "./app.component.html",
     styleUrl: "./app.component.css",
+    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 })
 export class AppComponent {
     title = "DemoAngular";

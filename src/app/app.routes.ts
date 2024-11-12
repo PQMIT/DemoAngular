@@ -12,6 +12,7 @@ import { MovieSavedComponent } from "./pages/application/movie-saved/movie-saved
 
 export const routes: Routes = [
     { path: "login", component: LoginComponent },
+    { path: "/", loadComponent: () => import("./pages/general/home/home.component").then((m) => m.HomeComponent) },
     { path: "home", loadComponent: () => import("./pages/general/home/home.component").then((m) => m.HomeComponent) },
     // { path: "home", component: HomeComponent },
     { path: "moviesView/:slug", loadComponent: () => import("./pages/application/movies-view/movies-view.component").then((m) => m.MoviesViewComponent) },
@@ -21,6 +22,6 @@ export const routes: Routes = [
     { path: "user", component: UserManagementComponent, canActivate: [AuthGuard] },
     { path: "userDetail/:id", component: UserDetailComponent, canActivate: [AuthGuard] },
     { path: "about", component: AboutComponent },
-    { path: "", redirectTo: "/home", pathMatch: "full" },
+    { path: "**", redirectTo: "/home", pathMatch: "full" },
     // Lazy loading UserModule
 ];
