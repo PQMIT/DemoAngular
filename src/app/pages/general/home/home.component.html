@@ -3,7 +3,7 @@
     <div class="card">
         <!-- Skeleton loader for carousel -->
         <div class="mx-2">
-            <p-carousel [value]="movies" *ngIf="isLoading" [numVisible]="5" [numScroll]="2" [circular]="true" [responsiveOptions]="responsiveOptions">
+            <p-carousel [value]="movies" *ngIf="isLoading" [numVisible]="6" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
                 <!-- Header for the carousel -->
                 <ng-template pTemplate="header" class="justify-content-start">
                     <h3 class="mx-3" style="color: #10b981">PHIM MỚI</h3>
@@ -21,12 +21,12 @@
             </p-carousel>
         </div>
 
-        <p-carousel [value]="movies" *ngIf="!isLoading" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="autoplayInterval">
+        <p-carousel [value]="movies" *ngIf="!isLoading" [numVisible]="6" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="autoplayInterval">
             <!-- Header for the carousel -->
             <ng-template pTemplate="header" class="justify-content-start">
                 <div class="flex" style="align-items: center; justify-content: space-between">
                     <h3 class="mx-2" style="color: #10b981">PHIM MỚI</h3>
-                    <a class="px-2" style="text-decoration: none; color: #10b981" [routerLink]="['/movieListCategory', 'phim-moi-cap-nhat']" [queryParams]="{ page: 1 }"> More > </a>
+                    <a class="px-2" style="text-decoration: none; color: #10b981" [routerLink]="['/movieListCategory', 'phim-moi-cap-nhat']" [queryParams]="{ page: 1 }">Xem tất cả</a>
                 </div>
             </ng-template>
             <!-- Template for each item in the carousel -->
@@ -75,7 +75,7 @@
     <div class="block bg-primary p-1 border-round mb-1" *ngFor="let i of [1, 2, 3, 4]">
         <div class="flex" style="align-items: center; justify-content: space-between">
             <h3 class="px-2" style="color: #10b981; text-transform: uppercase">Phim lẻ Mới</h3>
-            <a style="text-decoration: none; color: #10b981" class="px-2">More></a>
+            <a style="text-decoration: none; color: #10b981" class="px-2">Xem tất cả</a>
         </div>
         <div class="grid nested-grid p-2 mb-2 mx-6">
             <div class="col-3">
@@ -102,7 +102,7 @@
 <div class="block bg-primary p-1 border-round mb-1" *ngFor="let category of moviesCategories">
     <div class="flex" style="align-items: center; justify-content: space-between">
         <h3 class="px-2" style="color: #10b981; text-transform: uppercase">{{ category.data.titlePage }} Mới</h3>
-        <a class="px-2" style="text-decoration: none; color: #10b981" [routerLink]="['/movieListCategory', category.data.type_list]" [queryParams]="{ page: 1 }">More></a>
+        <a class="px-2" style="text-decoration: none; color: #10b981" [routerLink]="['/movieListCategory', category.data.type_list]" [queryParams]="{ page: 1 }">Xem tất cả</a>
     </div>
     <div class="grid nested-grid p-2 mb-2 mx-2" *ngIf="!isLoading">
         <!-- <div class="col-3">
