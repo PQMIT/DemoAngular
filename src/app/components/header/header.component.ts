@@ -107,7 +107,7 @@ export class HeaderComponent implements OnInit {
         });
         // Xác định thiết bị và cập nhật trong ngZone để đảm bảo Angular phát hiện thay đổi
         const isMobile = this.deviceService.isMobile();
-        console.log("Is mobile:", isMobile);
+        // console.log("Is mobile:", isMobile);
 
         this.ngZone.run(() => {
             this.isMobile = isMobile;
