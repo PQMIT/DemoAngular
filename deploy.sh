@@ -6,7 +6,7 @@ DIST_PATH="$REPO_PATH/dist/demo-angular"
 DEPLOY_PATH="/var/www/html"
 LOG_FILE="/tmp/deploy.log"
 BOT_TOKEN="7647530452:AAFEpO0_NX3H9EFW6ttOIeG-btEqi-e2DN0"  # Thay bằng token của bot Telegram
-CHAT_ID="123456789"  # Thay bằng chat ID của bạn
+CHAT_ID="6042225244"  # Thay bằng chat ID của bạn
 
 # Hàm gửi tin nhắn qua Telegram
 send_telegram() {
