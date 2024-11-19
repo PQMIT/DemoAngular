@@ -4,7 +4,7 @@
 BOT_TOKEN="7647530452:AAFEpO0_NX3H9EFW6ttOIeG-btEqi-e2DN0"
 
 # Thay YOUR_CHAT_ID bằng chat_id bạn vừa lấy được
-CHAT_ID="662707152"
+CHAT_ID="6042225244"
 
 # Lấy tin nhắn từ đối số truyền vào
 MESSAGE=$1
