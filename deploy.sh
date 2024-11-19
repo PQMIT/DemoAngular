@@ -30,7 +30,7 @@ fi
 
 # Build project
 npm install >> $LOG_FILE 2>&1
-npm run build >> $LOG_FILE 2>&1
+ng build >> $LOG_FILE 2>&1
 if [ $? -ne 0 ]; then
     send_telegram "Build failed!"  # Gửi thông báo lỗi qua Telegram
     echo "Build failed!"
