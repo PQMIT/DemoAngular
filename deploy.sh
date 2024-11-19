@@ -15,6 +15,7 @@ git reset --hard >> $LOG_FILE 2>&1
 git pull origin main >> $LOG_FILE 2>&1
 if [ $? -ne 0 ]; then
     # echo "Git pull failed!" | mail -s "Deployment Failed" $EMAIL
+    ./send_telegram.sh "Git pull failed!"
     echo "Git pull failed!"
     exit 1
 fi
@@ -24,6 +25,7 @@ npm install >> $LOG_FILE 2>&1
 npm run build >> $LOG_FILE 2>&1
 if [ $? -ne 0 ]; then
     # echo "Build failed!" | mail -s "Deployment Failed" $EMAIL
+    ./send_telegram.sh "Build failed!"
     echo "Build failed!"
     exit 1
 fi
@@ -32,11 +34,13 @@ fi
 sudo cp -r $DIST_PATH/* $DEPLOY_PATH/ >> $LOG_FILE 2>&1
 if [ $? -ne 0 ]; then
     # echo "Copy files failed!" | mail -s "Deployment Failed" $EMAIL
+    ./send_telegram.sh "Copy files failed!"
     echo "Copy files failed!"
     exit 1
 fi
 
 # Thông báo thành công
 # echo "Deployment successful!" | mail -s "Deployment Successful" $EMAIL
+./send_telegram.sh "Deployment successful!"
 echo "Deployment successful!"
 echo "----- Deployment finished at $(date) -----" >> $LOG_FILE
