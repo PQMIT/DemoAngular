@@ -130,3 +130,21 @@
 .share-buttons button:hover {
   background-color: #0056b3;
 }
+
+@media screen and (max-width: 768px) {
+  .movie-info {
+    flex-direction: column;
+  }
+
+  .movie-poster {
+    justify-items: center;
+  }
+
+  .poster-img {
+    width: auto;
+    height: 250px;
+    border-radius: 10px;
+    display: block;
+    position: center;
+  }
+}

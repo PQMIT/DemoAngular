@@ -6,39 +6,42 @@
             <h2>{{ movie.name }}</h2>
             <p><strong>Origin:</strong> {{ movie.origin_name }}</p>
             <p>{{ movie.content }}</p>
-            <p><strong>Year:</strong> {{ movie.year }}</p>
-            <p><strong>Status:</strong> {{ movie.status }}</p>
-            <p><strong>Created: </strong>{{ movie.created?.time | date : "dd/MM/yyyy, HH:mm:ss" }}</p>
-            <p><strong>Time:</strong> {{ movie.time }}</p>
-            <strong>Episode current:</strong>
-            <div class="brand_episode px-2 inline-flex text-xm leading-5 font-semibold rounded-full">
-                {{ movie.episode_current }}
-            </div>
-            <p>
-                <strong>Quality: {{ movie.quality }}</strong>
-            </p>
-            <p><strong>Lang:</strong> {{ movie.lang }}</p>
+            <div class="movie-detail2">
+                <p><strong>Year:</strong> {{ movie.year }}</p>
+                <p><strong>Status:</strong> {{ movie.status }}</p>
+                <p><strong>Created: </strong>{{ movie.created?.time | date : "dd/MM/yyyy, HH:mm:ss" }}</p>
+                <p><strong>Time:</strong> {{ movie.time }}</p>
+                <strong>Episode current:</strong>
+                <div class="brand_episode px-2 inline-flex text-xm leading-5 font-semibold rounded-full">
+                    {{ movie.episode_current }}
+                </div>
+                <p>
+                    <strong>Quality: {{ movie.quality }}</strong>
+                </p>
+                <p><strong>Lang:</strong> {{ movie.lang }}</p>
 
-            <p-button label="Watch Trailer" icon="pi pi-play" (click)="showTrailer()"></p-button>
-            <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, movie)">
-                <i *ngIf="!isStatusLike" class="pi pi-heart"></i>
-                <i *ngIf="isStatusLike" class="pi pi-heart-fill"></i>
-            </p-button>
-            <div class="share-buttons">
-                <button (click)="shareOnFacebook()"><i class="pi pi-facebook"></i> Share</button>
-                <button (click)="shareOnTwitter()"><i class="pi pi-twitter"> Share</i></button>
-                <button (click)="shareOnLinkedIn()"><i class="pi pi-linkedin"></i> Share</button>
+                <p-button label="Watch Trailer" icon="pi pi-play" (click)="showTrailer()"></p-button>
+                <p-button *ngIf="movie" severity="danger" [outlined]="true" (onClick)="handleLike($event, movie)">
+                    <i *ngIf="!isStatusLike" class="pi pi-heart"></i>
+                    <i *ngIf="isStatusLike" class="pi pi-heart-fill"></i>
+                </p-button>
+                <div class="share-buttons">
+                    <button (click)="shareOnFacebook()"><i class="pi pi-facebook"></i> Share</button>
+                    <button (click)="shareOnTwitter()"><i class="pi pi-twitter"> Share</i></button>
+                    <button (click)="shareOnLinkedIn()"><i class="pi pi-linkedin"></i> Share</button>
+                </div>
             </div>
+            
         </div>
     </div>
 
     <!-- Phần danh sách các tập phim -->
     <div class="episode-list">
-        <p-tabView>
-            <p-tabPanel header="Tập phim {{ episode.server_name }}" *ngFor="let episode of episodes">
+        <p-tabView [scrollable]="true">
+            <p-tabPanel header="SV {{ episode.server_name }}" *ngFor="let episode of episodes">
                 <!-- <div class="flex" *ngFor="let episode of episodes"> -->
                 <!-- <p-carousel [value]="episode.server_data" [numVisible]="5" [numScroll]="1" [circular]="true" autoplayInterval="2000"> -->
-                <p-carousel [value]="episode.server_data" [numVisible]="5" [numScroll]="1" [circular]="true">
+                <p-carousel [value]="episode.server_data" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
                     <ng-template let-episode pTemplate="item">
                         <div
                             class="episode-card"

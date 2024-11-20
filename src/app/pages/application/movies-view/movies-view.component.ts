@@ -104,8 +104,26 @@ export class MoviesViewComponent implements OnInit {
     isStatusLike: boolean = false;
 
     movieUrl: string = ""; // URL phim chi tiết
-
-    constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private moviesService: MoviesService, private storageService: StorageService, private messageService: MessageService) {}
+    responsiveOptions: any[] | undefined;
+    constructor(private sanitizer: DomSanitizer, private route: ActivatedRoute, private moviesService: MoviesService, private storageService: StorageService, private messageService: MessageService) {
+        this.responsiveOptions = [
+            {
+                breakpoint: "1024px",
+                numVisible: 4,
+                numScroll: 4,
+            },
+            {
+                breakpoint: "768px",
+                numVisible: 2,
+                numScroll: 2,
+            },
+            {
+                breakpoint: "560px",
+                numVisible: 1,
+                numScroll: 1,
+            },
+        ];
+    }
     showSuccess(movie: any) {
         this.messageService.add({ severity: "success", summary: "Success", detail: `${movie.name} - Saved` });
     }
