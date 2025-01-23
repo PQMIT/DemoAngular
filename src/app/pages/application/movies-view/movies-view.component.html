@@ -41,7 +41,9 @@
             <p-tabPanel header="SV {{ episode.server_name }}" *ngFor="let episode of episodes">
                 <!-- <div class="flex" *ngFor="let episode of episodes"> -->
                 <!-- <p-carousel [value]="episode.server_data" [numVisible]="5" [numScroll]="1" [circular]="true" autoplayInterval="2000"> -->
-                <p-carousel [value]="episode.server_data" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+                <p-carousel [value]="episode.server_data" [numVisible]="4" [numScroll]="2" 
+                            [circular]="false" [responsiveOptions]="responsiveOptions" [showIndicators]="false"
+                            >
                     <ng-template let-episode pTemplate="item">
                         <div
                             class="episode-card"

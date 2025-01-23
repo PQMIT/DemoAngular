@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             {
                 breakpoint: "1024px",
                 numVisible: 3,
-                numScroll: 3,
+                numScroll: 2,
             },
             {
                 breakpoint: "768px",

@@ -10,7 +10,8 @@
     <!-- <button (click)="search()" class="btn btn-primary">Tìm kiếm</button> -->
 
     <!-- Hiển thị skeleton loader nếu đang tải -->
-    <div *ngIf="isLoading" class="skeleton-loader">
+    <div *ngIf="isLoading">
+        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
         <p>Đang tìm kiếm ...</p>
     </div>
 

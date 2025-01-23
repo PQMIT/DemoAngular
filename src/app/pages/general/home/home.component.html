@@ -3,7 +3,7 @@
     <div class="card">
         <!-- Skeleton loader for carousel -->
         <div class="mx-2">
-            <p-carousel [value]="movies" *ngIf="isLoading" [numVisible]="6" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+            <p-carousel [value]="movies" *ngIf="isLoading" [numVisible]="6" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [showIndicators]="false">
                 <!-- Header for the carousel -->
                 <ng-template pTemplate="header" class="justify-content-start">
                     <h3 class="mx-3" style="color: #10b981">PHIM MỚI</h3>
@@ -21,7 +21,7 @@
             </p-carousel>
         </div>
 
-        <p-carousel [value]="movies" *ngIf="!isLoading" [numVisible]="6" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="autoplayInterval">
+        <p-carousel [value]="movies" *ngIf="!isLoading" [numVisible]="6" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="autoplayInterval" [showIndicators]="false">
             <!-- Header for the carousel -->
             <ng-template pTemplate="header" class="justify-content-start">
                 <div class="flex" style="align-items: center; justify-content: space-between">

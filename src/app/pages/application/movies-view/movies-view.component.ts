@@ -109,8 +109,8 @@ export class MoviesViewComponent implements OnInit {
         this.responsiveOptions = [
             {
                 breakpoint: "1024px",
-                numVisible: 4,
-                numScroll: 4,
+                numVisible: 3,
+                numScroll: 2,
             },
             {
                 breakpoint: "768px",
